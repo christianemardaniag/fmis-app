@@ -1,27 +1,162 @@
-# FmisApp
+# Web-Based Faculty Management Information System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.1.
+Create a system that will allow faculty to register and create their profile (Consent promt needed). Faculty can add necessary information within the system. Faculty can also upload certificates of training, seminars, certification, etc. within the system. Faculty can print their information. Faculty can view a summary of his/her training, seminars, certifications, etc. Summary can be filtered or searched. Faculty can update his/her information.
 
-## Development server
+The admin can accept faculty registration. Admin can print faculty member/s information. Admin can view a summary of faculty member/s training, seminars, certifications, etc. A summary can be filtered or searched. Admin can update faculty information.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**FACULTY PROFILE PERSONAL INFORMATION: (Please refer to PDS)**
+- Email address (used as username)
+- Password
+- Picture (profile)
+- Employee Number
+- First Name
+- Last Name
+- Middle Initial (not required)
+- Name Extension (not required)
+- Date of Birth
+- Age (Auto compute)
+- Place of Birth
+- Sex (Gender)
+- Civil Status
+- Height (not required)
+- Weight (not required)
+- Blood Type (not required)
+- GSIS ID No. (not required)
+- PAG-IBIG ID No. (not required)
+- PHILHEALTH No. (not required)
+- SSS No. (not required)
+- TIN No. (not required)
+- Citizenship (not required)
+- Resident Address (some fields are required)
+    - House/Block/Lot No.
+    - Street
+    - Subdivision/Village
+    - Barangay
+    - City/Municipality
+    - Province
+    - Zip Code
+- Permanent Address (some fields are required)
+    - House/Block/Lot No.
+    - Street
+    - Subdivision/Village
+    - Barangay
+    - City/Municipality
+    - Province
+    - Zip Code
+- Telephone No. (not required)
+- Mobile No.
+- Alternate Email address. (not required)
 
-## Code scaffolding
+**EDUCATIONAL BACKGROUND:**
+- Elementary
+    -Name of School (write in full)
+    -Basic Education/Degree/Course (write in full)
+    -Period of attendance
+        - From
+        - To
+    - Highest Level/Units Earned (if not graduated)
+    - Year Graduate
+    - Scholarship/Academic Honors Received
+- Secondary
+    - Name of School (write in full)
+    - Basic Education/Degree/Course (write in full)
+    - Period of attendance
+        - From
+        - To
+    - Highest Level/Units Earned (if not graduated)
+    - Year Graduate
+    - Scholarship/Academic Honors Received
+- Vocational/Trade Course
+    - Name of School (write in full)
+    - Basic Education/Degree/Course (write in full)
+    - Period of attendance
+        - From
+        - To
+    - Highest Level/Units Earned (if not graduated)
+    - Year Graduate
+    - Scholarship/Academic Honors Received
+- College
+    - Name of School (write in full)
+    - Basic Education/Degree/Course (write in full)
+    - Period of attendance
+        - From
+        - To
+    - Highest Level/Units Earned (if not graduated)
+    - Year Graduate
+    - Scholarship/Academic Honors Received
+- Graduate Studies
+    - Name of School (write in full)
+    - Basic Education/Degree/Course (write in full)
+    - Period of attendance
+        - From
+        - To
+    - Highest Level/Units Earned (if not graduated)
+    - Year Graduate
+    - Scholarship/Academic Honors Received
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**CIVIL SERVICE ELIGIBILITY:**
+- Career service/ ra 1080 (board/ bar) under special laws/ ces/ csee barangay eligibility / driver's license
+- Rating (if applicable)
+- Date of examination / conferment
+- Place of examination / conferment
+- License (if applicable)
+    - Number
+    - Date of validity
 
-## Build
+*WORK EXPERIENCE**
+- Inclusive DATES (mm/dd/yyyy)
+    - From
+    - To
+- Position TITLE (write in full/do not abbreviate)
+- Department / Agency / office / company (write in full/do not abbreviate)
+- Monthly salary
+- Salary/ job/ pay grade (if applicable) & STEP (format "00-0")/ INCREMENT
+- Status of appointment
+- Gov't service (y/ n)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED**
+- Title of learning and development interventions/training programs (write in full)
+- Inclusive dates of attendance (mm/dd/yyyy)
+    - From
+    - To
+- Number of hours
+- Type of LD (Managerial/ Supervisory/ Technical/etc)
+- Conducted/ sponsored by (Write in full)
+- Certificate (Upload Certificate whether in image or pdf file)
 
-## Running unit tests
+User Levels:
+- Admin
+    - Accept registration of a faculty member
+    - View/Download information
+    - Generate Report of a faculty member/s information
+- Faculty
+    - Register an account
+    - Add/Update Profile
+    - View/Download information
+    - Generate Report of his/her information
+Report Needed:
+- Faculty Information Report (per category of information or all the information)
+- (Admin) Faculty member/s Information Report (per category of information or all the information) (Should have filter)
+Uploads:
+- Image Upload (profile)
+- Certificates
+Registration:
+- Faculty should register on the Page.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Layout.** Layout must be consistent throughout the whole program/system, easy to navigate, with proper alert and prompt messages.
 
-## Running end-to-end tests
+**Account Registration.** Users shall register accounts before using the program/system. Allow the user to provide both username and email address (both shall be validated for duplication of entry). Different system access of user levels must be properly differentiated to one another.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+**Log In and Log Out.** Allow the user to choose from username or email when logging in. Provide a confirmation before logging out. Provide security features for the login interface (ex. 3 times login attempt). Admin login must be separated to user login.
 
-## Further help
+**User Profile.** Users must be able to edit or delete their account. Users must be able to upload a profile picture. Change password shall ask for the old password, new password, and confirm new password.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**Administrator.** Admin must be able to manage (CRUD) the content of the program/system. Please consider the purpose of the program on what exactly needed to be managed.
+(ex. If the system is a Management Information System for a clinic… The system must be able to manage records of the patients, doctors, nurses, staffs, medicine, medical records, medical transactions, accounts, etc.)
+
+**Content Management.** Admin must be able to (CRUD) manage the content of the system/program like logo, moto, VMGO, announcements, or anything applicable.
+
+**Report Generation.** Admin must be able to generate reports. Please consider the data/information of the accounts to be reported.
+(ex. If the system is a Management Information System for a clinic… The system must be able to provide comprehensive reports of patients, users, medicine, medical records, medical transactions, etc.)
+The admin must be able to filter the reports with the specific details such as date, name, categories, and anything applicable.
+The report must be printable or downloadable with proper heading, footer, logo, date and time, and the user who generated the report.
