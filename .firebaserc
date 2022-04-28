@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "fmis-app": {
+      "hosting": {
+        "fmis-app": [
+          "fmis-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "fmis-app"
+  }
+}

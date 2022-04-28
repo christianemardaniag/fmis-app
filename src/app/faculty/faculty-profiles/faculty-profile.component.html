@@ -1,8 +1,3 @@
-<div class="d-flex justify-content-lg-end mb-3">
-    <button class="btn btn-dark me-2"><i class="fal fa-edit"></i> Edit</button>
-    <button class="btn btn-dark"><i class="fal fa-print"></i> Print</button>
-</div>
-
 <div class="card mb-3">
     <div class="card-body">
         <div class="d-flex justify-content-start">
@@ -22,10 +17,10 @@
     <div class="card-body">
         <div class="d-flex justify-content-between">
             <h5 class="card-title">Personal Information</h5>
-            <input type="checkbox" name="print" id="" class="form-check-input" data-toggle="tooltip" data-placement="auto" title="Include to print" checked>
+            <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip" data-placement="auto" title="Include to print" checked>
         </div>
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row row-cols-md-2">
+            <div class="col">
                 <table>
                     <tbody>
                         <tr><td>Date of Birth:</td><td>August 31, 1998</td></tr>
@@ -77,25 +72,29 @@
     <div class="card-body">
         <div class="d-flex justify-content-between">
             <h5 class="card-title">Educational Background</h5>
-            <input type="checkbox" name="print" id="" class="form-check-input" data-toggle="tooltip" data-placement="auto" title="Include to print" checked>
+            <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip" data-placement="auto" title="Include to print" checked>
         </div>
-        <div class="row">
+        <div class="row row-cols-2">
             <div class="col">
-                <div class="mb-2">
+                <div>
                     <div class="fw-bold fs-6">Elementary</div>
                     <div>Montessori Academy of California</div>
                     <div>Year Graduated: 2010</div>
                     <div>Academic Honors: N/A</div>
                     <div>Scholarship: N/A</div>
                 </div>
-                <div class="mb-2">
+            </div>
+            <div class="col">
+                <div>
                     <div class="fw-bold fs-6">Secondary</div>
                     <div>Montessori Academy of California</div>
                     <div>Year Graduated: 2014</div>
                     <div>Academic Honors: N/A</div>
                     <div>Scholarship: N/A</div>
                 </div>
-                <div class="mb-2">
+            </div>
+            <div class="col">
+                <div>
                     <div class="fw-bold fs-6">Vocational/Trade Course</div>
                     <div>East Harvard</div>
                     <div>Year Graduated: 2016</div>
@@ -104,7 +103,7 @@
                 </div>
             </div>
             <div class="col">
-                <div class="mb-2">
+                <div>
                     <div class="fw-bold fs-6">College</div>
                     <div>Bulacan State University</div>
                     <div>Bachelor of Science in Information Technology</div>
@@ -112,7 +111,9 @@
                     <div>Academic Honors: N/A</div>
                     <div>Scholarship: N/A</div>
                 </div>
-                <div class="mb-2">
+            </div>
+            <div class="col">
+                <div>
                     <div class="fw-bold fs-6">Graduate Studies</div>
                     <div>Bulacan State University</div>
                     <div>Bachelor of Science in Information Technology</div>

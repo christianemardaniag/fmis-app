@@ -2,31 +2,30 @@
 
 Create a system that will allow faculty to register and create their profile (Consent promt needed). Faculty can add necessary information within the system. Faculty can also upload certificates of training, seminars, certification, etc. within the system. Faculty can print their information. Faculty can view a summary of his/her training, seminars, certifications, etc. Summary can be filtered or searched. Faculty can update his/her information.
 
-The admin can accept faculty registration. Admin can print faculty member/s information. Admin can view a summary of faculty member/s training, seminars, certifications, etc. A summary can be filtered or searched. Admin can update faculty information.
+The admin can accept faculty registration. Admin can print faculty member/s information. Admin can view a summary of faculty member/s training, seminars, certifications, etc. A summary can be filtered or searched.
+
+[Personal Data Sheet Guidelines]{https://www.coa.gov.ph/phocadownload/userupload/HR/doc-req-for-recruitment/Guide_to_Filling_Up_the_PDS.pdf}
 
 **FACULTY PROFILE PERSONAL INFORMATION: (Please refer to PDS)**
-- Email address (used as username)
-- Password
-- Picture (profile)
-- Employee Number
 - First Name
 - Last Name
-- Middle Initial (not required)
+- Middle Name (not required)
 - Name Extension (not required)
 - Date of Birth
-- Age (Auto compute)
 - Place of Birth
+- Age (Auto compute)
 - Sex (Gender)
 - Civil Status
-- Height (not required)
-- Weight (not required)
-- Blood Type (not required)
+- Height
+- Weight
+- Blood Type
 - GSIS ID No. (not required)
 - PAG-IBIG ID No. (not required)
 - PHILHEALTH No. (not required)
 - SSS No. (not required)
 - TIN No. (not required)
-- Citizenship (not required)
+- Employee Number
+- Citizenship
 - Resident Address (some fields are required)
     - House/Block/Lot No.
     - Street
@@ -43,9 +42,13 @@ The admin can accept faculty registration. Admin can print faculty member/s info
     - City/Municipality
     - Province
     - Zip Code
-- Telephone No. (not required)
-- Mobile No.
+- Email address (used as username)
 - Alternate Email address. (not required)
+- Mobile No.
+- Telephone No. (not required)
+- Profile Picture (Should be follow civil service rules)
+- Password
+
 
 **EDUCATIONAL BACKGROUND:**
 - Elementary
@@ -66,7 +69,16 @@ The admin can accept faculty registration. Admin can print faculty member/s info
     - Highest Level/Units Earned (if not graduated)
     - Year Graduate
     - Scholarship/Academic Honors Received
-- Vocational/Trade Course
+- Vocational/Trade Course (Can be multiple Entry)
+    - Name of School (write in full)
+    - Basic Education/Degree/Course (write in full)
+    - Period of attendance (e.g. 1992-1996)
+        - From
+        - To
+    - Highest Level/Units Earned (if not graduated)
+    - Year Graduate
+    - Scholarship/Academic Honors Received
+- College (Can be multiple Entry)
     - Name of School (write in full)
     - Basic Education/Degree/Course (write in full)
     - Period of attendance
@@ -75,16 +87,7 @@ The admin can accept faculty registration. Admin can print faculty member/s info
     - Highest Level/Units Earned (if not graduated)
     - Year Graduate
     - Scholarship/Academic Honors Received
-- College
-    - Name of School (write in full)
-    - Basic Education/Degree/Course (write in full)
-    - Period of attendance
-        - From
-        - To
-    - Highest Level/Units Earned (if not graduated)
-    - Year Graduate
-    - Scholarship/Academic Honors Received
-- Graduate Studies
+- Graduate Studies (Can be multiple Entry)
     - Name of School (write in full)
     - Basic Education/Degree/Course (write in full)
     - Period of attendance
@@ -94,7 +97,7 @@ The admin can accept faculty registration. Admin can print faculty member/s info
     - Year Graduate
     - Scholarship/Academic Honors Received
 
-**CIVIL SERVICE ELIGIBILITY:**
+**CIVIL SERVICE ELIGIBILITY: (Can be multiple Entry)**
 - Career service/ ra 1080 (board/ bar) under special laws/ ces/ csee barangay eligibility / driver's license
 - Rating (if applicable)
 - Date of examination / conferment
@@ -103,18 +106,24 @@ The admin can accept faculty registration. Admin can print faculty member/s info
     - Number
     - Date of validity
 
-*WORK EXPERIENCE**
+**WORK EXPERIENCE (Can be multiple Entry)**
 - Inclusive DATES (mm/dd/yyyy)
     - From
     - To
 - Position TITLE (write in full/do not abbreviate)
 - Department / Agency / office / company (write in full/do not abbreviate)
-- Monthly salary
-- Salary/ job/ pay grade (if applicable) & STEP (format "00-0")/ INCREMENT
-- Status of appointment
+- Monthly salary (e.g. P21,877).
+- Salary/ job/ pay grade (if applicable) & STEP (format "00-0")/ INCREMENT (e.g. 24-2, 24 for salary grade, 2 for salary step)
+- Status of appointment (permanent, temporary, casual,
+contractual)
 - Gov't service (y/ n)
 
-**LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED**
+**LEARNING AND DEVELOPMENT (L&D) INTERVENTIONS/TRAINING PROGRAMS ATTENDED** 
+**Note.**
+- Multiple Entry
+- This is where training, seminars, certification will be uploaded
+- Default visible L&D is for the last 5 years
+
 - Title of learning and development interventions/training programs (write in full)
 - Inclusive dates of attendance (mm/dd/yyyy)
     - From
@@ -122,7 +131,8 @@ The admin can accept faculty registration. Admin can print faculty member/s info
 - Number of hours
 - Type of LD (Managerial/ Supervisory/ Technical/etc)
 - Conducted/ sponsored by (Write in full)
-- Certificate (Upload Certificate whether in image or pdf file)
+- Coverage (International/(National/Regional/Local))
+- Certificate (Upload image Certificate)
 
 User Levels:
 - Admin
@@ -134,12 +144,16 @@ User Levels:
     - Add/Update Profile
     - View/Download information
     - Generate Report of his/her information
+
 Report Needed:
 - Faculty Information Report (per category of information or all the information)
 - (Admin) Faculty member/s Information Report (per category of information or all the information) (Should have filter)
+- Quarterly Training/Seminars/Workshops Report
+
 Uploads:
 - Image Upload (profile)
-- Certificates
+- Certificates Image
+
 Registration:
 - Faculty should register on the Page.
 

@@ -102,6 +102,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "fmis-app:build:production",
+            "firebaseProject": "fmis-app",
+            "firebaseHostingSite": "fmis-app"
+          }
         }
       }
     }

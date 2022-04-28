@@ -1,9 +1,13 @@
 <div class="container">
     <div class="row">
-        <div class="col-xl-5 col-lg-6 mb-3">
+        <div class="col-xl-5 col-lg-6 mb-3 d-print-none">
             <app-dashboard-application></app-dashboard-application>
         </div>
         <div class="col">
+            <div class="d-flex justify-content-lg-end mb-3">
+                <button class="btn btn-dark d-print-none" (click)="printWindow()"><i class="fal fa-print"></i> Print</button>
+            </div>
+            <button (click)="registration()">register</button>
             <app-faculty-profile></app-faculty-profile>
         </div>
     </div>

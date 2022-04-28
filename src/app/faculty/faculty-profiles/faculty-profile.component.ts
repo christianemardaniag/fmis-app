@@ -12,7 +12,7 @@ export class FacultyProfileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    $('[data-toggle="tooltip"]').tooltip();
+
   }
 
 }
