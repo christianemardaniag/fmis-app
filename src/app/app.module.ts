@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +18,8 @@ import { FormEducationalBackgroundComponent } from './registration/registration-
 import { FormCivilServiceComponent } from './registration/registration-forms/form-civil-service/form-civil-service.component';
 import { FormWorkExperienceComponent } from './registration/registration-forms/form-work-experience/form-work-experience.component';
 import { FormSeminarsComponent } from './registration/registration-forms/form-seminars/form-seminars.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -33,12 +36,14 @@ import { FormSeminarsComponent } from './registration/registration-forms/form-se
     FormEducationalBackgroundComponent,
     FormCivilServiceComponent,
     FormWorkExperienceComponent,
-    FormSeminarsComponent
+    FormSeminarsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

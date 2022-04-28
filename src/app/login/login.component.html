@@ -1,0 +1,74 @@
+<div class="cont vh-100">
+    <main class="form-signin text-center">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3">
+                    <h1 class="fad fa-qrcode bi ms-2 display-3"></h1>
+                    <h1 class="h3 fw-normal mb-0">Faculty Management Information System</h1>
+                </div>
+                <button type="button" class="btn btn-secondary px-5" routerLink="/registration">Sign Up</button>
+            </div>
+            
+            <div class="col">
+                <form (ngSubmit)="userLogin(f)" #f="ngForm">
+                    <!-- <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+                    <h3 class="mb-3">Sign In</h3>
+                    <div class="input-groups">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                                ngModel required email>
+                            <label for="email">Email address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                                ngModel required>
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="bg-danger py-2 px-4 text-white fw-bold my-2" *ngIf="isIncorrect" role="alert">
+                            Incorrect Email or Password!
+                        </div>
+                        <button class="btn btn-link text-decoration-none mb-3" data-bs-toggle="modal"
+                            data-bs-target="#forgot-password-modal" type="button">
+                            Forget Password
+                        </button>
+        
+                        <button class="w-100 btn btn-lg btn-success" type="submit" [disabled]="!f.valid">
+                            <span *ngIf="!onSigninSpinner">Sign In</span>
+                            <div class="spinner-border spinner-border-sm" role="status" *ngIf="onSigninSpinner">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+       
+        
+        <!-- <a class="btn btn-link text-decoration-none" routerLink="/registration">Register</a> -->
+    </main>
+</div>
+
+<!-- <div class="modal fade" id="forgot-password-modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Forgot Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="mb-2" #fpForm="ngForm">
+                    <label for="validEmail" class="form-label">Enter your Registered Email Address</label>
+                    <input type="email" class="form-control" placeholder="Email Address" required email>
+                </form>
+                <small>We will send new password to your email address</small>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="send-code" (click)="sendNewPass(fpForm)"
+                    [disabled]="!fpForm.valid"><span class="spinner-border spinner-border-sm" role="status"
+                        aria-hidden="true" id="send-spinner"></span> Send New Password</button> 
+            </div>
+        </div>
+    </div>
+</div> -->

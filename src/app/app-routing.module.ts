@@ -2,13 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FacultyComponent } from './faculty/faculty.component';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'faculty', component: FacultyComponent},
   { path: 'registration', component: RegistrationComponent },
-  { path: '', redirectTo: 'registration', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent },
+  { path: 'main', component: HeaderComponent, children: [
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'faculty', component: FacultyComponent }
+  ]},
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({
