@@ -1,10 +1,129 @@
 <h5>Elementary</h5>
 
-<div class="row">
+<div class="row row-cols-1 row-cols-md-3 g-2">
     <div class="col">
         <div class="mb-3">
-            <label for="elementarySchool" class="form-label">Name of School (write in full)</label>
+            <label for="elementarySchool" class="form-label">Name of School (write in full)
+                <i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right" data-bs-html="true"
+                    title="Indicate FULL name of schools. <b>DO NOT ABBREVIATE</b>"></i>
+            </label>
             <input type="text" class="form-control" name="elementarySchool" ngModel>
         </div>
     </div>
+    <div class="col">
+        <div class="mb-3">
+            <label class="form-label">Basic Education (write in full)
+                <i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right" data-bs-html="true"
+                    title="Indicate <b>PRIMARY EDUCATION</b> if graduated"></i>
+            </label> 
+            <input class="form-control" list="elemBasicEducationList" id="elemBasicEducation" name="elemBasicEducation" ngModel>
+            <datalist id="elemBasicEducationList">
+                <option *ngFor="let x of elemBasicEd" [value]="x">
+            </datalist>
+        </div>
+    </div>
+    <div class="col">
+        <label for="elemAttendance" class="form-label">Period of Attendance</label>
+        <div class="d-flex justify-content-around">
+            <input type="number" class="form-control" min="1901" max="2022" placeholder="Start Year" name="elemAttendanceStart" ngModel>
+            <label class="mx-3 pt-1">to</label>
+            <input type="number" class="form-control" min="1901" max="2022" placeholder="End Year" name="elemAttendanceEnd" ngModel>
+        </div>
+    </div>
 </div>
+<div class="row row-cols-1 row-cols-md-3 g-2">
+    <div class="col">
+        <div class="mb-3">
+            <label for="elemHighestLevel" class="form-label">Highest Level/Units Earned (if not graduated)</label>
+            <input type="text" class="form-control" name="elemHighestLevel" id="elemHighestLevel" ngModel>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="elemYearGraduate" class="form-label">Year Graduated</label>
+            <input type="number" class="form-control" name="elemYearGraduate" id="elemYearGraduate" min="1901"
+                max="2022" placeholder="Year" ngModel>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="elemScholarship" class="form-label">Scholarship/Academic Honors Received</label>
+            <input type="text" class="form-control" name="elemScholarship" id="elemScholarship" ngModel>
+        </div>
+    </div>
+</div>
+<hr>
+
+<h5>Secondary</h5>
+
+<div class="row row-cols-1 row-cols-md-3 g-2">
+    <div class="col">
+        <div class="mb-3">
+            <label for="secondarySchool" class="form-label">Name of School (write in full)
+                <i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right" data-bs-html="true"
+                    title="Indicate FULL name of schools. <b>DO NOT ABBREVIATE</b>"></i>
+            </label>
+            <input type="text" class="form-control" name="secondarySchool" ngModel>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label class="form-label">Basic Education (write in full)
+                <i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right" data-bs-html="true"
+                    title="Indicate <b>HIGH SCHOOL</b> if graduated under the old curriculum; or <b>JUNIOR HIGH SCHOOL</b> or <b>SENIOR HIGH SCHOOL</b> if graduated under the K-12 curriculum."></i>
+            </label>
+            <input class="form-control" list="secondaryBasicEducationList" id="secondaryBasicEducation" name="secondaryBasicEducation" ngModel>
+            <datalist id="secondaryBasicEducationList">
+                <option *ngFor="let x of secondaryBasicEd" [value]="x">
+            </datalist>
+        </div>
+    </div>
+    <div class="col">
+        <label for="secondaryAttendance" class="form-label">Period of Attendance</label>
+        <div class="d-flex justify-content-around">
+            <input type="number" class="form-control" min="1901" max="2022" name="secondaryAttendanceStart" placeholder="Start Year" ngModel>
+            <label class="mx-3 pt-1">to</label>
+            <input type="number" class="form-control" min="1901" max="2022" name="secondaryAttendanceEnd" placeholder="End Year" ngModel>
+        </div>
+    </div>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-2">
+    <div class="col">
+        <div class="mb-3">
+            <label for="secondaryHighestLevel" class="form-label">Highest Level/Units Earned (if not graduated)</label>
+            <input type="text" class="form-control" name="secondaryHighestLevel" id="secondaryHighestLevel" ngModel>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="secondaryYearGraduate" class="form-label">Year Graduated</label>
+            <input type="number" class="form-control" name="secondaryYearGraduate" id="secondaryYearGraduate" min="1901"
+                max="2022" placeholder="Year" ngModel>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="secondaryScholarship" class="form-label">Scholarship/Academic Honors Received</label>
+            <input type="text" class="form-control" name="secondaryScholarship" id="secondaryScholarship" ngModel>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="d-flex justify-content-between justify-content-md-start">
+    <h5>Vocational/Trade Course</h5>
+    <button class="btn btn-outline-secondary btn-sm ms-3" (click)="addVocational()"><i class="fal fa-plus-circle me-2"></i>Add another entry</button>
+</div>
+<app-educational-vocational *ngFor="let x of vocationalEntry; let i = index" [ctr]="i"></app-educational-vocational>
+
+<div class="d-flex justify-content-between justify-content-md-start">
+    <h5>College</h5>
+    <button class="btn btn-outline-secondary btn-sm ms-3" (click)="addCollege()"><i class="fal fa-plus-circle me-2"></i>Add another entry</button>
+</div>
+<app-educational-college *ngFor="let x of collegeEntry; let i = index" [ctr]="i"></app-educational-college>
+
+<div class="d-flex justify-content-between justify-content-md-start">
+    <h5>Graduate Studies</h5>
+    <button class="btn btn-outline-secondary btn-sm ms-3" (click)="addGraduateStudies()"><i class="fal fa-plus-circle me-2"></i>Add another entry</button>
+</div>
+<app-educational-graduate-studies *ngFor="let x of graduateStudiesEntry; let i = index" [ctr]="i"></app-educational-graduate-studies>

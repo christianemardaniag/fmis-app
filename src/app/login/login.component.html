@@ -6,7 +6,7 @@
                     <h1 class="fad fa-qrcode bi ms-2 display-3"></h1>
                     <h1 class="h3 fw-normal mb-0">Faculty Management Information System</h1>
                 </div>
-                <button type="button" class="btn btn-secondary px-5" routerLink="/registration">Sign Up</button>
+                <button type="button" class="btn btn-secondary px-5" routerLink="/registration">Register</button>
             </div>
             
             <div class="col">
@@ -32,7 +32,7 @@
                             Forget Password
                         </button>
         
-                        <button class="w-100 btn btn-lg btn-success" type="submit" [disabled]="!f.valid">
+                        <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!f.valid">
                             <span *ngIf="!onSigninSpinner">Sign In</span>
                             <div class="spinner-border spinner-border-sm" role="status" *ngIf="onSigninSpinner">
                                 <span class="visually-hidden">Loading...</span>

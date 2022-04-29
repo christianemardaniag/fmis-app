@@ -1,0 +1,51 @@
+<div class="row row-cols-1 row-cols-md-3 g-2">
+    <div class="col">
+        <div class="mb-3">
+            <label for="collegeSchool" class="form-label">Name of School (write in full)
+                <i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right" data-bs-html="true"
+                    title="Indicate FULL name of schools. <b>DO NOT ABBREVIATE</b>"></i>
+            </label>
+            <input type="text" class="form-control" [name]="'collegeSchool'+ctr" ngModel>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label class="form-label">Basic Education/Degree/Course (write in full)
+                <i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right" data-bs-html="true"
+                    title="Indicate in FULL all courses taken in college (e.g. ASSOCIATE IN ARTS, AB ECONOMICS, BS PSYCHOLOGY, MA IN HISTORY)."></i>
+            </label>
+            <input class="form-control" id="collegeBasicEducation" [name]="'collegeBasicEducation'+ctr" ngModel>
+            
+        </div>
+    </div>
+    <div class="col">
+        <label for="collegeAttendance" class="form-label">Period of Attendance</label>
+        <div class="d-flex justify-content-around">
+            <input type="number" class="form-control" min="1901" max="2022" [name]="'collegeAttendanceStart'+ctr" placeholder="Start Year" ngModel>
+            <label class="mx-3 pt-1">to</label>
+            <input type="number" class="form-control" min="1901" max="2022" [name]="'collegeAttendanceEnd'+ctr" placeholder="End Year" ngModel>
+        </div>
+    </div>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-2">
+    <div class="col">
+        <div class="mb-3">
+            <label for="collegeHighestLevel" class="form-label">Highest Level/Units Earned (if not graduated)</label>
+            <input type="text" class="form-control" [name]="'collegeHighestLevel'+ctr" id="collegeHighestLevel" ngModel>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="collegeYearGraduate" class="form-label">Year Graduated</label>
+            <input type="number" class="form-control" [name]="'collegeYearGraduate'+ctr" id="collegeYearGraduate" min="1901"
+                max="2022" placeholder="Year" ngModel>
+        </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="collegeScholarship" class="form-label">Scholarship/Academic Honors Received</label>
+            <input type="text" class="form-control" [name]="'collegeScholarship'+ctr" id="collegeScholarship" ngModel>
+        </div>
+    </div>
+</div>
+<hr>

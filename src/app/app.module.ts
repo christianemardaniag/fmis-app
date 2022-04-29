@@ -19,6 +19,9 @@ import { FormCivilServiceComponent } from './registration/registration-forms/for
 import { FormWorkExperienceComponent } from './registration/registration-forms/form-work-experience/form-work-experience.component';
 import { FormSeminarsComponent } from './registration/registration-forms/form-seminars/form-seminars.component';
 import { LoginComponent } from './login/login.component';
+import { EducationalVocationalComponent } from './registration/registration-forms/form-educational-background/educational-vocational/educational-vocational.component';
+import { EducationalCollegeComponent } from './registration/registration-forms/form-educational-background/educational-college/educational-college.component';
+import { EducationalGraduateStudiesComponent } from './registration/registration-forms/form-educational-background/educational-graduate-studies/educational-graduate-studies.component';
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import { LoginComponent } from './login/login.component';
     FormCivilServiceComponent,
     FormWorkExperienceComponent,
     FormSeminarsComponent,
-    LoginComponent
+    LoginComponent,
+    EducationalVocationalComponent,
+    EducationalCollegeComponent,
+    EducationalGraduateStudiesComponent
   ],
   imports: [
     BrowserModule,

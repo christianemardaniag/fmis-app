@@ -52,9 +52,9 @@ The admin can accept faculty registration. Admin can print faculty member/s info
 
 **EDUCATIONAL BACKGROUND:**
 - Elementary
-    -Name of School (write in full)
-    -Basic Education/Degree/Course (write in full)
-    -Period of attendance
+    - Name of School (write in full)
+    - Basic Education/Degree/Course (write in full)
+    - Period of attendance
         - From
         - To
     - Highest Level/Units Earned (if not graduated)

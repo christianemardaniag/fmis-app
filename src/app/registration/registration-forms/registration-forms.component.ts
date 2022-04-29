@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-registration-forms',
@@ -12,6 +14,7 @@ export class RegistrationFormsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
   onSubmit() {
