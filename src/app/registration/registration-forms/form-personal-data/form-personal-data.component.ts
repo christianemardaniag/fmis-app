@@ -18,6 +18,7 @@ export class FormPersonalDataComponent implements OnInit {
   mainForm: any;
   gender = ['male', 'female'];
   civilStatus = ['single', 'married', 'widowed', 'separated'];
+  resCitySelected = false;
   cityProvince = [
     'Abra', 'Agusan del Norte', 'Agusan del Sur', 'Aklan', 'Albay', 'Antique', 'Apayao',
     'Aurora', 'Basilan', 'Bataan', 'Batanes', 'Batangas', 'Benguet', 'Biliran', 'Bohol',

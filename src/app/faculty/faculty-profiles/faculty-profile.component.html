@@ -3,42 +3,41 @@
         <div class="d-flex justify-content-start">
             <img src="../../../assets/avatars/avatar-male-2.png" alt="avatar-male-2" width="150" height="150" class="border rounded-circle me-5">
             <div>
-                <p class="mb-1 fs-3"><strong>Carlo Dela Cruz</strong></p>
-                <p class="fs-6 mb-0"><i class="fas fa-hashtag me-2"></i><strong>15-846524</strong></p>
-                <p class="fs-6 mb-0 "><i class="fas fa-envelope me-2"></i><a href="mailto:carlodelacruz@gmail.com">carlodelacruz@gmail.com</a></p>
-                <p class="fs-6 mb-0"><i class="fas fa-phone me-2"></i>0915 344 9012</p>
-                <p class="fs-6 mb-0"><i class="fas fa-home me-2"></i>Balagtas, Bulacan</p>
+                <p class="mb-1 fs-3"><strong>{{ faculty.firstName + ' ' + faculty.middleName + ' ' + faculty.lastName + ' ' + faculty.nameExtension}}</strong></p>
+                <p class="fs-6 mb-0"><i class="fas fa-hashtag me-2"></i><strong>{{ faculty.employeeNo}}</strong></p>
+                <p class="fs-6 mb-0 "><i class="fas fa-envelope me-2"></i><a [href]="faculty.email">{{ faculty.email }}</a></p>
+                <p class="fs-6 mb-0"><i class="fas fa-phone me-2"></i>{{ faculty.mobileNumber }}</p>
+                <p class="fs-6 mb-0"><i class="fas fa-home me-2"></i>{{ faculty.residentAddress.municipality + ', ' + faculty.residentAddress.cityProvince }}</p>
             </div>
         </div>
     </div>
 </div>
 
 <div class="card mb-3">
-    <div class="card-body">
+    <div class="card-body" [ngClass]="{'d-print-none': !PI.checked}">
         <div class="d-flex justify-content-between">
             <h5 class="card-title">Personal Information</h5>
-            <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip" data-placement="auto" title="Include to print" checked>
+            <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip" data-placement="auto" title="Include to print" #PI checked>
         </div>
         <div class="row row-cols-md-2">
             <div class="col">
                 <table>
                     <tbody>
-                        <tr><td>Date of Birth:</td><td>August 31, 1998</td></tr>
-                        <tr><td>Age:</td><td>23 years old</td></tr>
-                        <tr><td>Place of Birth:</td><td>Sta. Maria, Bulacan</td></tr>
-                        <tr><td>Civil Status:</td><td>Single</td></tr>
-                        <tr><td>Gender:</td><td>Male</td></tr>
-                        <tr><td>Height:</td><td>5'6</td></tr>
-                        <tr><td>Weight:</td><td>70 kls</td></tr>
-                        <tr><td>Blood Type:</td><td>AB+</td></tr>
-                        <tr><td>GSIS ID No.:</td><td>N/A</td></tr>
-                        <tr><td>PAG-IBIG ID No.:</td><td>N/A</td></tr>
-                        <tr><td>PHILHEALTH No.:</td><td>N/A</td></tr>
-                        <tr><td>SSS No.:</td><td>N/A</td></tr>
-                        <tr><td>TIN No.:</td><td>N/A</td></tr>
-                        <tr><td>Citizenship:</td><td>Filipino</td></tr>
-                        <tr><td>Telephone No.:</td><td>N/A</td></tr>
-                        <tr><td>Alternate Email:</td><td>N/A</td></tr>
+                        <tr><td>Date of Birth:</td><td>{{ faculty.birthDate | date:'longDate' }}</td></tr>
+                        <tr><td>Age:</td><td>{{ faculty.birthDate | age}}</td></tr>
+                        <tr><td>Civil Status:</td><td>{{ faculty.civilStatus | titlecase}}</td></tr>
+                        <tr><td>Gender:</td><td>{{ faculty.gender | titlecase}}</td></tr>
+                        <tr><td>Height:</td><td>{{ faculty.height }}</td></tr>
+                        <tr><td>Weight:</td><td>{{ faculty.weight }} kls</td></tr>
+                        <tr><td>Blood Type:</td><td>{{ faculty.bloodType }}</td></tr>
+                        <tr><td>GSIS ID No.:</td><td>{{ faculty.gsis }}</td></tr>
+                        <tr><td>PAG-IBIG ID No.:</td><td>{{ faculty.pagibig }}</td></tr>
+                        <tr><td>PHILHEALTH No.:</td><td>{{ faculty.philhealth }}</td></tr>
+                        <tr><td>SSS No.:</td><td>{{ faculty.sss }}</td></tr>
+                        <tr><td>TIN No.:</td><td>{{ faculty.tin }}</td></tr>
+                        <tr><td>Citizenship:</td><td>{{ faculty.citizenship | titlecase}}</td></tr>
+                        <tr><td>Telephone No.:</td><td>{{ faculty.telephoneNumber }}</td></tr>
+                        <tr><td>Alternate Email:</td><td>{{ faculty.alternativeEmail }}</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -46,21 +45,19 @@
                 <table>
                     <tbody>
                         <tr><th>Resident Address</th></tr>
-                        <tr><td>House/Block/Lot No.</td><td>A121</td></tr>
-                        <tr><td>Street</td><td>Milagrosa St.</td></tr>
-                        <tr><td>Subdivision</td><td></td></tr>
-                        <tr><td>Barangay</td><td>Burol 10</td></tr>
-                        <tr><td>City/Municipality</td><td>Balagtas</td></tr>
-                        <tr><td>Province</td><td>Bulacan</td></tr>
-                        <tr><td>Zip Code</td><td>3015</td></tr>
+                        <tr><td>House/Block/Lot No.</td><td>{{ faculty.residentAddress.houseNo }}</td></tr>
+                        <tr><td>Street</td><td>{{ faculty.residentAddress.street }}</td></tr>
+                        <tr><td>Subdivision/Barangay</td><td>{{ faculty.residentAddress.subdivision }}</td></tr>
+                        <tr><td>Municipality</td><td>{{ faculty.residentAddress.municipality }}</td></tr>
+                        <tr><td>City/Province</td><td>{{ faculty.residentAddress.cityProvince }}</td></tr>
+                        <tr><td>Zip Code</td><td>{{ faculty.residentAddress.zipCode }}</td></tr>
                         <tr><th>Permanent Address</th></tr>
-                        <tr><td>House/Block/Lot No.</td><td>A121</td></tr>
-                        <tr><td>Street</td><td>Milagrosa St.</td></tr>
-                        <tr><td>Subdivision</td><td></td></tr>
-                        <tr><td>Barangay</td><td>Burol 10</td></tr>
-                        <tr><td>City/Municipality</td><td>Balagtas</td></tr>
-                        <tr><td>Province</td><td>Bulacan</td></tr>
-                        <tr><td>Zip Code</td><td>3015</td></tr>
+                        <tr><td>House/Block/Lot No.</td><td>{{ faculty.permanentAddress.houseNo }}</td></tr>
+                        <tr><td>Street</td><td>{{ faculty.permanentAddress.street }}</td></tr>
+                        <tr><td>Subdivision/Barangay</td><td>{{ faculty.permanentAddress.subdivision }}</td></tr>
+                        <tr><td>Municipality</td><td>{{ faculty.permanentAddress.municipality }}</td></tr>
+                        <tr><td>City/Province</td><td>{{ faculty.permanentAddress.cityProvince }}</td></tr>
+                        <tr><td>Zip Code</td><td>{{ faculty.permanentAddress.zipCode }}</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -69,31 +66,35 @@
 </div>
 
 <div class="card mb-3">
-    <div class="card-body">
+    <div class="card-body" [ngClass]="{'d-print-none': !EB.checked}">
         <div class="d-flex justify-content-between">
             <h5 class="card-title">Educational Background</h5>
-            <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip" data-placement="auto" title="Include to print" checked>
+            <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip" data-placement="auto" title="Include to print" #EB checked>
         </div>
         <div class="row row-cols-2">
             <div class="col">
                 <div>
                     <div class="fw-bold fs-6">Elementary</div>
-                    <div>Montessori Academy of California</div>
-                    <div>Year Graduated: 2010</div>
-                    <div>Academic Honors: N/A</div>
-                    <div>Scholarship: N/A</div>
+                    <div>{{ faculty.elementary.school | titlecase }}</div>
+                    <div>Basic Education: {{ faculty.elementary.basicEducation }}</div>
+                    <div>Attendance: {{ faculty.elementary.attandance.start + '-' + faculty.elementary.attandance.end}}</div>
+                    <div>Year Graduated: {{ faculty.elementary.yearGraduated }}</div>
+                    <div>Highest Level/Units Earned: {{ faculty.elementary.level }}</div>
+                    <div>Scholarship: {{ faculty.elementary.scholarship}}</div>
                 </div>
             </div>
             <div class="col">
                 <div>
                     <div class="fw-bold fs-6">Secondary</div>
-                    <div>Montessori Academy of California</div>
-                    <div>Year Graduated: 2014</div>
-                    <div>Academic Honors: N/A</div>
-                    <div>Scholarship: N/A</div>
+                    <div>{{ faculty.secondary.school | titlecase }}</div>
+                    <div>Basic Education: {{ faculty.secondary.basicEducation }}</div>
+                    <div>Attendance: {{ faculty.secondary.attandance.start + '-' + faculty.secondary.attandance.end}}</div>
+                    <div>Year Graduated: {{ faculty.secondary.yearGraduated }}</div>
+                    <div>Highest Level/Units Earned: {{ faculty.secondary.level }}</div>
+                    <div>Scholarship: {{ faculty.secondary.scholarship}}</div>
                 </div>
             </div>
-            <div class="col">
+            <!-- <div class="col">
                 <div>
                     <div class="fw-bold fs-6">Vocational/Trade Course</div>
                     <div>East Harvard</div>
@@ -121,7 +122,7 @@
                     <div>Academic Honors: N/A</div>
                     <div>Scholarship: N/A</div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

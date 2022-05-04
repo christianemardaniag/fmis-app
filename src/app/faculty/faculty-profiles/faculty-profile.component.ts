@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Faculty } from 'src/app/model/faculty.model';
+
 declare var jquery:any;
 declare var $ :any;
 
@@ -8,11 +10,11 @@ declare var $ :any;
   styleUrls: ['./faculty-profile.component.css']
 })
 export class FacultyProfileComponent implements OnInit {
-
+  @Input() faculty: Faculty = new Faculty;
   constructor() { }
 
   ngOnInit(): void {
-
+    
   }
 
 }

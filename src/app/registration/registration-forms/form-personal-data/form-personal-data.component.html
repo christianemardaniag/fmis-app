@@ -1,30 +1,29 @@
-<div ngModelGroup="name">
-    <div class="row row-cols-1 row-cols-md-4 gx-2">
-        <div class="col">
-            <div class="mb-3">
-                <label for="firstname" class="form-label">*First Name</label>
-                <input type="text" class="form-control" name="firstname" id="firstname" required ngModel>
-            </div>
+<!-- <div class="row row-cols-1 row-cols-md-4 gx-2">
+    <div class="col">
+        <div class="mb-3">
+            <label for="firstname" class="form-label">*First Name</label>
+            <input type="text" class="form-control" name="firstname" id="firstname" required ngModel>
         </div>
-        <div class="col">
-            <div class="mb-3">
-                <label for="middlename" class="form-label">Middle Name</label>
-                <input type="text" class="form-control" name="middlename" id="middlename" ngModel>
-            </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="middlename" class="form-label">Middle Name</label>
+            <input type="text" class="form-control" name="middlename" id="middlename" ngModel>
         </div>
-        <div class="col">
-            <div class="mb-3">
-                <label for="lastname" class="form-label">*Last Name</label>
-                <input type="text" class="form-control" name="lastname" id="lastname" required>
-            </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="lastname" class="form-label">*Last Name</label>
+            <input type="text" class="form-control" name="lastname" id="lastname" required ngModel>
         </div>
-        <div class="col">
-            <div class="mb-3">
-                <label for="nameExtension" class="form-label">
-                    Name Extension <i class="fal fa-info-circle" data-toggle="tooltip" data-placement="auto" title="(e.g. 'Sr.' and 'Jr.' and 'I', 'II', 'III', etc.)"></i>
-                </label>
-                <input type="text" class="form-control" name="nameExtension" id="nameExtension" ngModel>
-            </div>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="nameExtension" class="form-label">
+                Name Extension <i class="fal fa-info-circle" data-toggle="tooltip" data-placement="auto"
+                    title="(e.g. 'Sr.' and 'Jr.' and 'I', 'II', 'III', etc.)"></i>
+            </label>
+            <input type="text" class="form-control" name="nameExtension" id="nameExtension" ngModel>
         </div>
     </div>
 </div>
@@ -32,14 +31,15 @@
     <div class="col">
         <div class="mb-3">
             <label for="birthDate" class="form-label">*Date of Birth</label>
-            <input type="date" class="form-control" name="birthDate" id="birthDate" required>
+            <input type="date" class="form-control" name="birthDate" id="birthDate" required ngModel>
         </div>
     </div>
     <div class="col">
         <div class="mb-3">
             <label class="form-label">*Civil Status</label>
             <div>
-                <select class="form-select text-capitalize" aria-label="Default select example" name="civilStatus" required ngModel>
+                <select class="form-select text-capitalize" aria-label="Default select example" name="civilStatus"
+                    required ngModel>
                     <option selected disabled>-- Select Civil Status -- </option>
                     <option [value]="cs" *ngFor="let cs of civilStatus">{{ cs }}</option>
                 </select>
@@ -91,25 +91,25 @@
         <div class="col">
             <div class="mb-3">
                 <label for="email" class="form-label">*Email Address</label>
-                <input type="email" class="form-control" name="email" id="email" required email>
+                <input type="email" class="form-control" name="email" id="email" ngModel required email>
             </div>
         </div>
         <div class="col">
             <div class="mb-3">
                 <label for="altEmail" class="form-label">Alternative Email Address</label>
-                <input type="email" class="form-control" name="altEmail" id="altEmail" email>
+                <input type="email" class="form-control" name="altEmail" id="altEmail" ngModel email>
             </div>
         </div>
         <div class="col">
             <div class="mb-3">
                 <label for="mobileNumber" class="form-label">*Mobile Number</label>
-                <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" required>
+                <input type="text" class="form-control" name="mobileNumber" id="mobileNumber" ngModel required>
             </div>
         </div>
         <div class="col">
             <div class="mb-3">
                 <label for="telephoneNumber" class="form-label">Telephone Number</label>
-                <input type="text" class="form-control" name="telephoneNumber" id="telephoneNumber">
+                <input type="text" class="form-control" name="telephoneNumber" id="telephoneNumber" ngModel>
             </div>
         </div>
     </div>
@@ -121,22 +121,26 @@
         <div class="row row-cols-1 row-cols-md-3 row gx-2">
             <div class="col">
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="residentHouseNo" id="residentHouseNo" placeholder="House/Block/Lot No." ngModel>
-                </div>
-            </div> 
-            <div class="col">
-                <div class="mb-3">
-                    <input type="text" class="form-control" name="residentStreet" id="residentStreet" placeholder="Street" ngModel>
+                    <input type="text" class="form-control" name="residentHouseNo" id="residentHouseNo"
+                        placeholder="House/Block/Lot No." ngModel>
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="residentSubdivision" id="residentSubdivision" placeholder="Subdivision/Village" ngModel>
+                    <input type="text" class="form-control" name="residentStreet" id="residentStreet"
+                        placeholder="Street" ngModel>
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <select class="form-select" name="residentCityProvince" #cp="ngModel" ngModel required>
+                    <input type="text" class="form-control" name="residentSubdivision" id="residentSubdivision"
+                        placeholder="Subdivision/Village" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <select class="form-select" name="residentCityProvince" #cp="ngModel"
+                        (change)="resCitySelected=true" ngModel required>
                         <option hidden disabled selected value="">*Select City/Province</option>
                         <option [value]="i" *ngFor="let x of cityProvince; let i = index">{{ x | titlecase }}</option>
                     </select>
@@ -144,7 +148,8 @@
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <select class="form-select" name="residentMunicipality" ngModel required>
+                    <select class="form-select" name="residentMunicipality" [disabled]="resCitySelected" ngModel
+                        required>
                         <option hidden disabled selected value="">*Select Municipality</option>
                         <option [value]="x" *ngFor="let x of municipality[cp.value]">{{ x | titlecase}}</option>
                     </select>
@@ -152,7 +157,8 @@
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="residentZipCode" id="residentZipCode" placeholder="Zip Code" ngModel>
+                    <input type="text" class="form-control" name="residentZipCode" id="residentZipCode"
+                        placeholder="Zip Code" ngModel>
                 </div>
             </div>
         </div>
@@ -160,28 +166,33 @@
     <div ngModelGroup="permanent">
         <label class="form-label">Permanent Address</label>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="sameAsResident" name="sameAsResident" ngModel (change)="sameAsResident()">
+            <input class="form-check-input" type="checkbox" id="sameAsResident" name="sameAsResident" ngModel
+                (change)="sameAsResident()">
             <label class="form-check-label" for="sameAsResident"><i>Same as Resident Address</i></label>
         </div>
         <div class="row row-cols-1 row-cols-md-3 row gx-2">
             <div class="col">
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="permanentHouseNo" id="permanentHouseNo" placeholder="House/Block/Lot No." ngModel [disabled]="sameAsResidentFlag">
-                </div>
-            </div> 
-            <div class="col">
-                <div class="mb-3">
-                    <input type="text" class="form-control" name="permanentStreet" id="permanentStreet" placeholder="Street" ngModel [disabled]="sameAsResidentFlag">
+                    <input type="text" class="form-control" name="permanentHouseNo" id="permanentHouseNo"
+                        placeholder="House/Block/Lot No." ngModel [disabled]="sameAsResidentFlag">
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="permanentSubdivision" id="permanentSubdivision" placeholder="Subdivision/Village" ngModel [disabled]="sameAsResidentFlag">
+                    <input type="text" class="form-control" name="permanentStreet" id="permanentStreet"
+                        placeholder="Street" ngModel [disabled]="sameAsResidentFlag">
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <select class="form-select" name="permanentCityProvince" #pcp="ngModel" ngModel required [disabled]="sameAsResidentFlag">
+                    <input type="text" class="form-control" name="permanentSubdivision" id="permanentSubdivision"
+                        placeholder="Subdivision/Village" ngModel [disabled]="sameAsResidentFlag">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <select class="form-select" name="permanentCityProvince" #pcp="ngModel" ngModel required
+                        [disabled]="sameAsResidentFlag">
                         <option hidden disabled selected value="">*Select City/Province</option>
                         <option [value]="i" *ngFor="let x of cityProvince; let i = index">{{ x | titlecase }}</option>
                     </select>
@@ -189,7 +200,8 @@
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <select class="form-select" name="permanentMunicipality" ngModel required [disabled]="sameAsResidentFlag">
+                    <select class="form-select" name="permanentMunicipality" ngModel required
+                        [disabled]="sameAsResidentFlag">
                         <option hidden disabled selected value="">*Select Municipality</option>
                         <option [value]="x" *ngFor="let x of municipality[pcp.value]">{{ x | titlecase}}</option>
                     </select>
@@ -197,7 +209,8 @@
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <input type="number" class="form-control" name="permanentZipCode" id="permanentZipCode" placeholder="Zip Code" ngModel [disabled]="sameAsResidentFlag">
+                    <input type="number" class="form-control" name="permanentZipCode" id="permanentZipCode"
+                        placeholder="Zip Code" ngModel [disabled]="sameAsResidentFlag">
                 </div>
             </div>
         </div>
@@ -241,4 +254,4 @@
             <input type="text" class="form-control" name="employee" id="employee" ngModel required>
         </div>
     </div>
-</div>
+</div> -->

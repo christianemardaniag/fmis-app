@@ -22,6 +22,8 @@ import { LoginComponent } from './login/login.component';
 import { EducationalVocationalComponent } from './registration/registration-forms/form-educational-background/educational-vocational/educational-vocational.component';
 import { EducationalCollegeComponent } from './registration/registration-forms/form-educational-background/educational-college/educational-college.component';
 import { EducationalGraduateStudiesComponent } from './registration/registration-forms/form-educational-background/educational-graduate-studies/educational-graduate-studies.component';
+import { FacultyDashboardComponent } from './faculty-dashboard/faculty-dashboard.component';
+import { AgePipe } from './faculty-dashboard/age.pipe';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { EducationalGraduateStudiesComponent } from './registration/registration
     LoginComponent,
     EducationalVocationalComponent,
     EducationalCollegeComponent,
-    EducationalGraduateStudiesComponent
+    EducationalGraduateStudiesComponent,
+    FacultyDashboardComponent,
+    AgePipe
   ],
   imports: [
     BrowserModule,

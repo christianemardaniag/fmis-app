@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FacultyDashboardComponent } from './faculty-dashboard/faculty-dashboard.component';
 import { FacultyComponent } from './faculty/faculty.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'faculty', component: FacultyComponent }
   ]},
+  { path: 'faculty/:id', component: FacultyDashboardComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
