@@ -1,4 +1,4 @@
-<form (ngSubmit)="register(f)" #f="ngForm">
+<form (ngSubmit)="submitForm(f)" #f="ngForm">
 	<div class="accordion" id="forms">
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="personal-information-heading">
@@ -17,21 +17,21 @@
 							<div class="mb-3">
 								<label for="firstName" class="form-label">*First Name</label>
 								<input type="text" class="form-control" name="firstName" id="firstName" required
-									ngModel>
+									[ngModel]="faculty.firstName">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="middleName" class="form-label">Middle Name</label>
 								<input type="text" class="form-control" name="middleName" id="middleName"
-									ngModel>
+									[ngModel]="faculty.middleName">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="lastName" class="form-label">*Last Name</label>
 								<input type="text" class="form-control" name="lastName" id="lastName" required
-									ngModel>
+									[ngModel]="faculty.lastName">
 							</div>
 						</div>
 						<div class="col">
@@ -41,7 +41,7 @@
 										data-placement="auto"
 										title="(e.g. 'Sr.' and 'Jr.' and 'I', 'II', 'III', etc.)"></i>
 								</label>
-								<input type="text" class="form-control" name="nameExtension" id="nameExtension" ngModel>
+								<input type="text" class="form-control" name="nameExtension" id="nameExtension" [ngModel]="faculty.nameExtension">
 							</div>
 						</div>
 					</div>
@@ -50,7 +50,7 @@
 							<div class="mb-3">
 								<label for="birthDate" class="form-label">*Date of Birth</label>
 								<input type="date" class="form-control" name="birthDate" id="birthDate" required
-									ngModel>
+									[ngModel]="faculty.birthDate">
 							</div>
 						</div>
 						<div class="col">
@@ -58,7 +58,7 @@
 								<label class="form-label">*Civil Status</label>
 								<div>
 									<select class="form-select text-capitalize" aria-label="Default select example"
-										name="civilStatus" required ngModel>
+										name="civilStatus" required [ngModel]="faculty.civilStatus">
 										<option selected disabled>-- Select Civil Status -- </option>
 										<option [value]="cs" *ngFor="let cs of civilStatus">{{ cs }}</option>
 									</select>
@@ -71,7 +71,7 @@
 								<div>
 									<div class="form-check form-check-inline" *ngFor="let g of gender">
 										<input class="form-check-input" type="radio" name="gender" [id]="g" [value]="g"
-											required ngModel>
+											required [ngModel]="faculty.gender">
 										<label class="form-check-label text-capitalize" [for]="g">{{ g }}</label>
 									</div>
 								</div>
@@ -83,26 +83,26 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="height" class="form-label">Height (m)</label>
-								<input type="text" class="form-control" name="height" id="height" ngModel>
+								<input type="text" class="form-control" name="height" id="height" [ngModel]="faculty.height">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="weight" class="form-label">Weight (kg)</label>
-								<input type="number" class="form-control" name="weight" id="weight" ngModel>
+								<input type="number" class="form-control" name="weight" id="weight" [ngModel]="faculty.weight">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="bloodType" class="form-label">Blood Type</label>
-								<input type="text" class="form-control" name="bloodType" id="bloodType" ngModel>
+								<input type="text" class="form-control" name="bloodType" id="bloodType" [ngModel]="faculty.bloodType">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="citizenship" class="form-label">*Citizenship</label>
 								<input type="text" class="form-control" name="citizenship" id="citizenship"
-									ngModel required>
+									[ngModel]="faculty.citizenship" required>
 							</div>
 						</div>
 					</div>
@@ -111,7 +111,7 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="email" class="form-label">*Email Address</label>
-								<input type="email" class="form-control" name="email" id="email" [(ngModel)]="emailAdd"
+								<input type="email" class="form-control" name="email" id="email" [(ngModel)]="email"
 									required email>
 							</div>
 						</div>
@@ -119,21 +119,21 @@
 							<div class="mb-3">
 								<label for="alternativeEmail" class="form-label">Alternative Email Address</label>
 								<input type="email" class="form-control" name="alternativeEmail" id="alternativeEmail"
-									ngModel email>
+									[ngModel]="faculty.alternativeEmail" email>
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="mobileNumber" class="form-label">*Mobile Number</label>
 								<input type="text" class="form-control" name="mobileNumber" id="mobileNumber"
-									ngModel required>
+									[ngModel]="faculty.mobileNumber" required>
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="telephoneNumber" class="form-label">Telephone Number</label>
 								<input type="text" class="form-control" name="telephoneNumber" id="telephoneNumber"
-									ngModel>
+									[ngModel]="faculty.telephoneNumber">
 							</div>
 						</div>
 					</div>
@@ -144,44 +144,38 @@
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentHouseNo" id="residentHouseNo"
-										placeholder="House/Block/Lot No." ngModel>
+										placeholder="House/Block/Lot No." [ngModel]="faculty.residentAddress.houseNo">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentStreet" id="residentStreet"
-										placeholder="Street" ngModel>
+										placeholder="Street" [ngModel]="faculty.residentAddress.street">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentSubdivision"
-										id="residentSubdivision" placeholder="Subdivision/Barangay" ngModel>
+										id="residentSubdivision" placeholder="Subdivision/Barangay" [ngModel]="faculty.residentAddress.subdivision">
 								</div>
 							</div>
-							<div class="col">
+                            <div class="col">
 								<div class="mb-3">
-									<select class="form-select" name="residentCityProvince" #cp="ngModel" ngModel
-										required>
-										<option hidden disabled selected value="">*Select City/Province</option>
-										<option [value]="i" *ngFor="let x of cityProvince; let i = index">{{ x |
-											titlecase }}</option>
-									</select>
+									<input type="text" class="form-control" name="residentMunicipality"
+										id="residentMunicipality" placeholder="Municipality" [ngModel]="faculty.residentAddress.municipality">
 								</div>
 							</div>
-							<div class="col">
+                            <div class="col">
 								<div class="mb-3">
-									<select class="form-select" name="residentMunicipality" ngModel required>
-										<option hidden disabled selected value="">*Select Municipality</option>
-										<option [value]="x" *ngFor="let x of municipality[cp.value]">{{ x |
-											titlecase}}</option>
-									</select>
+									<input type="text" class="form-control" name="residentCityProvince"
+										id="residentCityProvince" placeholder="City/Province" [ngModel]="faculty.residentAddress.cityProvince">
 								</div>
 							</div>
+							
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentZipCode" id="residentZipCode"
-										placeholder="Zip Code" ngModel>
+										placeholder="Zip Code" [ngModel]="faculty.residentAddress.zipCode">
 								</div>
 							</div>
 						</div>
@@ -198,47 +192,39 @@
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentHouseNo"
-										id="permanentHouseNo" placeholder="House/Block/Lot No." ngModel
+										id="permanentHouseNo" placeholder="House/Block/Lot No." [ngModel]="faculty.permanentAddress.houseNo"
 										>
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentStreet" id="permanentStreet"
-										placeholder="Street" ngModel >
+										placeholder="Street" [ngModel]="faculty.permanentAddress.street" >
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentSubdivision"
-										id="permanentSubdivision" placeholder="Subdivision/Barangay" ngModel
+										id="permanentSubdivision" placeholder="Subdivision/Barangay" [ngModel]="faculty.permanentAddress.subdivision"
 										>
 								</div>
 							</div>
-							<div class="col">
+                            <div class="col">
 								<div class="mb-3">
-									<select class="form-select" name="permanentCityProvince" #pcp="ngModel" ngModel
-										required >
-										<option hidden disabled selected value="">*Select City/Province</option>
-										<option [value]="i" *ngFor="let x of cityProvince; let i = index">{{ x |
-											titlecase }}</option>
-									</select>
+									<input type="text" class="form-control" name="permanentMunicipality"
+										id="permanentMunicipality" placeholder="Municipality" [ngModel]="faculty.permanentAddress.municipality">
 								</div>
 							</div>
-							<div class="col">
+                            <div class="col">
 								<div class="mb-3">
-									<select class="form-select" name="permanentMunicipality" ngModel required
-										>
-										<option hidden disabled selected value="">*Select Municipality</option>
-										<option [value]="x" *ngFor="let x of municipality[pcp.value]">{{ x |
-											titlecase}}</option>
-									</select>
+									<input type="text" class="form-control" name="permanentCityProvince"
+										id="permanentCityProvince" placeholder="City/Province" [ngModel]="faculty.permanentAddress.cityProvince">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="number" class="form-control" name="permanentZipCode"
-										id="permanentZipCode" placeholder="Zip Code" ngModel
+										id="permanentZipCode" placeholder="Zip Code" [ngModel]="faculty.permanentAddress.zipCode"
 										>
 								</div>
 							</div>
@@ -249,38 +235,31 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="gsis" class="form-label">GSIS No.</label>
-								<input type="text" class="form-control" name="gsis" id="gsis" ngModel>
+								<input type="text" class="form-control" name="gsis" id="gsis" [ngModel]="faculty.gsis">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="pagibig" class="form-label">PAG-IBIG ID No.</label>
-								<input type="text" class="form-control" name="pagibig" id="pagibig" ngModel>
+								<input type="text" class="form-control" name="pagibig" id="pagibig" [ngModel]="faculty.pagibig">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="philhealth" class="form-label">PHILHEALTH No.</label>
-								<input type="text" class="form-control" name="philhealth" id="philhealth" ngModel>
+								<input type="text" class="form-control" name="philhealth" id="philhealth" [ngModel]="faculty.philhealth">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="sss" class="form-label">SSS No.</label>
-								<input type="text" class="form-control" name="sss" id="sss" ngModel>
+								<input type="text" class="form-control" name="sss" id="sss" [ngModel]="faculty.sss">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="tin" class="form-label">TIN No.</label>
-								<input type="text" class="form-control" name="tin" id="tin" ngModel>
-							</div>
-						</div>
-						<div class="col">
-							<div class="mb-3">
-								<label for="employeeNo" class="form-label">*Agency Employee No.</label>
-								<input type="text" class="form-control" name="employeeNo" id="employeeNo"
-									ngModel required>
+								<input type="text" class="form-control" name="tin" id="tin" [ngModel]="faculty.tin">
 							</div>
 						</div>
 					</div>
@@ -332,13 +311,20 @@
 							<div class="mb-3">
 								<label for="accountEmail" class="form-label">Email Address</label>
 								<input type="email" class="form-control" name="accountEmail" id="accountEmail" disabled
-									ngModel [value]="emailAdd">
+									[ngModel]="email">
+							</div>
+						</div>
+                        <div class="col">
+							<div class="mb-3">
+								<label for="currentPassword" class="form-label">Current Password</label>
+								<input type="password" class="form-control" name="currentPassword" id="currentPassword" required
+									ngModel>
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
-								<label for="password" class="form-label">Password</label>
-								<input type="password" class="form-control" name="password" id="password" required
+								<label for="newPassword" class="form-label">New Password</label>
+								<input type="password" class="form-control" name="newPassword" id="newPassword" required
 									ngModel>
 							</div>
 						</div>
@@ -356,16 +342,14 @@
 
 
 	</div>
-	<div class="alert alert-danger mb-3" role="alert" *ngIf="!isValid">
-		{{ errorMessage }}
-	</div>
+    
+    <div class="alert alert-danger my-3" role="alert" *ngIf="errorCont">
+        {{ errorMessage }}
+    </div>
 	<div class="d-flex justify-content-between my-3">
 		<button type="submit" class="btn btn-primary btn-lg px-5 " [disabled]="!f.valid">
-			<span *ngIf="!onRegistration">Register</span>
-			<div class="spinner-border spinner-border-sm" role="status" *ngIf="onRegistration">
-				<span class="visually-hidden">Loading...</span>
-			</div>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="onRegistration"></span>
+			<span *ngIf="!onRegistration">Update Profile</span>
 		</button>
-		
 	</div>
 </form>

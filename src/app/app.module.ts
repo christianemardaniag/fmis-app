@@ -6,11 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DashboardActivitiesComponent } from './dashboard/dashboard-activities/dashboard-activities.component';
-import { DashboardApplicationComponent } from './dashboard/dashboard-application/dashboard-application.component';
 import { FacultyComponent } from './faculty/faculty.component';
-import { FacultyProfileComponent } from './faculty/faculty-profiles/faculty-profile.component';
+import { FacultyProfileComponent } from './faculty/faculty-profile/faculty-profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { RegistrationFormsComponent } from './registration/registration-forms/registration-forms.component';
 import { FormPersonalDataComponent } from './registration/registration-forms/form-personal-data/form-personal-data.component';
@@ -22,17 +19,17 @@ import { LoginComponent } from './login/login.component';
 import { EducationalVocationalComponent } from './registration/registration-forms/form-educational-background/educational-vocational/educational-vocational.component';
 import { EducationalCollegeComponent } from './registration/registration-forms/form-educational-background/educational-college/educational-college.component';
 import { EducationalGraduateStudiesComponent } from './registration/registration-forms/form-educational-background/educational-graduate-studies/educational-graduate-studies.component';
-import { FacultyDashboardComponent } from './faculty-dashboard/faculty-dashboard.component';
-import { AgePipe } from './faculty-dashboard/age.pipe';
+import { FacultyDashboardComponent } from './faculty/faculty-dashboard/faculty-dashboard.component';
+import { AgePipe } from './faculty/faculty-dashboard/age.pipe';
+import { AdminComponent } from './admin/admin.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { ProfileEditComponent } from './faculty/faculty-profile/profile-edit/profile-edit.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    DashboardComponent,
-    DashboardActivitiesComponent,
-    DashboardApplicationComponent,
     FacultyComponent,
     FacultyProfileComponent,
     RegistrationComponent,
@@ -47,7 +44,10 @@ import { AgePipe } from './faculty-dashboard/age.pipe';
     EducationalCollegeComponent,
     EducationalGraduateStudiesComponent,
     FacultyDashboardComponent,
-    AgePipe
+    AgePipe,
+    AdminComponent,
+    AdminDashboardComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,

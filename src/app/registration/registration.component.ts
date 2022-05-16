@@ -12,7 +12,7 @@ export class RegistrationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // $('#terms-and-privacy-modal').modal('show');
+    $('#terms-and-privacy-modal').modal('show');
   }
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Faculty } from '../../model/faculty.model';
 
@@ -119,14 +120,14 @@ export class RegistrationFormsComponent implements OnInit {
     ['Alicia', 'Buug', 'Diplahan', 'Imelda', 'Ipil', 'Kabasalan', 'Mabuhay', 'Malangas', 'Naga', 'Olutanga', 'Payao', 'Roseller Lim', 'Siay', 'Talusan', 'Titay', 'Tungawan']
   ];
   sameAsResidentFlag = false;
-  emailAdd = 'a@b.com';
+  emailAdd = '';
   isValid = true;
   onRegistration = false;
   isRegistered = false;
   isEmailExist = false;
   errorMessage = "";
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
    }
 
   ngOnInit(): void {
@@ -163,7 +164,7 @@ export class RegistrationFormsComponent implements OnInit {
   }
 
   register(regForm: NgForm) {
-    console.log(regForm.form.value);
+    console.log(regForm.form);
     
     let pass = regForm.form.value.password;
     let conPass = regForm.form.value.confirmPassword; 
@@ -179,14 +180,16 @@ export class RegistrationFormsComponent implements OnInit {
   validateInputs(registerForm: NgForm){
     console.log(this.cityProvince[registerForm.form.value.residentAddress.residentCityProvince]);
     
-    // this.setFacultyInfo(registerForm);
-    // this.isEmailAlreadyExist(this.faculty.email, registerForm);
+    this.setFacultyInfo(registerForm);
+    this.isEmailAlreadyExist(this.faculty.email, registerForm);
   }
 
   setFacultyInfo(f: NgForm){
     this.faculty.firstName = f.form.value.firstName;
     this.faculty.middleName = f.form.value.middleName;
     this.faculty.lastName = f.form.value.lastName;
+    console.log(f.form.value.nameExtension);
+    
     this.faculty.nameExtension = f.form.value.nameExtension;
     this.faculty.birthDate = f.form.value.birthDate;
     this.faculty.civilStatus = f.form.value.civilStatus;
@@ -221,22 +224,22 @@ export class RegistrationFormsComponent implements OnInit {
     this.faculty.sss = f.form.value.sss;
     this.faculty.tin = f.form.value.tin;
     this.faculty.employeeNo = f.form.value.employeeNo;
-    // Elementary
-    this.faculty.elementary.school = f.form.value.elementary.elementarySchool;
-    this.faculty.elementary.basicEducation = f.form.value.elementary.elemBasicEducation;
-    this.faculty.elementary.attandance.start = f.form.value.elementary.elemAttendanceStart;
-    this.faculty.elementary.attandance.end = f.form.value.elementary.elemAttendanceEnd;
-    this.faculty.elementary.level = f.form.value.elementary.elemHighestLevel;
-    this.faculty.elementary.yearGraduated = f.form.value.elementary.elemYearGraduate;
-    this.faculty.elementary.scholarship = f.form.value.elementary.elemScholarship;
-    // Secondary
-    this.faculty.secondary.school = f.form.value.secondary.secondarySchool;
-    this.faculty.secondary.basicEducation = f.form.value.secondary.secondaryBasicEducation;
-    this.faculty.secondary.attandance.start = f.form.value.secondary.secondaryAttendanceStart;
-    this.faculty.secondary.attandance.end = f.form.value.secondary.secondaryAttendanceEnd;
-    this.faculty.secondary.level = f.form.value.secondary.secondaryHighestLevel;
-    this.faculty.secondary.yearGraduated = f.form.value.secondary.secondaryYearGraduate;
-    this.faculty.secondary.scholarship = f.form.value.secondary.secondaryScholarship;
+    // // Elementary
+    // this.faculty.elementary.school = f.form.value.elementary.elementarySchool;
+    // this.faculty.elementary.basicEducation = f.form.value.elementary.elemBasicEducation;
+    // this.faculty.elementary.attandance.start = f.form.value.elementary.elemAttendanceStart;
+    // this.faculty.elementary.attandance.end = f.form.value.elementary.elemAttendanceEnd;
+    // this.faculty.elementary.level = f.form.value.elementary.elemHighestLevel;
+    // this.faculty.elementary.yearGraduated = f.form.value.elementary.elemYearGraduate;
+    // this.faculty.elementary.scholarship = f.form.value.elementary.elemScholarship;
+    // // Secondary
+    // this.faculty.secondary.school = f.form.value.secondary.secondarySchool;
+    // this.faculty.secondary.basicEducation = f.form.value.secondary.secondaryBasicEducation;
+    // this.faculty.secondary.attandance.start = f.form.value.secondary.secondaryAttendanceStart;
+    // this.faculty.secondary.attandance.end = f.form.value.secondary.secondaryAttendanceEnd;
+    // this.faculty.secondary.level = f.form.value.secondary.secondaryHighestLevel;
+    // this.faculty.secondary.yearGraduated = f.form.value.secondary.secondaryYearGraduate;
+    // this.faculty.secondary.scholarship = f.form.value.secondary.secondaryScholarship;
     // Vocational
 
     // Account
@@ -259,6 +262,7 @@ export class RegistrationFormsComponent implements OnInit {
         }
         if (!this.isEmailExist) {
           console.log("PROCESS REGISTRATION");
+          console.log(registerForm);
           this.processRegistration(registerForm);
         }else {
           this.isValid = false;
@@ -269,11 +273,12 @@ export class RegistrationFormsComponent implements OnInit {
   }
 
   processRegistration(registerForm: NgForm){
-    this.http.post(this.baseUrl + 'faculty.json', this.faculty).subscribe(() => {
+    this.http.put(this.baseUrl + 'faculty/'+this.faculty.employeeNo+'.json', this.faculty).subscribe(() => {
       this.onRegistration = false;
       this.isRegistered = true;
       this.isValid = true;
       registerForm.resetForm();
+      this.router.navigate(['/']);
     });
   }
 }
