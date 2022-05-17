@@ -1,100 +1,208 @@
-<div class="card mb-3">
-    <div class="card-body">
-        <div class="d-flex justify-content-start">
-            <!-- <img src="../../../assets/avatars/avatar-male-2.png" alt="avatar-male-2" width="150" height="150" class="border rounded-circle me-5"> -->
-            <div>
-                <p class="mb-1 fs-3"><strong>{{ faculty.firstName + ' ' + faculty.middleName + ' ' + faculty.lastName + ' ' + faculty.nameExtension}}</strong></p>
-                <p class="fs-6 mb-0"><i class="fas fa-hashtag me-2"></i><strong>{{ faculty.employeeNo}}</strong></p>
-                <p class="fs-6 mb-0 "><i class="fas fa-envelope me-2"></i><a [href]="faculty.email">{{ faculty.email }}</a></p>
-                <p class="fs-6 mb-0"><i class="fas fa-phone me-2"></i>{{ faculty.mobileNumber }}</p>
-                <p class="fs-6 mb-0"><i class="fas fa-home me-2"></i>{{ faculty.residentAddress.municipality + ', ' + faculty.residentAddress.cityProvince }}</p>
-            </div>
-        </div>
+<div class="text-center" *ngIf="isFetching">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
     </div>
 </div>
 
-<div class="card mb-3" [ngClass]="{'d-print-none': !PI.checked}">
-    <div class="card-body">
-        <div class="d-flex justify-content-between">
-            <h5 class="card-title">Personal Information</h5>
-            <input type="checkbox" name="print" id="" class="form-check-input d-print-none" title="Include to print" #PI checked (click)="a(PI)">
-        </div>
-        <div class="row row-cols-md-2">
-            <div class="col">
-                <table>
-                    <tbody>
-                        <tr><td>Date of Birth:</td><td>{{ faculty.birthDate | date:'longDate' }}</td></tr>
-                        <tr><td>Age:</td><td>{{ faculty.birthDate | age}}</td></tr>
-                        <tr><td>Civil Status:</td><td>{{ faculty.civilStatus | titlecase}}</td></tr>
-                        <tr><td>Gender:</td><td>{{ faculty.gender | titlecase}}</td></tr>
-                        <tr><td>Height:</td><td>{{ faculty.height }}</td></tr>
-                        <tr><td>Weight:</td><td>{{ faculty.weight }} kls</td></tr>
-                        <tr><td>Blood Type:</td><td>{{ faculty.bloodType }}</td></tr>
-                        <tr><td>GSIS ID No.:</td><td>{{ faculty.gsis }}</td></tr>
-                        <tr><td>PAG-IBIG ID No.:</td><td>{{ faculty.pagibig }}</td></tr>
-                        <tr><td>PHILHEALTH No.:</td><td>{{ faculty.philhealth }}</td></tr>
-                        <tr><td>SSS No.:</td><td>{{ faculty.sss }}</td></tr>
-                        <tr><td>TIN No.:</td><td>{{ faculty.tin }}</td></tr>
-                        <tr><td>Citizenship:</td><td>{{ faculty.citizenship | titlecase}}</td></tr>
-                        <tr><td>Telephone No.:</td><td>{{ faculty.telephoneNumber }}</td></tr>
-                        <tr><td>Alternate Email:</td><td>{{ faculty.alternativeEmail }}</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col">
-                <table>
-                    <tbody>
-                        <tr><th>Resident Address</th></tr>
-                        <tr><td>House/Block/Lot No.</td><td>{{ faculty.residentAddress.houseNo }}</td></tr>
-                        <tr><td>Street</td><td>{{ faculty.residentAddress.street }}</td></tr>
-                        <tr><td>Subdivision/Barangay</td><td>{{ faculty.residentAddress.subdivision }}</td></tr>
-                        <tr><td>Municipality</td><td>{{ faculty.residentAddress.municipality }}</td></tr>
-                        <tr><td>City/Province</td><td>{{ faculty.residentAddress.cityProvince }}</td></tr>
-                        <tr><td>Zip Code</td><td>{{ faculty.residentAddress.zipCode }}</td></tr>
-                        <tr><th>Permanent Address</th></tr>
-                        <tr><td>House/Block/Lot No.</td><td>{{ faculty.permanentAddress.houseNo }}</td></tr>
-                        <tr><td>Street</td><td>{{ faculty.permanentAddress.street }}</td></tr>
-                        <tr><td>Subdivision/Barangay</td><td>{{ faculty.permanentAddress.subdivision }}</td></tr>
-                        <tr><td>Municipality</td><td>{{ faculty.permanentAddress.municipality }}</td></tr>
-                        <tr><td>City/Province</td><td>{{ faculty.permanentAddress.cityProvince }}</td></tr>
-                        <tr><td>Zip Code</td><td>{{ faculty.permanentAddress.zipCode }}</td></tr>
-                    </tbody>
-                </table>
+<div *ngIf="!isFetching">
+    <div class="mb-3" *ngIf="pos == 'admin'">
+        <button class="btn btn-success px-5 me-3" (click)="changeStatus(id, 'approved')">Approve</button>
+        <button class="btn btn-warning px-5 me-3" (click)="changeStatus(id, 'declined')">Decline</button>
+        <button class="btn btn-danger px-5 me-3" (click)="changeStatus(id, 'archive')">Archive</button>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="d-flex justify-content-start">
+                <!-- <img src="../../../assets/avatars/avatar-male-2.png" alt="avatar-male-2" width="150" height="150" class="border rounded-circle me-5"> -->
+                <div>
+                    <p class="mb-1 fs-3"><strong>{{ faculty.firstName + ' ' + faculty.middleName + ' ' +
+                            faculty.lastName +
+                            ' ' + faculty.nameExtension}}</strong></p>
+                    <p class="fs-6 mb-0"><i class="fas fa-hashtag me-2"></i><strong>{{ faculty.employeeNo}}</strong></p>
+                    <p class="fs-6 mb-0 "><i class="fas fa-envelope me-2"></i><a [href]="faculty.email">{{ faculty.email
+                            }}</a></p>
+                    <p class="fs-6 mb-0"><i class="fas fa-phone me-2"></i>{{ faculty.mobileNumber }}</p>
+                    <p class="fs-6 mb-0"><i class="fas fa-home me-2"></i>{{ faculty.residentAddress.municipality + ', '
+                        +
+                        faculty.residentAddress.cityProvince }}</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="card mb-3" [ngClass]="{'d-print-none': !EB.checked}">
-    <div class="card-body">
-        <div class="d-flex justify-content-between">
-            <h5 class="card-title">Educational Background</h5>
-            <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip" data-placement="auto" title="Include to print" #EB checked (click)="a(EB)">
+    <div class="card mb-3" [ngClass]="{'d-print-none': !PI.checked}">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">Personal Information</h5>
+                <input type="checkbox" name="print" id="" class="form-check-input d-print-none" title="Include to print"
+                    #PI checked (click)="a(PI)">
+            </div>
+            <div class="row row-cols-md-2">
+                <div class="col">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Date of Birth:</td>
+                                <td>{{ faculty.birthDate | date:'longDate' }}</td>
+                            </tr>
+                            <tr>
+                                <td>Age:</td>
+                                <td>{{ faculty.birthDate | age}}</td>
+                            </tr>
+                            <tr>
+                                <td>Civil Status:</td>
+                                <td>{{ faculty.civilStatus | titlecase}}</td>
+                            </tr>
+                            <tr>
+                                <td>Gender:</td>
+                                <td>{{ faculty.gender | titlecase}}</td>
+                            </tr>
+                            <tr>
+                                <td>Height:</td>
+                                <td>{{ faculty.height }}</td>
+                            </tr>
+                            <tr>
+                                <td>Weight:</td>
+                                <td>{{ faculty.weight }} kls</td>
+                            </tr>
+                            <tr>
+                                <td>Blood Type:</td>
+                                <td>{{ faculty.bloodType }}</td>
+                            </tr>
+                            <tr>
+                                <td>GSIS ID No.:</td>
+                                <td>{{ faculty.gsis }}</td>
+                            </tr>
+                            <tr>
+                                <td>PAG-IBIG ID No.:</td>
+                                <td>{{ faculty.pagibig }}</td>
+                            </tr>
+                            <tr>
+                                <td>PHILHEALTH No.:</td>
+                                <td>{{ faculty.philhealth }}</td>
+                            </tr>
+                            <tr>
+                                <td>SSS No.:</td>
+                                <td>{{ faculty.sss }}</td>
+                            </tr>
+                            <tr>
+                                <td>TIN No.:</td>
+                                <td>{{ faculty.tin }}</td>
+                            </tr>
+                            <tr>
+                                <td>Citizenship:</td>
+                                <td>{{ faculty.citizenship | titlecase}}</td>
+                            </tr>
+                            <tr>
+                                <td>Telephone No.:</td>
+                                <td>{{ faculty.telephoneNumber }}</td>
+                            </tr>
+                            <tr>
+                                <td>Alternate Email:</td>
+                                <td>{{ faculty.alternativeEmail }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Resident Address</th>
+                            </tr>
+                            <tr>
+                                <td>House/Block/Lot No.</td>
+                                <td>{{ faculty.residentAddress.houseNo }}</td>
+                            </tr>
+                            <tr>
+                                <td>Street</td>
+                                <td>{{ faculty.residentAddress.street }}</td>
+                            </tr>
+                            <tr>
+                                <td>Subdivision/Barangay</td>
+                                <td>{{ faculty.residentAddress.subdivision }}</td>
+                            </tr>
+                            <tr>
+                                <td>Municipality</td>
+                                <td>{{ faculty.residentAddress.municipality }}</td>
+                            </tr>
+                            <tr>
+                                <td>City/Province</td>
+                                <td>{{ faculty.residentAddress.cityProvince }}</td>
+                            </tr>
+                            <tr>
+                                <td>Zip Code</td>
+                                <td>{{ faculty.residentAddress.zipCode }}</td>
+                            </tr>
+                            <tr>
+                                <th>Permanent Address</th>
+                            </tr>
+                            <tr>
+                                <td>House/Block/Lot No.</td>
+                                <td>{{ faculty.permanentAddress.houseNo }}</td>
+                            </tr>
+                            <tr>
+                                <td>Street</td>
+                                <td>{{ faculty.permanentAddress.street }}</td>
+                            </tr>
+                            <tr>
+                                <td>Subdivision/Barangay</td>
+                                <td>{{ faculty.permanentAddress.subdivision }}</td>
+                            </tr>
+                            <tr>
+                                <td>Municipality</td>
+                                <td>{{ faculty.permanentAddress.municipality }}</td>
+                            </tr>
+                            <tr>
+                                <td>City/Province</td>
+                                <td>{{ faculty.permanentAddress.cityProvince }}</td>
+                            </tr>
+                            <tr>
+                                <td>Zip Code</td>
+                                <td>{{ faculty.permanentAddress.zipCode }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="row row-cols-2">
-            <div class="col">
-                <div>
-                    <div class="fw-bold fs-6">Elementary</div>
-                    <div>{{ faculty.elementary.school | titlecase }}</div>
-                    <div>Basic Education: {{ faculty.elementary.basicEducation }}</div>
-                    <div>Attendance: {{ faculty.elementary.attandance.start + '-' + faculty.elementary.attandance.end}}</div>
-                    <div>Year Graduated: {{ faculty.elementary.yearGraduated }}</div>
-                    <div>Highest Level/Units Earned: {{ faculty.elementary.level }}</div>
-                    <div>Scholarship: {{ faculty.elementary.scholarship}}</div>
-                </div>
+    </div>
+
+    <div class="card mb-3" [ngClass]="{'d-print-none': !EB.checked}">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">Educational Background</h5>
+                <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip"
+                    data-placement="auto" title="Include to print" #EB checked (click)="a(EB)">
             </div>
-            <div class="col">
-                <div>
-                    <div class="fw-bold fs-6">Secondary</div>
-                    <div>{{ faculty.secondary.school | titlecase }}</div>
-                    <div>Basic Education: {{ faculty.secondary.basicEducation }}</div>
-                    <div>Attendance: {{ faculty.secondary.attandance.start + '-' + faculty.secondary.attandance.end}}</div>
-                    <div>Year Graduated: {{ faculty.secondary.yearGraduated }}</div>
-                    <div>Highest Level/Units Earned: {{ faculty.secondary.level }}</div>
-                    <div>Scholarship: {{ faculty.secondary.scholarship}}</div>
+            <div class="row row-cols-2">
+                <div class="col">
+                    <div>
+                        <div class="fw-bold fs-6">Elementary</div>
+                        <div>{{ faculty.elementary.school | titlecase }}</div>
+                        <div>Basic Education: {{ faculty.elementary.basicEducation }}</div>
+                        <div>Attendance: {{ faculty.elementary.attandance.start + '-' +
+                            faculty.elementary.attandance.end}}
+                        </div>
+                        <div>Year Graduated: {{ faculty.elementary.yearGraduated }}</div>
+                        <div>Highest Level/Units Earned: {{ faculty.elementary.level }}</div>
+                        <div>Scholarship: {{ faculty.elementary.scholarship}}</div>
+                    </div>
                 </div>
-            </div>
-            <!-- <div class="col">
+                <div class="col">
+                    <div>
+                        <div class="fw-bold fs-6">Secondary</div>
+                        <div>{{ faculty.secondary.school | titlecase }}</div>
+                        <div>Basic Education: {{ faculty.secondary.basicEducation }}</div>
+                        <div>Attendance: {{ faculty.secondary.attandance.start + '-' +
+                            faculty.secondary.attandance.end}}
+                        </div>
+                        <div>Year Graduated: {{ faculty.secondary.yearGraduated }}</div>
+                        <div>Highest Level/Units Earned: {{ faculty.secondary.level }}</div>
+                        <div>Scholarship: {{ faculty.secondary.scholarship}}</div>
+                    </div>
+                </div>
+                <!-- <div class="col">
                 <div>
                     <div class="fw-bold fs-6">Vocational/Trade Course</div>
                     <div>East Harvard</div>
@@ -123,6 +231,8 @@
                     <div>Scholarship: N/A</div>
                 </div>
             </div> -->
+            </div>
         </div>
     </div>
+
 </div>

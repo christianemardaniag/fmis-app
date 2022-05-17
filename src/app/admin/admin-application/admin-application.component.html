@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-4 d-print-none">
+        <h4>List of Application</h4>
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action d-block d-lg-flex justify-content-lg-between"
+             [routerLink]="f.employeeNo"
+             routerLinkActive="active"
+             *ngFor="let f of faculty">
+                <div class="">
+                    <div class="fw-bold fs-5">{{ (f.lastName + ', ' + f.firstName + ' ' + f.middleName) | titlecase }} {{ f.nameExtension}}
+                    </div>
+                    <div>{{ f.email }}</div>
+                    <small class="d-block"><i class="far fa-hashtag"></i> {{ f.employeeNo }}</small>
+                    <div class="badge text-bg-warning bg-warning">{{f.status | titlecase}}</div>
+                </div>
+                <i class="far fa-gear"></i>
+            </a>
+
+        </div>
+        <div class="spinner-border" role="status" *ngIf="isFetching">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="text-secondary" *ngIf="(faculty.length === 0) && !isFetching">-- No Result --</div>
+    </div>
+    <div class="col">
+        <router-outlet></router-outlet>
+    </div>
+</div>

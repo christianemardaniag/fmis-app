@@ -1,21 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FacultyDashboardComponent } from './faculty/faculty-dashboard/faculty-dashboard.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminApplicationComponent } from './admin/admin-application/admin-application.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { AdminFacultyComponent } from './admin/admin-faculty/admin-faculty.component';
+import { AdminComponent } from './admin/admin.component';
 import { FacultyProfileComponent } from './faculty/faculty-profile/faculty-profile.component';
 import { ProfileEditComponent } from './faculty/faculty-profile/profile-edit/profile-edit.component';
 import { FacultyComponent } from './faculty/faculty.component';
-import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 
 const routes: Routes = [
-  { path: 'fmis', component: RegistrationComponent },
+  { path: 'fmis', component: AdminLoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
   {
-    path: 'main', component: HeaderComponent, children: [
-      { path: 'dashboard', component: HeaderComponent },
-      { path: 'faculty', component: FacultyComponent }
+    path: 'main', component: AdminComponent, children: [
+      { path: 'dashboard', component: AdminDashboardComponent },
+      {
+        path: 'faculty', component: AdminFacultyComponent, children: [
+          { path: ':id', component: FacultyProfileComponent }
+        ]
+      },
+      {
+        path: 'application', component: AdminApplicationComponent, children: [
+          { path: ':id', component: FacultyProfileComponent }
+        ]
+      }
     ]
   },
   {

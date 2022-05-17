@@ -78,5 +78,5 @@ export class Faculty {
     }];
 
     password: string = '';
-
+    status: string = '';    
 }

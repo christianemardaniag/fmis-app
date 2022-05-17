@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from './header/header.component';
 import { FacultyComponent } from './faculty/faculty.component';
 import { FacultyProfileComponent } from './faculty/faculty-profile/faculty-profile.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -24,12 +23,14 @@ import { AgePipe } from './faculty/faculty-dashboard/age.pipe';
 import { AdminComponent } from './admin/admin.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { ProfileEditComponent } from './faculty/faculty-profile/profile-edit/profile-edit.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminFacultyComponent } from './admin/admin-faculty/admin-faculty.component';
+import { AdminApplicationComponent } from './admin/admin-application/admin-application.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FacultyComponent,
     FacultyProfileComponent,
     RegistrationComponent,
@@ -47,7 +48,10 @@ import { ProfileEditComponent } from './faculty/faculty-profile/profile-edit/pro
     AgePipe,
     AdminComponent,
     AdminDashboardComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    AdminLoginComponent,
+    AdminFacultyComponent,
+    AdminApplicationComponent
   ],
   imports: [
     BrowserModule,

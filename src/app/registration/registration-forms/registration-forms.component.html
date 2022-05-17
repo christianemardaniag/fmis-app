@@ -2,7 +2,7 @@
 	<div class="accordion" id="forms">
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="personal-information-heading">
-				<button class="accordion-button" type="button" data-bs-toggle="collapse"
+				<button class="accordion-button bg-light fs-4 text-dark fw-bold" type="button" data-bs-toggle="collapse"
 					data-bs-target="#personal-information-collapse" aria-expanded="true"
 					aria-controls="personal-information-collapse">
 					Personal Information
@@ -287,10 +287,26 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="education-heading">
+				<button class="accordion-button bg-light fs-4 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
+					data-bs-target="#education-collapse" aria-expanded="false"
+					aria-controls="education-collapse">
+					Educational Backround
+				</button>
+			</h2>
+			<div id="education-collapse" class="accordion-collapse collapse"
+				aria-labelledby="education-heading">
+				<div class="accordion-body">
+					<app-form-educational-background></app-form-educational-background>
+				</div>
+			</div>
+		</div>
 		
-		<!-- <div class="accordion-item">
+		<div class="accordion-item">
 			<h2 class="accordion-header" id="civil-service-heading">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+				<button class="accordion-button bg-light fs-4 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
 					data-bs-target="#civil-service-collapse" aria-expanded="false"
 					aria-controls="civil-service-collapse">
 					Civil Service
@@ -302,10 +318,10 @@
 					<app-form-civil-service></app-form-civil-service>
 				</div>
 			</div>
-		</div> -->
-		<!-- <div class="accordion-item">
+		</div>
+		<div class="accordion-item">
 			<h2 class="accordion-header" id="work-experience-heading">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+				<button class="accordion-button bg-light fs-4 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
 					data-bs-target="#work-experience-collapse" aria-expanded="false"
 					aria-controls="work-experience-collapse">
 					Work Experience
@@ -317,10 +333,10 @@
 					<app-form-work-experience></app-form-work-experience>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="account-heading">
-				<button class="accordion-button" type="button" data-bs-toggle="collapse"
+				<button class="accordion-button bg-light fs-4 text-dark fw-bold" type="button" data-bs-toggle="collapse"
 					data-bs-target="#account-collapse" aria-expanded="false" aria-controls="account-collapse">
 					Account
 				</button>

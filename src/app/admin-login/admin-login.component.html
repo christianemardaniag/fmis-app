@@ -7,7 +7,7 @@
                     <img src="../../assets/logo.png" alt="" width="100" height="100">
                     <h1 class="h3 fw-normal">Faculty Management Information System</h1>
                 </div>
-                <button type="button" class="btn btn-secondary px-5" routerLink="/registration">Register</button>
+                <h4>Admin</h4>
             </div>
             
             <div class="col">
@@ -15,9 +15,9 @@
                     <h3 class="mb-3">Sign In</h3>
                     <div class="input-groups">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
-                                ngModel required email>
-                            <label for="email">Email address</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="name@example.com"
+                                ngModel required>
+                            <label for="username">Username</label>
                         </div>
                         <div class="form-floating">
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password"
@@ -25,12 +25,8 @@
                             <label for="password">Password</label>
                         </div>
                         <div class="bg-danger py-2 px-4 text-white fw-bold my-2" *ngIf="isIncorrect" role="alert">
-                            Incorrect Email or Password!
+                            Incorrect Username or Password!
                         </div>
-                        <!-- <button class="btn btn-link text-decoration-none mb-3" data-bs-toggle="modal"
-                            data-bs-target="#forgot-password-modal" type="button">
-                            Forget Password
-                        </button> -->
         
                         <button class="w-100 btn btn-lg btn-primary mt-3" type="submit" [disabled]="!f.valid">
                             <span *ngIf="!onSigninSpinner">Sign In</span>
@@ -47,3 +43,5 @@
         <!-- <a class="btn btn-link text-decoration-none" routerLink="/registration">Register</a> -->
     </main>
 </div>
+
+=

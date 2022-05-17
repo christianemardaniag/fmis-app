@@ -11,6 +11,8 @@ import { FacultyService } from 'src/app/services/faculty.service';
 export class FacultyProfileComponent implements OnInit {
   faculty: Faculty = new Faculty;
   id: string = '';
+  isFetching = false;
+  pos = localStorage.getItem('position')!;
   constructor(private route: ActivatedRoute,
     private facultyService: FacultyService) { }
 
@@ -19,13 +21,25 @@ export class FacultyProfileComponent implements OnInit {
       params => {
         this.id = params.get('id')!;
       });
-      this.facultyService.getFacultyById(this.id).subscribe(data => {
-        this.faculty = data;
-        console.log(data);
-      })
+    this.fetchData();
   }
 
-  a(a:any) {
+  fetchData() {
+    this.isFetching = true;
+    this.facultyService.getFacultyById(this.id).subscribe(data => {
+      this.faculty = data;
+      this.isFetching = false;
+      console.log(data);
+    })
+  }
+
+  changeStatus(id: string, status: string) {
+    this.facultyService.updateInfo(id, {status: status}).subscribe(()=>{
+      this.fetchData();
+    })
+  }
+
+  a(a: any) {
     console.log(a.checked);
   }
 
