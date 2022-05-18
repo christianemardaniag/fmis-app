@@ -253,6 +253,7 @@ export class RegistrationFormsComponent implements OnInit {
     this.setupSeminarsMultipleEntry(this.faculty.seminars, val.seminars);
     // // Account
     this.faculty.password = val.password;
+    this.faculty.status = 'for approval';
     console.log(this.faculty);
   }
 
