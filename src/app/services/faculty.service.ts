@@ -42,6 +42,21 @@ export class FacultyService {
     }));
   }
 
+  getAllApplicationByStatus(listStatus: string[]) {
+    return this.http.get<any>(this.baseUrl + 'faculty.json').pipe(map(responseData => {
+      const facultyForApproval = [];
+      for (const key in responseData) {
+        if (responseData.hasOwnProperty(key)) {
+          const e = responseData[key];
+          if (listStatus.includes(e.status)) {
+            facultyForApproval.push({ ...responseData[key], id: key });
+          }
+        }
+      }
+      return facultyForApproval;
+    }));
+  }
+
   getFacultyById(id: string) {
     return this.http.get<any>(this.baseUrl + 'faculty/' + id + '.json');
   }

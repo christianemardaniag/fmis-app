@@ -7,347 +7,376 @@
 <div *ngIf="!isFetching">
     <div class="mb-3 d-print-none" *ngIf="pos == 'admin'">
         <ng-container *ngIf="isAdminApplication">
-            <button class="btn btn-success px-5 me-3" (click)="changeStatus(id, 'approved')">Approve</button>
-            <button class="btn btn-warning px-5 me-3" (click)="changeStatus(id, 'declined')">Decline</button>
-            <button class="btn btn-danger px-5 me-3" (click)="changeStatus(id, 'archive')">Archive</button>
+            <button class="btn btn-success px-5 me-3" (click)="changeStatus(id, 'approved')"
+            *ngIf="faculty.status!='archived'">Approve</button>
+            <button class="btn btn-warning px-5 me-3" (click)="changeStatus(id, 'declined')"
+            *ngIf="faculty.status!='declined' && faculty.status!='archived'">Decline</button>
+            <button class="btn btn-danger px-5 me-3" (click)="changeStatus(id, 'archived')"
+            *ngIf="faculty.status!='archived'">Archive</button>
+            <button class="btn btn-primary px-5 me-3" (click)="changeStatus(id, 'for approval')"
+             *ngIf="faculty.status==='archived'">Retrive</button>
         </ng-container>
         <button class="btn btn-secondary px-5 me-5" onclick="window.print();" *ngIf="!isAdminApplication">Print</button>
     </div>
-    <div class="card mb-3">
-        <div class="card-body">
-            <div class="d-flex justify-content-start">
-                <div class="text-center" style="max-width: 200px; max-height: 150px;">
-                    <img [src]="faculty.profilePicture" class="h-75 border rounded-circle"
-                        [ngClass]="{'h-100': (pos=='admin')}">
-                    <ng-container class="d-print-none" *ngIf="pos=='faculty'">
-                        <input type="file" class="form-control form-control-sm mt-2" name="profile" accept="image/*"
-                            ngModel #profile (change)="changeProfile($event)">
-                        <div class="progress" style="height: 4px;" *ngIf="isUploading">
-                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': uploadProgress + '%' }">
-                            </div>
-                        </div>
-                    </ng-container>
-                </div>
-                <div class="ms-4">
-                    <p class="mb-1 fs-3"><strong>{{ faculty.firstName + ' ' + faculty.middleName + ' ' +
-                            faculty.lastName +
-                            ' ' + faculty.nameExtension}}</strong></p>
-                    <p class="fs-6 mb-0"><i class="fas fa-hashtag me-2"></i><strong>{{ faculty.employeeNo}}</strong></p>
-                    <p class="fs-6 mb-0 "><i class="fas fa-envelope me-2"></i><a [href]="faculty.email">{{ faculty.email
-                            }}</a></p>
-                    <p class="fs-6 mb-0"><i class="fas fa-phone me-2"></i>{{ faculty.mobileNumber }}</p>
-                    <p class="fs-6 mb-0"><i class="fas fa-home me-2"></i>{{ faculty.residentAddress.municipality + ', '
-                        +
-                        faculty.residentAddress.cityProvince }}</p>
-                </div>
-            </div>
+    <div *ngIf="pos=='faculty'">
+        <div class="alert alert-warning" role="alert" *ngIf="faculty.status == 'for approval'">
+            Just waiting on admin approval. For now, you can edit your profile.
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="faculty.status == 'declined'">
+            <i class="fas fa-exclamation-circle"></i> Your application has been <b>Declined</b> by Admin. Please contact
+            your admin for more information
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="faculty.status == 'archived'">
+            <i class="fas fa-exclamation-triangle"></i> Your application has been <b>Deleted</b> by Admin. Please
+            contact
+            your admin for more information.
         </div>
     </div>
-
-    <div class="card mb-3" [ngClass]="{'d-print-none': !PI.checked}">
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <h5 class="card-title fw-bold">Personal Information</h5>
-                <input type="checkbox" name="print" id="" class="form-check-input d-print-none" title="Include to print"
-                    #PI checked (click)="a(PI)">
-            </div>
-            <div class="row row-cols-md-2">
-                <div class="col">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Date of Birth:</td>
-                                <td>{{ faculty.birthDate | date:'longDate' }}</td>
-                            </tr>
-                            <tr>
-                                <td>Age:</td>
-                                <td>{{ faculty.birthDate | age}}</td>
-                            </tr>
-                            <tr>
-                                <td>Civil Status:</td>
-                                <td>{{ faculty.civilStatus | titlecase}}</td>
-                            </tr>
-                            <tr>
-                                <td>Gender:</td>
-                                <td>{{ faculty.gender | titlecase}}</td>
-                            </tr>
-                            <tr>
-                                <td>Height:</td>
-                                <td>{{ faculty.height }}</td>
-                            </tr>
-                            <tr>
-                                <td>Weight:</td>
-                                <td>{{ faculty.weight }} kls</td>
-                            </tr>
-                            <tr>
-                                <td>Blood Type:</td>
-                                <td>{{ faculty.bloodType }}</td>
-                            </tr>
-                            <tr>
-                                <td>GSIS ID No.:</td>
-                                <td>{{ faculty.gsis }}</td>
-                            </tr>
-                            <tr>
-                                <td>PAG-IBIG ID No.:</td>
-                                <td>{{ faculty.pagibig }}</td>
-                            </tr>
-                            <tr>
-                                <td>PHILHEALTH No.:</td>
-                                <td>{{ faculty.philhealth }}</td>
-                            </tr>
-                            <tr>
-                                <td>SSS No.:</td>
-                                <td>{{ faculty.sss }}</td>
-                            </tr>
-                            <tr>
-                                <td>TIN No.:</td>
-                                <td>{{ faculty.tin }}</td>
-                            </tr>
-                            <tr>
-                                <td>Citizenship:</td>
-                                <td>{{ faculty.citizenship | titlecase}}</td>
-                            </tr>
-                            <tr>
-                                <td>Telephone No.:</td>
-                                <td>{{ faculty.telephoneNumber }}</td>
-                            </tr>
-                            <tr>
-                                <td>Alternate Email:</td>
-                                <td>{{ faculty.alternativeEmail }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>Resident Address</th>
-                            </tr>
-                            <tr>
-                                <td>House/Block/Lot No.</td>
-                                <td>{{ faculty.residentAddress.houseNo }}</td>
-                            </tr>
-                            <tr>
-                                <td>Street</td>
-                                <td>{{ faculty.residentAddress.street }}</td>
-                            </tr>
-                            <tr>
-                                <td>Subdivision/Barangay</td>
-                                <td>{{ faculty.residentAddress.subdivision }}</td>
-                            </tr>
-                            <tr>
-                                <td>Municipality</td>
-                                <td>{{ faculty.residentAddress.municipality }}</td>
-                            </tr>
-                            <tr>
-                                <td>City/Province</td>
-                                <td>{{ faculty.residentAddress.cityProvince }}</td>
-                            </tr>
-                            <tr>
-                                <td>Zip Code</td>
-                                <td>{{ faculty.residentAddress.zipCode }}</td>
-                            </tr>
-                            <tr>
-                                <th>Permanent Address</th>
-                            </tr>
-                            <tr>
-                                <td>House/Block/Lot No.</td>
-                                <td>{{ faculty.permanentAddress.houseNo }}</td>
-                            </tr>
-                            <tr>
-                                <td>Street</td>
-                                <td>{{ faculty.permanentAddress.street }}</td>
-                            </tr>
-                            <tr>
-                                <td>Subdivision/Barangay</td>
-                                <td>{{ faculty.permanentAddress.subdivision }}</td>
-                            </tr>
-                            <tr>
-                                <td>Municipality</td>
-                                <td>{{ faculty.permanentAddress.municipality }}</td>
-                            </tr>
-                            <tr>
-                                <td>City/Province</td>
-                                <td>{{ faculty.permanentAddress.cityProvince }}</td>
-                            </tr>
-                            <tr>
-                                <td>Zip Code</td>
-                                <td>{{ faculty.permanentAddress.zipCode }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card mb-3" [ngClass]="{'d-print-none': !EB.checked}">
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <h5 class="card-title fw-bold">Educational Background</h5>
-                <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip"
-                    data-placement="auto" title="Include to print" #EB checked (click)="a(EB)">
-            </div>
-            <div class="row row-cols-2 g-3">
-                <div class="col">
-                    <div>
-                        <div class="fw-bold fs-6">Elementary</div>
-                        <div>{{ faculty.elementary.school | titlecase }}</div>
-                        <div>Basic Education: {{ faculty.elementary.basicEducation }}</div>
-                        <div>Attendance: {{ (faculty.elementary.startDate | date:'MMM d, YYYY') + '-' +
-                            (faculty.elementary.endDate | date:'MMM d, YYYY') }}
-                        </div>
-                        <div>Year Graduated: {{ faculty.elementary.yearGraduated }}</div>
-                        <div>Highest Level/Units Earned: {{ faculty.elementary.level }}</div>
-                        <div>Scholarship: {{ faculty.elementary.scholarship}}</div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div>
-                        <div class="fw-bold fs-6">Secondary</div>
-                        <div>{{ faculty.secondary.school | titlecase }}</div>
-                        <div>Basic Education: {{ faculty.secondary.basicEducation }}</div>
-                        <div>Attendance: {{ (faculty.secondary.startDate | date:'MMM d, YYYY') + '-' +
-                            (faculty.secondary.endDate | date:'MMM d, YYYY') }}
-                        </div>
-                        <div>Year Graduated: {{ faculty.secondary.yearGraduated }}</div>
-                        <div>Highest Level/Units Earned: {{ faculty.secondary.level }}</div>
-                        <div>Scholarship: {{ faculty.secondary.scholarship}}</div>
-                    </div>
-                </div>
-                <div class="col" *ngFor="let v of faculty.vocational; let i = index">
-                    <div>
-                        <div class="fw-bold fs-6">Vocational/Trade Course {{i+1}}</div>
-                        <div>{{ v.school | titlecase }}</div>
-                        <div>Basic Education: {{ v.basicEducation }}</div>
-                        <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                            (v.endDate | date:'MMM d, YYYY') }}
-                        </div>
-                        <div>Year Graduated: {{ v.yearGraduated }}</div>
-                        <div>Highest Level/Units Earned: {{ v.level }}</div>
-                        <div>Scholarship: {{ v.scholarship}}</div>
-                    </div>
-                </div>
-                <div class="col" *ngFor="let v of faculty.college; let i = index">
-                    <div>
-                        <div class="fw-bold fs-6">College {{i+1}}</div>
-                        <div>{{ v.school | titlecase }}</div>
-                        <div>Basic Education: {{ v.basicEducation }}</div>
-                        <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                            (v.endDate | date:'MMM d, YYYY')}}
-                        </div>
-                        <div>Year Graduated: {{ v.yearGraduated }}</div>
-                        <div>Highest Level/Units Earned: {{ v.level }}</div>
-                        <div>Scholarship: {{ v.scholarship}}</div>
-                    </div>
-                </div>
-                <div class="col" *ngFor="let v of faculty.graduateStudies; let i = index">
-                    <div>
-                        <div class="fw-bold fs-6">Graduate Studies {{i+1}}</div>
-                        <div>{{ v.school | titlecase }}</div>
-                        <div>Basic Education: {{ v.basicEducation }}</div>
-                        <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                            (v.endDate | date:'MMM d, YYYY') }}
-                        </div>
-                        <div>Year Graduated: {{ v.yearGraduated }}</div>
-                        <div>Highest Level/Units Earned: {{ v.level }}</div>
-                        <div>Scholarship: {{ v.scholarship}}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card mb-3" [ngClass]="{'d-print-none': !CV.checked}">
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <h5 class="card-title fw-bold">Civil Service</h5>
-                <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip"
-                    data-placement="auto" title="Include to print" #CV checked (click)="a(CV)">
-            </div>
-            <div class="row row-cols-2 g-3">
-                <div class="col" *ngFor="let v of faculty.civilService; let i = index">
-                    <div>
-                        <div class="fw-bold fs-6">{{ v.type }}</div>
-                        <div>Rating: {{ v.rating }}</div>
-                        <div>Examination Date: {{ v.examinationDate | date:'MMM d, YYYY'}}</div>
-                        <div>Examination Place: {{ v.examinationPlace }}</div>
-                        <div>License Number: {{ v.licenseNumber }}</div>
-                        <div>License Validity: {{ v.licenseValidity }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-3" [ngClass]="{'d-print-none': !WE.checked}">
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <h5 class="card-title fw-bold">Work Experience</h5>
-                <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip"
-                    data-placement="auto" title="Include to print" #WE checked (click)="a(WE)">
-            </div>
-            <div class="row row-cols-2 g-3">
-                <div class="col" *ngFor="let v of faculty.workExperience; let i = index">
-                    <div>
-                        <div class="fw-bold fs-6">{{ v.position }}</div>
-                        <div>Department / Agency / Office / Company: {{ v.company }}</div>
-                        <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                            (v.endDate | date:'MMM d, YYYY') }}
-                        </div>
-                        <div>Salary: {{ v.salary }}</div>
-                        <div>Salary / Job / Pay Grade: {{ v.jobGrade }}</div>
-                        <div>Status of Appointment: {{ v.appointmentStatus }}</div>
-                        <div>Government Service: {{ v.gov }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card mb-3" [ngClass]="{'d-print-none': !LD.checked}">
-        <div class="card-body">
-            <div class="d-flex justify-content-between">
-                <h5 class="card-title fw-bold">Learning and Development (L&D) Interventions/Training Programs Attended
-                </h5>
-                <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip"
-                    data-placement="auto" title="Include to print" #LD checked (click)="a(LD)">
-            </div>
-            <div class="mb-3">
-                <div class="input-group" style="width: 300px;">
-                    <div class="input-group-text">Arranged By:</div>
-                    <select class="form-select" ngModel="yearly" #arrange (change)="arrangeSeminars(arrange.value)">
-                        <option selected value="yearly">Yearly</option>
-                        <option value="quarterly">Quarterly</option>
-                        <option value="monthly">Monthly</option>
-                    </select>
-                </div>
-
-            </div>
-            <div class="row row-cols-auto g-3">
-                <div class="col" *ngFor="let a of arrangedSeminars; let i = index">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ a.title }}</h5>
-                            <div class="row row-cols-auto g-2">
-                                <div class="col" *ngFor="let v of a.details">
-                                    <div class="fw-bold fs-6">{{ v.title }}</div>
-                                    <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                                        (v.endDate | date:'MMM d, YYYY') }}
-                                    </div>
-                                    <div>Number of Hours: {{ v.hours }}</div>
-                                    <div>Type of LD: {{ v.type }}</div>
-                                    <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
-                                    <div>Coverage: {{ v.coverage }}</div>
-                                    <!-- <div class="d-print-none">Certificate: {{ v.certificate }}</div> -->
+    <div *ngIf="faculty.status != 'archived' || pos=='admin'">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-start">
+                    <div class="text-center" style="max-width: 200px; max-height: 150px;">
+                        <img [src]="faculty.profilePicture" class="h-75 border rounded-circle"
+                            [ngClass]="{'h-100': (pos=='admin')}">
+                        <ng-container *ngIf="pos=='faculty'">
+                            <input type="file" class="form-control form-control-sm mt-2 d-print-none" name="profile"
+                                accept="image/*" ngModel #profile (change)="changeProfile($event)">
+                            <div class="progress d-print-none" style="height: 4px;" *ngIf="isUploading">
+                                <div class="progress-bar" role="progressbar"
+                                    [ngStyle]="{'width': uploadProgress + '%' }">
                                 </div>
                             </div>
+                        </ng-container>
+                    </div>
+                    <div class="ms-4">
+                        <p class="mb-1 fs-3"><strong>{{ faculty.firstName + ' ' + faculty.middleName + ' ' +
+                                faculty.lastName +
+                                ' ' + faculty.nameExtension}}</strong></p>
+                        <p class="fs-6 mb-0"><i class="fas fa-hashtag me-2"></i><strong>{{ faculty.employeeNo}}</strong>
+                        </p>
+                        <p class="fs-6 mb-0 "><i class="fas fa-envelope me-2"></i><a [href]="faculty.email">{{
+                                faculty.email
+                                }}</a></p>
+                        <p class="fs-6 mb-0"><i class="fas fa-phone me-2"></i>{{ faculty.mobileNumber }}</p>
+                        <p class="fs-6 mb-0"><i class="fas fa-home me-2"></i>{{ faculty.residentAddress.municipality +
+                            ', '
+                            +
+                            faculty.residentAddress.cityProvince }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" [ngClass]="{'d-print-none': !PI.checked}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title fw-bold">Personal Information</h5>
+                    <input type="checkbox" name="print" id="" class="form-check-input d-print-none"
+                        title="Include to print" #PI checked (click)="a(PI)">
+                </div>
+                <div class="row row-cols-md-2">
+                    <div class="col">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Date of Birth:</td>
+                                    <td>{{ faculty.birthDate | date:'longDate' }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Age:</td>
+                                    <td>{{ faculty.birthDate | age}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Civil Status:</td>
+                                    <td>{{ faculty.civilStatus | titlecase}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Gender:</td>
+                                    <td>{{ faculty.gender | titlecase}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Height:</td>
+                                    <td>{{ faculty.height }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Weight:</td>
+                                    <td>{{ faculty.weight }} kls</td>
+                                </tr>
+                                <tr>
+                                    <td>Blood Type:</td>
+                                    <td>{{ faculty.bloodType }}</td>
+                                </tr>
+                                <tr>
+                                    <td>GSIS ID No.:</td>
+                                    <td>{{ faculty.gsis }}</td>
+                                </tr>
+                                <tr>
+                                    <td>PAG-IBIG ID No.:</td>
+                                    <td>{{ faculty.pagibig }}</td>
+                                </tr>
+                                <tr>
+                                    <td>PHILHEALTH No.:</td>
+                                    <td>{{ faculty.philhealth }}</td>
+                                </tr>
+                                <tr>
+                                    <td>SSS No.:</td>
+                                    <td>{{ faculty.sss }}</td>
+                                </tr>
+                                <tr>
+                                    <td>TIN No.:</td>
+                                    <td>{{ faculty.tin }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Citizenship:</td>
+                                    <td>{{ faculty.citizenship | titlecase}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Telephone No.:</td>
+                                    <td>{{ faculty.telephoneNumber }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Alternate Email:</td>
+                                    <td>{{ faculty.alternativeEmail }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Resident Address</th>
+                                </tr>
+                                <tr>
+                                    <td>House/Block/Lot No.</td>
+                                    <td>{{ faculty.residentAddress.houseNo }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Street</td>
+                                    <td>{{ faculty.residentAddress.street }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Subdivision/Barangay</td>
+                                    <td>{{ faculty.residentAddress.subdivision }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Municipality</td>
+                                    <td>{{ faculty.residentAddress.municipality }}</td>
+                                </tr>
+                                <tr>
+                                    <td>City/Province</td>
+                                    <td>{{ faculty.residentAddress.cityProvince }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Zip Code</td>
+                                    <td>{{ faculty.residentAddress.zipCode }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Permanent Address</th>
+                                </tr>
+                                <tr>
+                                    <td>House/Block/Lot No.</td>
+                                    <td>{{ faculty.permanentAddress.houseNo }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Street</td>
+                                    <td>{{ faculty.permanentAddress.street }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Subdivision/Barangay</td>
+                                    <td>{{ faculty.permanentAddress.subdivision }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Municipality</td>
+                                    <td>{{ faculty.permanentAddress.municipality }}</td>
+                                </tr>
+                                <tr>
+                                    <td>City/Province</td>
+                                    <td>{{ faculty.permanentAddress.cityProvince }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Zip Code</td>
+                                    <td>{{ faculty.permanentAddress.zipCode }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" [ngClass]="{'d-print-none': !EB.checked}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title fw-bold">Educational Background</h5>
+                    <input type="checkbox" name="print" id="" class="form-check-input d-print-none"
+                        data-toggle="tooltip" data-placement="auto" title="Include to print" #EB checked
+                        (click)="a(EB)">
+                </div>
+                <div class="row row-cols-2 g-3">
+                    <div class="col">
+                        <div>
+                            <div class="fw-bold fs-6">Elementary</div>
+                            <div>{{ faculty.elementary.school | titlecase }}</div>
+                            <div>Basic Education: {{ faculty.elementary.basicEducation }}</div>
+                            <div>Attendance: {{ (faculty.elementary.startDate | date:'MMM d, YYYY') + '-' +
+                                (faculty.elementary.endDate | date:'MMM d, YYYY') }}
+                            </div>
+                            <div>Year Graduated: {{ faculty.elementary.yearGraduated }}</div>
+                            <div>Highest Level/Units Earned: {{ faculty.elementary.level }}</div>
+                            <div>Scholarship: {{ faculty.elementary.scholarship}}</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                            <div class="fw-bold fs-6">Secondary</div>
+                            <div>{{ faculty.secondary.school | titlecase }}</div>
+                            <div>Basic Education: {{ faculty.secondary.basicEducation }}</div>
+                            <div>Attendance: {{ (faculty.secondary.startDate | date:'MMM d, YYYY') + '-' +
+                                (faculty.secondary.endDate | date:'MMM d, YYYY') }}
+                            </div>
+                            <div>Year Graduated: {{ faculty.secondary.yearGraduated }}</div>
+                            <div>Highest Level/Units Earned: {{ faculty.secondary.level }}</div>
+                            <div>Scholarship: {{ faculty.secondary.scholarship}}</div>
+                        </div>
+                    </div>
+                    <div class="col" *ngFor="let v of faculty.vocational; let i = index">
+                        <div>
+                            <div class="fw-bold fs-6">Vocational/Trade Course {{i+1}}</div>
+                            <div>{{ v.school | titlecase }}</div>
+                            <div>Basic Education: {{ v.basicEducation }}</div>
+                            <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                (v.endDate | date:'MMM d, YYYY') }}
+                            </div>
+                            <div>Year Graduated: {{ v.yearGraduated }}</div>
+                            <div>Highest Level/Units Earned: {{ v.level }}</div>
+                            <div>Scholarship: {{ v.scholarship}}</div>
+                        </div>
+                    </div>
+                    <div class="col" *ngFor="let v of faculty.college; let i = index">
+                        <div>
+                            <div class="fw-bold fs-6">College {{i+1}}</div>
+                            <div>{{ v.school | titlecase }}</div>
+                            <div>Basic Education: {{ v.basicEducation }}</div>
+                            <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                (v.endDate | date:'MMM d, YYYY')}}
+                            </div>
+                            <div>Year Graduated: {{ v.yearGraduated }}</div>
+                            <div>Highest Level/Units Earned: {{ v.level }}</div>
+                            <div>Scholarship: {{ v.scholarship}}</div>
+                        </div>
+                    </div>
+                    <div class="col" *ngFor="let v of faculty.graduateStudies; let i = index">
+                        <div>
+                            <div class="fw-bold fs-6">Graduate Studies {{i+1}}</div>
+                            <div>{{ v.school | titlecase }}</div>
+                            <div>Basic Education: {{ v.basicEducation }}</div>
+                            <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                (v.endDate | date:'MMM d, YYYY') }}
+                            </div>
+                            <div>Year Graduated: {{ v.yearGraduated }}</div>
+                            <div>Highest Level/Units Earned: {{ v.level }}</div>
+                            <div>Scholarship: {{ v.scholarship}}</div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
+        <div class="card mb-3" [ngClass]="{'d-print-none': !CV.checked}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title fw-bold">Civil Service</h5>
+                    <input type="checkbox" name="print" id="" class="form-check-input d-print-none"
+                        data-toggle="tooltip" data-placement="auto" title="Include to print" #CV checked
+                        (click)="a(CV)">
+                </div>
+                <div class="row row-cols-2 g-3">
+                    <div class="col" *ngFor="let v of faculty.civilService; let i = index">
+                        <div>
+                            <div class="fw-bold fs-6">{{ v.type }}</div>
+                            <div>Rating: {{ v.rating }}</div>
+                            <div>Examination Date: {{ v.examinationDate | date:'MMM d, YYYY'}}</div>
+                            <div>Examination Place: {{ v.examinationPlace }}</div>
+                            <div>License Number: {{ v.licenseNumber }}</div>
+                            <div>License Validity: {{ v.licenseValidity }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3" [ngClass]="{'d-print-none': !WE.checked}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title fw-bold">Work Experience</h5>
+                    <input type="checkbox" name="print" id="" class="form-check-input d-print-none"
+                        data-toggle="tooltip" data-placement="auto" title="Include to print" #WE checked
+                        (click)="a(WE)">
+                </div>
+                <div class="row row-cols-2 g-3">
+                    <div class="col" *ngFor="let v of faculty.workExperience; let i = index">
+                        <div>
+                            <div class="fw-bold fs-6">{{ v.position }}</div>
+                            <div>Department / Agency / Office / Company: {{ v.company }}</div>
+                            <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                (v.endDate | date:'MMM d, YYYY') }}
+                            </div>
+                            <div>Salary: {{ v.salary }}</div>
+                            <div>Salary / Job / Pay Grade: {{ v.jobGrade }}</div>
+                            <div>Status of Appointment: {{ v.appointmentStatus }}</div>
+                            <div>Government Service: {{ v.gov }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-3" [ngClass]="{'d-print-none': !LD.checked}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title fw-bold">Learning and Development (L&D) Interventions/Training Programs
+                        Attended
+                    </h5>
+                    <input type="checkbox" name="print" id="" class="form-check-input d-print-none"
+                        data-toggle="tooltip" data-placement="auto" title="Include to print" #LD checked
+                        (click)="a(LD)">
+                </div>
+                <!-- <div class="mb-3">
+                    <div class="input-group" style="width: 300px;">
+                        <div class="input-group-text">Arranged By:</div>
+                        <select class="form-select" ngModel="yearly" #arrange (change)="arrangeSeminars(arrange.value)">
+                            <option selected value="yearly">Yearly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                </div> -->
+                <div class="row row-cols-auto g-3">
+                    <!-- <div class="col" *ngFor="let a of arrangedSeminars; let i = index"> -->
+                        <!-- <div class="card"> -->
+                            <!-- <div class="card-body"> -->
+                                <!-- <h5 class="card-title">{{ a.title }}</h5> -->
+                                <!-- <div class="row row-cols-auto g-2"> -->
+                                    <div class="col" *ngFor="let v of faculty.seminars">
+                                        <div class="fw-bold fs-6">{{ v.title }}</div>
+                                        <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                            (v.endDate | date:'MMM d, YYYY') }}
+                                        </div>
+                                        <div>Number of Hours: {{ v.hours }}</div>
+                                        <div>Type of LD: {{ v.type }}</div>
+                                        <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
+                                        <div>Coverage: {{ v.coverage }}</div>
+                                        <!-- <div class="d-print-none">Certificate: {{ v.certificate }}</div> -->
+                                    </div>
+                                <!-- </div> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                </div>
+
+            </div>
         </div>
     </div>
-
 </div>

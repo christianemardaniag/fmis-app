@@ -2,6 +2,16 @@
     <div class="col-12 col-lg-4 d-print-none">
         <h4>List of Application</h4>
         <input type="text" class="form-control mb-2" name="search" id="search" placeholder="Search..." [(ngModel)]="searchTerm">
+        <div class="btn-group w-100 mb-3" role="group" aria-label="Basic checkbox toggle button group">
+            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" #forApproval [ngModel]="true" (change)="setAppList(forApproval.checked, 'for approval')">
+            <label class="btn btn-outline-secondary" for="btncheck1">For Approval</label>
+          
+            <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" #declined ngModel (change)="setAppList(declined.checked, 'declined')">
+            <label class="btn btn-outline-secondary" for="btncheck2">Declined</label>
+          
+            <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" #archived ngModel (change)="setAppList(archived.checked, 'archived')">
+            <label class="btn btn-outline-secondary" for="btncheck3">Archived</label>
+          </div>
         <div class="list-group">
             <a class="list-group-item list-group-item-action d-block d-lg-flex justify-content-lg-between"
              [routerLink]="f.employeeNo"
@@ -12,9 +22,11 @@
                     </div>
                     <div>{{ f.email }}</div>
                     <small class="d-block"><i class="far fa-hashtag"></i> {{ f.employeeNo }}</small>
-                    <div class="badge text-bg-warning bg-warning">{{f.status | titlecase}}</div>
+                    
+                    <div class="badge text-bg-info bg-info" *ngIf="f.status==='for approval'">{{f.status | titlecase}}</div>
+                    <div class="badge text-bg-warning bg-warning" *ngIf="f.status==='declined'">{{f.status | titlecase}}</div>
+                    <div class="badge text-bg-danger bg-danger" *ngIf="f.status==='archived'">{{f.status | titlecase}}</div>
                 </div>
-                <i class="far fa-gear"></i>
             </a>
 
         </div>

@@ -11,15 +11,18 @@
     <div class="collapse navbar-collapse" id="navbarsExample04">
       <ul class="navbar-nav mb-2 mb-md-0 ms-auto">
         <li class="nav-item">
-          <button class="nav-link position-relative btn btn-link" aria-current="page" [routerLink]="['/faculty', this.id]" routerLinkActive="active"><i
+          <button class="nav-link position-relative btn btn-link" aria-current="page"
+           [routerLink]="['/faculty', this.id]" routerLinkActive="active"><i
               class="fal fa-user"></i> Profile</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link position-relative btn btn-link" aria-current="page" [routerLink]="['/faculty/edit', this.id]" routerLinkActive="active"><i
-              class="fal fa-edit"></i> Edit</button>
+          <button class="nav-link position-relative btn btn-link" aria-current="page"
+          [disabled]="faculty.status === 'archived'" [routerLink]="['/faculty/edit', this.id]" routerLinkActive="active"><i
+              class="fal fa-edit" ></i> Edit</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link position-relative btn btn-link" aria-current="page" onclick="window.print();"><i
+          <button class="nav-link position-relative btn btn-link" aria-current="page" onclick="window.print();" 
+          [disabled]="faculty.status != 'approved'"><i
               class="fal fa-print"></i> Print</button>
         </li>
         <li class="nav-item">

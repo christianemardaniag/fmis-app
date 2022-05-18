@@ -21,21 +21,21 @@
 							<div class="mb-3">
 								<label for="firstName" class="form-label">*First Name</label>
 								<input type="text" class="form-control" name="firstName" id="firstName" required
-									[ngModel]="faculty.firstName">
+									[ngModel]="faculty.firstName" [disabled]="faculty.status=='approved'">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="middleName" class="form-label">Middle Name</label>
 								<input type="text" class="form-control" name="middleName" id="middleName"
-									[ngModel]="faculty.middleName">
+									[ngModel]="faculty.middleName" [disabled]="faculty.status=='approved'">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="lastName" class="form-label">*Last Name</label>
 								<input type="text" class="form-control" name="lastName" id="lastName" required
-									[ngModel]="faculty.lastName">
+									[ngModel]="faculty.lastName" [disabled]="faculty.status=='approved'">
 							</div>
 						</div>
 						<div class="col">
@@ -46,7 +46,7 @@
 										title="(e.g. 'Sr.' and 'Jr.' and 'I', 'II', 'III', etc.)"></i>
 								</label>
 								<input type="text" class="form-control" name="nameExtension" id="nameExtension"
-									[ngModel]="faculty.nameExtension">
+									[ngModel]="faculty.nameExtension" [disabled]="faculty.status=='approved'">
 							</div>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 							<div class="mb-3">
 								<label for="birthDate" class="form-label">*Date of Birth</label>
 								<input type="date" class="form-control" name="birthDate" id="birthDate" required
-									[ngModel]="faculty.birthDate">
+									[ngModel]="faculty.birthDate" [disabled]="faculty.status=='approved'">
 							</div>
 						</div>
 						<div class="col">
@@ -76,8 +76,8 @@
 								<div>
 									<div class="form-check form-check-inline" *ngFor="let g of gender">
 										<input class="form-check-input" type="radio" name="gender" [id]="g" [value]="g"
-											required [ngModel]="faculty.gender">
-										<label class="form-check-label text-capitalize" [for]="g">{{ g }}</label>
+											required [ngModel]="faculty.gender" [disabled]="faculty.status=='approved'">
+										<label class="form-check-label text-capitalize">{{ g }}</label>
 									</div>
 								</div>
 							</div>
@@ -110,7 +110,7 @@
 							<div class="mb-3">
 								<label for="citizenship" class="form-label">*Citizenship</label>
 								<input type="text" class="form-control" name="citizenship" id="citizenship"
-									[ngModel]="faculty.citizenship" required>
+									[ngModel]="faculty.citizenship" required [disabled]="faculty.status=='approved'">
 							</div>
 						</div>
 					</div>
@@ -134,7 +134,7 @@
 							<div class="mb-3">
 								<label for="mobileNumber" class="form-label">*Mobile Number</label>
 								<input type="text" class="form-control" name="mobileNumber" id="mobileNumber"
-									[ngModel]="faculty.mobileNumber" required>
+									[ngModel]="faculty.mobileNumber">
 							</div>
 						</div>
 						<div class="col">
