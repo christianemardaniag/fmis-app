@@ -26,6 +26,7 @@ import { ProfileEditComponent } from './faculty/faculty-profile/profile-edit/pro
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminFacultyComponent } from './admin/admin-faculty/admin-faculty.component';
 import { AdminApplicationComponent } from './admin/admin-application/admin-application.component';
+import { SearchQueryPipe } from './model/search-query.pipe';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { AdminApplicationComponent } from './admin/admin-application/admin-appli
     ProfileEditComponent,
     AdminLoginComponent,
     AdminFacultyComponent,
-    AdminApplicationComponent
+    AdminApplicationComponent,
+    SearchQueryPipe
   ],
   imports: [
     BrowserModule,

@@ -47,6 +47,10 @@ export class FacultyService {
   }
 
   updateInfo(id: string, info: any) {
+    return this.http.patch(this.baseUrl + 'faculty/' + id + '.json', info);
+  }
+
+  updateAll(id: string, info: any) {
     return this.http.put(this.baseUrl + 'faculty/' + id + '.json', info);
   }
   deleteData(id: string) {

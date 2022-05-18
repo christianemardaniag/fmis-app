@@ -34,7 +34,7 @@ export class AdminLoginComponent implements OnInit {
             if (username == element.username && password == element.password) {
               this.isLoggedIn = true;
               localStorage.setItem('position', 'admin');
-              this.router.navigate(['/main/dashboard']);
+              this.router.navigate(['/main/faculty']);
             }
           }
         }

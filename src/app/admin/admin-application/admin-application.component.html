@@ -1,11 +1,12 @@
 <div class="row">
-    <div class="col-4 d-print-none">
+    <div class="col-12 col-lg-4 d-print-none">
         <h4>List of Application</h4>
+        <input type="text" class="form-control mb-2" name="search" id="search" placeholder="Search..." [(ngModel)]="searchTerm">
         <div class="list-group">
             <a class="list-group-item list-group-item-action d-block d-lg-flex justify-content-lg-between"
              [routerLink]="f.employeeNo"
              routerLinkActive="active"
-             *ngFor="let f of faculty">
+             *ngFor="let f of faculty | searchQuery: searchTerm">
                 <div class="">
                     <div class="fw-bold fs-5">{{ (f.lastName + ', ' + f.firstName + ' ' + f.middleName) | titlecase }} {{ f.nameExtension}}
                     </div>

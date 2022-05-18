@@ -183,7 +183,7 @@ export class ProfileEditComponent implements OnInit {
       if (newPass == conPass) {
         this.onRegistration = true;
         this.setInfo(val);
-        this.facultyService.updateInfo(this.id, this.faculty).subscribe(() => {
+        this.facultyService.updateAll(this.id, this.faculty).subscribe(() => {
           this.onRegistration = false;
           this.router.navigate(['/faculty', this.id]);
         });

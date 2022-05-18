@@ -11,13 +11,24 @@
             <button class="btn btn-warning px-5 me-3" (click)="changeStatus(id, 'declined')">Decline</button>
             <button class="btn btn-danger px-5 me-3" (click)="changeStatus(id, 'archive')">Archive</button>
         </ng-container>
-        <button class="btn btn-secondary px-5 me-5" onclick="window.print();">Print</button>
+        <button class="btn btn-secondary px-5 me-5" onclick="window.print();" *ngIf="!isAdminApplication">Print</button>
     </div>
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex justify-content-start">
-                <!-- <img src="../../../assets/avatars/avatar-male-2.png" alt="avatar-male-2" width="150" height="150" class="border rounded-circle me-5"> -->
-                <div>
+                <div class="text-center" style="max-width: 200px; max-height: 150px;">
+                    <img [src]="faculty.profilePicture" class="h-75 border rounded-circle"
+                        [ngClass]="{'h-100': (pos=='admin')}">
+                    <ng-container class="d-print-none" *ngIf="pos=='faculty'">
+                        <input type="file" class="form-control form-control-sm mt-2" name="profile" accept="image/*"
+                            ngModel #profile (change)="changeProfile($event)">
+                        <div class="progress" style="height: 4px;" *ngIf="isUploading">
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': uploadProgress + '%' }">
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="ms-4">
                     <p class="mb-1 fs-3"><strong>{{ faculty.firstName + ' ' + faculty.middleName + ' ' +
                             faculty.lastName +
                             ' ' + faculty.nameExtension}}</strong></p>
@@ -237,7 +248,7 @@
                         <div>{{ v.school | titlecase }}</div>
                         <div>Basic Education: {{ v.basicEducation }}</div>
                         <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                           (v.endDate | date:'MMM d, YYYY') }}
+                            (v.endDate | date:'MMM d, YYYY') }}
                         </div>
                         <div>Year Graduated: {{ v.yearGraduated }}</div>
                         <div>Highest Level/Units Earned: {{ v.level }}</div>
@@ -297,25 +308,45 @@
     <div class="card mb-3" [ngClass]="{'d-print-none': !LD.checked}">
         <div class="card-body">
             <div class="d-flex justify-content-between">
-                <h5 class="card-title fw-bold">Learning and Development (L&D) Interventions/Training Programs Attended</h5>
+                <h5 class="card-title fw-bold">Learning and Development (L&D) Interventions/Training Programs Attended
+                </h5>
                 <input type="checkbox" name="print" id="" class="form-check-input d-print-none" data-toggle="tooltip"
                     data-placement="auto" title="Include to print" #LD checked (click)="a(LD)">
             </div>
-            <div class="row row-cols-2 g-3">
-                <div class="col" *ngFor="let v of faculty.seminars; let i = index">
-                    <div>
-                        <div class="fw-bold fs-6">{{ v.title }}</div>
-                        <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                            (v.endDate | date:'MMM d, YYYY') }}
+            <div class="mb-3">
+                <div class="input-group" style="width: 300px;">
+                    <div class="input-group-text">Arranged By:</div>
+                    <select class="form-select" ngModel="yearly" #arrange (change)="arrangeSeminars(arrange.value)">
+                        <option selected value="yearly">Yearly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="row row-cols-auto g-3">
+                <div class="col" *ngFor="let a of arrangedSeminars; let i = index">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ a.title }}</h5>
+                            <div class="row row-cols-auto g-2">
+                                <div class="col" *ngFor="let v of a.details">
+                                    <div class="fw-bold fs-6">{{ v.title }}</div>
+                                    <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                        (v.endDate | date:'MMM d, YYYY') }}
+                                    </div>
+                                    <div>Number of Hours: {{ v.hours }}</div>
+                                    <div>Type of LD: {{ v.type }}</div>
+                                    <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
+                                    <div>Coverage: {{ v.coverage }}</div>
+                                    <!-- <div class="d-print-none">Certificate: {{ v.certificate }}</div> -->
+                                </div>
+                            </div>
                         </div>
-                        <div>Number of Hours: {{ v.hours }}</div>
-                        <div>Type of LD: {{ v.type }}</div>
-                        <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
-                        <div>Coverage: {{ v.coverage }}</div>
-                        <!-- <div class="d-print-none">Certificate: {{ v.certificate }}</div> -->
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 

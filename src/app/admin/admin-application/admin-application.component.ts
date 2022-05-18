@@ -10,6 +10,7 @@ import { FacultyService } from 'src/app/services/faculty.service';
 export class AdminApplicationComponent implements OnInit {
   faculty: Faculty[] = [];
   isFetching = false;
+  searchTerm = '';
   constructor(private facultyService: FacultyService) { }
 
   ngOnInit(): void {
