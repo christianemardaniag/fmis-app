@@ -23,6 +23,6 @@
         <div class="text-secondary" *ngIf="(faculty.length === 0) && !isFetching">-- No Result --</div>
     </div>
     <div class="col">
-        <router-outlet></router-outlet>
+        <router-outlet (activate)="onActivate($event)"></router-outlet>
     </div>
 </div>

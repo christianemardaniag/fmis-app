@@ -1,8 +1,13 @@
-<form (ngSubmit)="submitForm(f)" #f="ngForm">
+<div class="text-center" *ngIf="fetchingData">
+	<div class="spinner-border" role="status">
+		<span class="visually-hidden">Loading...</span>
+	</div>
+</div>
+<form (ngSubmit)="submitForm(f)" #f="ngForm" *ngIf="!fetchingData">
 	<div class="accordion" id="forms">
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="personal-information-heading">
-				<button class="accordion-button" type="button" data-bs-toggle="collapse"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold" type="button" data-bs-toggle="collapse"
 					data-bs-target="#personal-information-collapse" aria-expanded="true"
 					aria-controls="personal-information-collapse">
 					Personal Information
@@ -11,7 +16,6 @@
 			<div id="personal-information-collapse" class="accordion-collapse collapse show"
 				aria-labelledby="personal-information-heading">
 				<div class="accordion-body">
-					<!-- <app-form-personal-data></app-form-personal-data> -->
 					<div class="row row-cols-1 row-cols-md-4 gx-2">
 						<div class="col">
 							<div class="mb-3">
@@ -41,7 +45,8 @@
 										data-placement="auto"
 										title="(e.g. 'Sr.' and 'Jr.' and 'I', 'II', 'III', etc.)"></i>
 								</label>
-								<input type="text" class="form-control" name="nameExtension" id="nameExtension" [ngModel]="faculty.nameExtension">
+								<input type="text" class="form-control" name="nameExtension" id="nameExtension"
+									[ngModel]="faculty.nameExtension">
 							</div>
 						</div>
 					</div>
@@ -83,19 +88,22 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="height" class="form-label">Height (m)</label>
-								<input type="text" class="form-control" name="height" id="height" [ngModel]="faculty.height">
+								<input type="text" class="form-control" name="height" id="height"
+									[ngModel]="faculty.height">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="weight" class="form-label">Weight (kg)</label>
-								<input type="number" class="form-control" name="weight" id="weight" [ngModel]="faculty.weight">
+								<input type="number" class="form-control" name="weight" id="weight"
+									[ngModel]="faculty.weight">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="bloodType" class="form-label">Blood Type</label>
-								<input type="text" class="form-control" name="bloodType" id="bloodType" [ngModel]="faculty.bloodType">
+								<input type="text" class="form-control" name="bloodType" id="bloodType"
+									[ngModel]="faculty.bloodType">
 							</div>
 						</div>
 						<div class="col">
@@ -156,22 +164,25 @@
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentSubdivision"
-										id="residentSubdivision" placeholder="Subdivision/Barangay" [ngModel]="faculty.residentAddress.subdivision">
+										id="residentSubdivision" placeholder="Subdivision/Barangay"
+										[ngModel]="faculty.residentAddress.subdivision">
 								</div>
 							</div>
-                            <div class="col">
+							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentMunicipality"
-										id="residentMunicipality" placeholder="Municipality" [ngModel]="faculty.residentAddress.municipality">
+										id="residentMunicipality" placeholder="Municipality"
+										[ngModel]="faculty.residentAddress.municipality">
 								</div>
 							</div>
-                            <div class="col">
+							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentCityProvince"
-										id="residentCityProvince" placeholder="City/Province" [ngModel]="faculty.residentAddress.cityProvince">
+										id="residentCityProvince" placeholder="City/Province"
+										[ngModel]="faculty.residentAddress.cityProvince">
 								</div>
 							</div>
-							
+
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentZipCode" id="residentZipCode"
@@ -192,40 +203,42 @@
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentHouseNo"
-										id="permanentHouseNo" placeholder="House/Block/Lot No." [ngModel]="faculty.permanentAddress.houseNo"
-										>
+										id="permanentHouseNo" placeholder="House/Block/Lot No."
+										[ngModel]="faculty.permanentAddress.houseNo">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentStreet" id="permanentStreet"
-										placeholder="Street" [ngModel]="faculty.permanentAddress.street" >
+										placeholder="Street" [ngModel]="faculty.permanentAddress.street">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentSubdivision"
-										id="permanentSubdivision" placeholder="Subdivision/Barangay" [ngModel]="faculty.permanentAddress.subdivision"
-										>
+										id="permanentSubdivision" placeholder="Subdivision/Barangay"
+										[ngModel]="faculty.permanentAddress.subdivision">
 								</div>
 							</div>
-                            <div class="col">
+							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentMunicipality"
-										id="permanentMunicipality" placeholder="Municipality" [ngModel]="faculty.permanentAddress.municipality">
+										id="permanentMunicipality" placeholder="Municipality"
+										[ngModel]="faculty.permanentAddress.municipality">
 								</div>
 							</div>
-                            <div class="col">
+							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentCityProvince"
-										id="permanentCityProvince" placeholder="City/Province" [ngModel]="faculty.permanentAddress.cityProvince">
+										id="permanentCityProvince" placeholder="City/Province"
+										[ngModel]="faculty.permanentAddress.cityProvince">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="number" class="form-control" name="permanentZipCode"
-										id="permanentZipCode" placeholder="Zip Code" [ngModel]="faculty.permanentAddress.zipCode"
-										>
+										id="permanentZipCode" placeholder="Zip Code"
+										[ngModel]="faculty.permanentAddress.zipCode">
 								</div>
 							</div>
 						</div>
@@ -241,13 +254,15 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="pagibig" class="form-label">PAG-IBIG ID No.</label>
-								<input type="text" class="form-control" name="pagibig" id="pagibig" [ngModel]="faculty.pagibig">
+								<input type="text" class="form-control" name="pagibig" id="pagibig"
+									[ngModel]="faculty.pagibig">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="philhealth" class="form-label">PHILHEALTH No.</label>
-								<input type="text" class="form-control" name="philhealth" id="philhealth" [ngModel]="faculty.philhealth">
+								<input type="text" class="form-control" name="philhealth" id="philhealth"
+									[ngModel]="faculty.philhealth">
 							</div>
 						</div>
 						<div class="col">
@@ -266,10 +281,379 @@
 				</div>
 			</div>
 		</div>
-		
-		<!-- <div class="accordion-item">
+
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="education-heading">
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#education-collapse" aria-expanded="false"
+					aria-controls="education-collapse">
+					Educational Backround
+				</button>
+			</h2>
+			<div id="education-collapse" class="accordion-collapse collapse" aria-labelledby="education-heading">
+				<div class="accordion-body">
+					<div ngModelGroup="elementary">
+						<h5>Elementary</h5>
+						<div class="row row-cols-1 row-cols-md-3 g-2">
+							<div class="col">
+								<div class="mb-3">
+									<label for="elementarySchool" class="form-label">Name of School (write in full)
+										<i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right"
+											data-bs-html="true"
+											title="Indicate FULL name of schools. <b>DO NOT ABBREVIATE</b>"></i>
+									</label>
+									<input type="text" class="form-control" name="elementarySchool"
+										[ngModel]="faculty.elementary.school">
+								</div>
+							</div>
+							<div class="col">
+								<div class="mb-3">
+									<label class="form-label">Basic Education (write in full)
+										<i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right"
+											data-bs-html="true"
+											title="Indicate <b>PRIMARY EDUCATION</b> if graduated"></i>
+									</label>
+									<input class="form-control" list="elemBasicEducationList" id="elemBasicEducation"
+										name="elemBasicEducation" [ngModel]="faculty.elementary.basicEducation">
+									<datalist id="elemBasicEducationList">
+										<option *ngFor="let x of elemBasicEd" [value]="x">
+									</datalist>
+								</div>
+							</div>
+							<div class="col">
+								<label for="elemAttendance" class="form-label">Period of Attendance</label>
+								<div class="d-flex justify-content-around">
+									<input type="date" class="form-control"
+										placeholder="Start Year" name="elemAttendanceStart"
+										[ngModel]="faculty.elementary.startDate">
+									<label class="mx-3 pt-1">to</label>
+									<input type="date" class="form-control" min="1901" max="2022"
+										placeholder="End Year" name="elemAttendanceEnd"
+										[ngModel]="faculty.elementary.endDate">
+								</div>
+							</div>
+						</div>
+						<div class="row row-cols-1 row-cols-md-3 g-2">
+							<div class="col">
+								<div class="mb-3">
+									<label for="elemHighestLevel" class="form-label">Highest Level/Units Earned (if not
+										graduated)</label>
+									<input type="text" class="form-control" name="elemHighestLevel"
+										id="elemHighestLevel" [ngModel]="faculty.elementary.level">
+								</div>
+							</div>
+							<div class="col">
+								<div class="mb-3">
+									<label for="elemYearGraduate" class="form-label">Year Graduated</label>
+									<input type="number" class="form-control" name="elemYearGraduate"
+										id="elemYearGraduate" min="1901" max="2022" placeholder="Year"
+										[ngModel]="faculty.elementary.yearGraduated">
+								</div>
+							</div>
+							<div class="col">
+								<div class="mb-3">
+									<label for="elemScholarship" class="form-label">Scholarship/Academic Honors
+										Received</label>
+									<input type="text" class="form-control" name="elemScholarship" id="elemScholarship"
+										[ngModel]="faculty.elementary.scholarship">
+								</div>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div ngModelGroup="secondary">
+						<h5>Secondary</h5>
+						<div class="row row-cols-1 row-cols-md-3 g-2">
+							<div class="col">
+								<div class="mb-3">
+									<label for="secondarySchool" class="form-label">Name of School (write in full)
+										<i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right"
+											data-bs-html="true"
+											title="Indicate FULL name of schools. <b>DO NOT ABBREVIATE</b>"></i>
+									</label>
+									<input type="text" class="form-control" name="secondarySchool"
+										[ngModel]="faculty.secondary.school">
+								</div>
+							</div>
+							<div class="col">
+								<div class="mb-3">
+									<label class="form-label">Basic Education (write in full)
+										<i class="far fa-info-circle mx-2" data-toggle="tooltip" data-placement="right"
+											data-bs-html="true"
+											title="Indicate <b>HIGH SCHOOL</b> if graduated under the old curriculum; or <b>JUNIOR HIGH SCHOOL</b> or <b>SENIOR HIGH SCHOOL</b> if graduated under the K-12 curriculum."></i>
+									</label>
+									<input class="form-control" list="secondaryBasicEducationList"
+										id="secondaryBasicEducation" name="secondaryBasicEducation"
+										[ngModel]="faculty.secondary.basicEducation">
+									<datalist id="secondaryBasicEducationList">
+										<option *ngFor="let x of secondaryBasicEd" [value]="x">
+									</datalist>
+								</div>
+							</div>
+							<div class="col">
+								<label for="secondaryAttendance" class="form-label">Period of Attendance</label>
+								<div class="d-flex justify-content-around">
+									<input type="date" class="form-control"
+										name="secondaryAttendanceStart" placeholder="Start Year"
+										[ngModel]="faculty.secondary.startDate">
+									<label class="mx-3 pt-1">to</label>
+									<input type="date" class="form-control"
+										name="secondaryAttendanceEnd" placeholder="End Year"
+										[ngModel]="faculty.secondary.endDate">
+								</div>
+							</div>
+						</div>
+						<div class="row row-cols-1 row-cols-md-3 g-2">
+							<div class="col">
+								<div class="mb-3">
+									<label for="secondaryHighestLevel" class="form-label">Highest Level/Units Earned (if
+										not
+										graduated)</label>
+									<input type="text" class="form-control" name="secondaryHighestLevel"
+										id="secondaryHighestLevel" [ngModel]="faculty.secondary.level">
+								</div>
+							</div>
+							<div class="col">
+								<div class="mb-3">
+									<label for="secondaryYearGraduate" class="form-label">Year Graduated</label>
+									<input type="number" class="form-control" name="secondaryYearGraduate"
+										id="secondaryYearGraduate" min="1901" max="2022" placeholder="Year"
+										[ngModel]="faculty.secondary.yearGraduated">
+								</div>
+							</div>
+							<div class="col">
+								<div class="mb-3">
+									<label for="secondaryScholarship" class="form-label">Scholarship/Academic Honors
+										Received</label>
+									<input type="text" class="form-control" name="secondaryScholarship"
+										id="secondaryScholarship" [ngModel]="faculty.secondary.scholarship">
+								</div>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<h5>Vocational/Trade Course</h5>
+					<div ngModelGroup="vocational">
+						<button type="button" class="btn btn-outline-secondary btn-group-sm"
+							(click)="addVocationalEntry()"><i class="fal fa-plus-circle"></i> Add another
+							Vocational/Trade Course</button>
+						<input type="hidden" name="ctr" [ngModel]="vocationalCtr">
+						<div [ngModelGroup]="i+''" *ngFor="let x of vocationalEntry; let i = index">
+							<div class="row row-cols-1 row-cols-md-3 g-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="school" class="form-label">Name of School (write in full)
+											<i class="far fa-info-circle mx-2" data-toggle="tooltip"
+												data-placement="right" data-bs-html="true"
+												title="Indicate FULL name of schools. <b>DO NOT ABBREVIATE</b>"></i>
+										</label>
+										<input type="text" class="form-control" name="school" [ngModel]="x.school">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Basic Education/Degree/Course (write in full)
+											<i class="far fa-info-circle mx-2" data-toggle="tooltip"
+												data-placement="right" data-bs-html="true"
+												title="Indicate in FULL all courses taken"></i>
+										</label>
+										<input class="form-control" id="vocationalBasicEducation" name="basicEducation"
+											[ngModel]="x.basicEducation">
+
+									</div>
+								</div>
+								<div class="col">
+									<label for="vocationalAttendance" class="form-label">Period of Attendance</label>
+									<div class="d-flex justify-content-around">
+										<input type="date" class="form-control"
+											name="attendanceStart" placeholder="Start Year" [ngModel]="x.startDate">
+										<label class="mx-3 pt-1">to</label>
+										<input type="date" class="form-control"
+											name="attendanceEnd" placeholder="End Year" [ngModel]="x.endDate">
+									</div>
+								</div>
+							</div>
+							<div class="row row-cols-1 row-cols-md-3 g-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="vocationalHighestLevel" class="form-label">Highest Level/Units
+											Earned (if not
+											graduated)</label>
+										<input type="text" class="form-control" name="highestLevel"
+											id="vocationalHighestLevel" [ngModel]="x.level">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="vocationalYearGraduate" class="form-label">Year Graduated</label>
+										<input type="number" class="form-control" name="yearGraduate"
+											id="vocationalYearGraduate" min="1901" max="2022" placeholder="Year"
+											[ngModel]="x.yearGraduated">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="vocationalScholarship" class="form-label">Scholarship/Academic
+											Honors Received</label>
+										<input type="text" class="form-control" name="scholarship"
+											id="vocationalScholarship" [ngModel]="x.scholarship">
+									</div>
+								</div>
+							</div>
+							<hr>
+						</div>
+
+					</div>
+					<h5>College</h5>
+					<div ngModelGroup="college">
+						<button type="button" class="btn btn-outline-secondary btn-group-sm"
+							(click)="addCollegeEntry()"><i class="fal fa-plus-circle"></i> Add another College</button>
+						<input type="hidden" name="ctr" [ngModel]="collegeCtr">
+						<div [ngModelGroup]="i+''" *ngFor="let x of collegeEntry; let i = index">
+							<div class="row row-cols-1 row-cols-md-3 g-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="collegeSchool" class="form-label">Name of School (write in full)
+											<i class="far fa-info-circle mx-2" data-toggle="tooltip"
+												data-placement="right" data-bs-html="true"
+												title="Indicate FULL name of schools. <b>DO NOT ABBREVIATE</b>"></i>
+										</label>
+										<input type="text" class="form-control" name="school" [ngModel]="x.school">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Basic Education/Degree/Course (write in full)
+											<i class="far fa-info-circle mx-2" data-toggle="tooltip"
+												data-placement="right" data-bs-html="true"
+												title="Indicate in FULL all courses taken in college (e.g. ASSOCIATE IN ARTS, AB ECONOMICS, BS PSYCHOLOGY, MA IN HISTORY)."></i>
+										</label>
+										<input class="form-control" id="collegeBasicEducation" name="basicEducation"
+											[ngModel]="x.basicEducation">
+
+									</div>
+								</div>
+								<div class="col">
+									<label for="collegeAttendance" class="form-label">Period of Attendance</label>
+									<div class="d-flex justify-content-around">
+										<input type="date" class="form-control" 
+											name="attendanceStart" placeholder="Start Year" [ngModel]="x.startDate">
+										<label class="mx-3 pt-1">to</label>
+										<input type="date" class="form-control"
+											name="attendanceEnd" placeholder="End Year" [ngModel]="x.endDate">
+									</div>
+								</div>
+							</div>
+							<div class="row row-cols-1 row-cols-md-3 g-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="collegeHighestLevel" class="form-label">Highest Level/Units Earned
+											(if not
+											graduated)</label>
+										<input type="text" class="form-control" name="highestLevel"
+											id="collegeHighestLevel" [ngModel]="x.level">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="collegeYearGraduate" class="form-label">Year Graduated</label>
+										<input type="number" class="form-control" name="yearGraduate"
+											id="collegeYearGraduate" min="1901" max="2022" placeholder="Year"
+											[ngModel]="x.yearGraduated">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="collegeScholarship" class="form-label">Scholarship/Academic Honors
+											Received</label>
+										<input type="text" class="form-control" name="scholarship"
+											id="collegeScholarship" [ngModel]="x.scholarship">
+									</div>
+								</div>
+							</div>
+							<hr>
+						</div>
+					</div>
+					<h5>Graduate Studies</h5>
+					<div ngModelGroup="graduateStudies">
+						<button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addGraduateStudiesEntry()"><i
+								class="fal fa-plus-circle"></i> Add another Graduate Studies</button>
+						<input type="hidden" name="ctr" [ngModel]="graduateStudiesCtr">
+						<div [ngModelGroup]="i+''" *ngFor="let x of graduateStudiesEntry; let i = index">
+							<div class="row row-cols-1 row-cols-md-3 g-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="graduateStudiesSchool" class="form-label">Name of School (write in
+											full)
+											<i class="far fa-info-circle mx-2" data-toggle="tooltip"
+												data-placement="right" data-bs-html="true"
+												title="Indicate FULL name of schools. <b>DO NOT ABBREVIATE</b>"></i>
+										</label>
+										<input type="text" class="form-control" name="school" [ngModel]="x.school">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Basic Education/Degree/Course (write in full)
+											<i class="far fa-info-circle mx-2" data-toggle="tooltip"
+												data-placement="right" data-bs-html="true"
+												title="Indicate in FULL all courses taken in graduateStudies (e.g. ASSOCIATE IN ARTS, AB ECONOMICS, BS PSYCHOLOGY, MA IN HISTORY)."></i>
+										</label>
+										<input class="form-control" id="graduateStudiesBasicEducation"
+											name="basicEducation" [ngModel]="x.basicEducation">
+
+									</div>
+								</div>
+								<div class="col">
+									<label for="graduateStudiesAttendance" class="form-label">Period of
+										Attendance</label>
+									<div class="d-flex justify-content-around">
+										<input type="date" class="form-control"
+											name="attendanceStart" placeholder="Start Year" [ngModel]="x.startDate">
+										<label class="mx-3 pt-1">to</label>
+										<input type="date" class="form-control"
+											name="attendanceEnd" placeholder="End Year" [ngModel]="x.endDate">
+									</div>
+								</div>
+							</div>
+							<div class="row row-cols-1 row-cols-md-3 g-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="graduateStudiesHighestLevel" class="form-label">Highest Level/Units
+											Earned (if not
+											graduated)</label>
+										<input type="text" class="form-control" name="highestLevel"
+											id="graduateStudiesHighestLevel" [ngModel]="x.level">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="graduateStudiesYearGraduate" class="form-label">Year
+											Graduated</label>
+										<input type="number" class="form-control" name="yearGraduate"
+											id="graduateStudiesYearGraduate" min="1901" max="2022" placeholder="Year"
+											[ngModel]="x.yearGraduated">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="graduateStudiesScholarship" class="form-label">Scholarship/Academic
+											Honors Received</label>
+										<input type="text" class="form-control" name="scholarship"
+											id="graduateStudiesScholarship" [ngModel]="x.scholarship">
+									</div>
+								</div>
+							</div>
+							<hr>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="accordion-item">
 			<h2 class="accordion-header" id="civil-service-heading">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
 					data-bs-target="#civil-service-collapse" aria-expanded="false"
 					aria-controls="civil-service-collapse">
 					Civil Service
@@ -278,13 +662,62 @@
 			<div id="civil-service-collapse" class="accordion-collapse collapse"
 				aria-labelledby="civil-service-heading">
 				<div class="accordion-body">
-					<app-form-civil-service></app-form-civil-service>
+					<div ngModelGroup="civilService">
+						<button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addCivilServiceEntry()"><i
+								class="fal fa-plus-circle"></i> Add another Civil Service</button>
+						<input type="hidden" name="ctr" [ngModel]="civilServiceCtr">
+						<div [ngModelGroup]="i+''" *ngFor="let x of civilServiceEntry; let i = index">
+							<div class="row row-cols-1 row-cols-md-3 gx-2">
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Civil Service Type</label>
+										<div class="mb-3">
+											<select class="form-select" name="civilServiceType" [ngModel]="x.type">
+												<option [value]="x" *ngFor="let x of civilServiceType; let i = index">{{ x }}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="rating" class="form-label">Rating</label>
+										<input type="text" class="form-control" name="rating" id="rating" [ngModel]="x.rating">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="examinationDate" class="form-label">Date of Examination/Conferment</label>
+										<input type="date" class="form-control" name="examinationDate" id="examinationDate" [ngModel]="x.examinationDate">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="examinationPlace" class="form-label">Place of Examination/Conferment</label>
+										<input type="text" class="form-control" name="examinationPlace" id="examinationPlace" [ngModel]="x.examinationPlace">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="licenseNumber" class="form-label">License Number (if applicable)</label>
+										<input type="text" class="form-control" name="licenseNumber" id="licenseNumber" [ngModel]="x.licenseNumber">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="licenseValidity" class="form-label">License Date of Validity (if applicable)</label>
+										<input type="date" class="form-control" name="licenseValidity" id="licenseValidity" [ngModel]="x.licenseValidity">
+									</div>
+								</div>
+							</div>
+							<hr>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div> -->
-		<!-- <div class="accordion-item">
+		</div>
+		<div class="accordion-item">
 			<h2 class="accordion-header" id="work-experience-heading">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
 					data-bs-target="#work-experience-collapse" aria-expanded="false"
 					aria-controls="work-experience-collapse">
 					Work Experience
@@ -293,13 +726,159 @@
 			<div id="work-experience-collapse" class="accordion-collapse collapse"
 				aria-labelledby="work-experience-heading">
 				<div class="accordion-body">
-					<app-form-work-experience></app-form-work-experience>
+					<div ngModelGroup="workExperience">
+						<button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addWorkEntry()"><i
+								class="fal fa-plus-circle"></i> Add another Work Experience</button>
+						<input type="hidden" name="ctr" [ngModel]="workCtr">
+						<div [ngModelGroup]="i+''" *ngFor="let x of workEntry; let i = index">
+							<div class="row row-cols-1 row-cols-md-3 gx-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="position" class="form-label">Position Title (write in full/do not abbreviate)</label>
+										<input type="text" class="form-control" name="position" id="position" [ngModel]="x.position">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="company" class="form-label">Department / Agency / Office / Company</label>
+										<input type="text" class="form-control" name="company" id="company" [ngModel]="x.company">
+									</div>
+								</div>
+								<div class="col">
+									<label for="collegeAttendance" class="form-label">Inclusive Dates</label>
+									<div class="d-flex justify-content-around">
+										<input type="date" class="form-control" name="startDate" [ngModel]="x.startDate">
+										<label class="mx-3 pt-1">to</label>
+										<input type="date" class="form-control" name="endDate" [ngModel]="x.endDate">
+									</div>
+								</div>
+							</div>
+							<div class="row row-cols-1 row-cols-md-4 gx-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="salary" class="form-label">Monthly Salary</label>
+										<input type="number" min="0" class="form-control" name="salary" id="salary" [ngModel]="x.salary">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="jobGrade" class="form-label">Salary Grade / Job Grade / Pay Grade</label>
+										<input type="text" class="form-control" name="jobGrade" id="jobGrade" [ngModel]="x.jobGrade">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Status of Appointment</label>
+										<div class="mb-3">
+											<select class="form-select" name="appointmentStatus" [ngModel]="x.appointmentStatus">
+												<option [value]="x" *ngFor="let x of appointmentStatus; let i = index">{{ x }}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Government Service</label>
+										<div class="mb-3">
+											<select class="form-select" name="gov" [ngModel]="x.gov">
+												<option value="Yes">Yes</option>
+												<option value="No">No</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
+
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="seminars-heading">
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
+					data-bs-target="#seminars-collapse" aria-expanded="false"
+					aria-controls="seminars-collapse">
+					Learning and Development (L&D) Interventions/Training Programs Attended
+				</button>
+			</h2>
+			<div id="seminars-collapse" class="accordion-collapse collapse"
+				aria-labelledby="seminars-heading">
+				<div class="accordion-body">
+					<div ngModelGroup="seminars">
+						<button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addSeminarEntry()"><i
+								class="fal fa-plus-circle"></i> Add another L&D/Training Programs</button>
+						<input type="hidden" name="ctr" [ngModel]="seminarCtr">
+						<div [ngModelGroup]="i+''" *ngFor="let x of seminarEntry; let i = index">
+							<div class="row row-cols-1 row-cols-md-3 gx-2">
+								<div class="col">
+									<div class="mb-3">
+										<label for="ptitleosition" class="form-label">Title</label>
+										<input type="text" class="form-control" name="title" id="title" [ngModel]="x.title">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label for="hours" class="form-label">Number of Hours</label>
+										<input type="number" min="0" class="form-control" name="hours" id="hours" [ngModel]="x.hours">
+									</div>
+								</div>
+								<div class="col">
+									<label class="form-label">Inclusive Dates</label>
+									<div class="d-flex justify-content-around">
+										<input type="date" class="form-control" name="startDate" [ngModel]="x.startDate">
+										<label class="mx-3 pt-1">to</label>
+										<input type="date" class="form-control" name="endDate" [ngModel]="x.endDate">
+									</div>
+								</div>
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Type of Learning and Development</label>
+										<input class="form-control" list="ldTypeList" id="ldType"
+											name="ldType" [ngModel]="x.type">
+										<datalist id="ldTypeList">
+											<option *ngFor="let x of ldType" [value]="x">
+										</datalist>
+									</div>
+								</div>
+								
+								<div class="col">
+									<div class="mb-3">
+										<label for="sponsored" class="form-label">Conducted / Sponsored by (Write in full)</label>
+										<input type="text" class="form-control" name="sponsored" id="sponsored" [ngModel]="x.sponsored">
+									</div>
+								</div>            
+								<div class="col">
+									<div class="mb-3">
+										<label class="form-label">Coverage</label>
+										<div class="mb-3">
+											<select class="form-select" name="coverage" [ngModel]="x.coverage">
+												<option [value]="x" *ngFor="let x of coverage; let i = index">{{ x }}</option>
+											</select>
+										</div>
+									</div>
+								</div>            
+							</div>
+							<!-- <div class="mb-3">
+								<label for="certificate" class="form-label">Certificate (Image Format)</label>
+								<input type="file" class="form-control" name="certificate" id="certificate" 
+									accept="image/*" multiple="multiple" ngModel (change)="certOnChange($event)">
+							</div> -->
+					
+					
+							<hr>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="account-heading">
-				<button class="accordion-button" type="button" data-bs-toggle="collapse"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold" type="button" data-bs-toggle="collapse"
 					data-bs-target="#account-collapse" aria-expanded="false" aria-controls="account-collapse">
 					Account
 				</button>
@@ -314,11 +893,11 @@
 									[ngModel]="email">
 							</div>
 						</div>
-                        <div class="col">
+						<div class="col">
 							<div class="mb-3">
 								<label for="currentPassword" class="form-label">Current Password</label>
-								<input type="password" class="form-control" name="currentPassword" id="currentPassword" required
-									ngModel>
+								<input type="password" class="form-control" name="currentPassword" id="currentPassword"
+									required ngModel>
 							</div>
 						</div>
 						<div class="col">
@@ -342,13 +921,14 @@
 
 
 	</div>
-    
-    <div class="alert alert-danger my-3" role="alert" *ngIf="errorCont">
-        {{ errorMessage }}
-    </div>
+
+	<div class="alert alert-danger my-3" role="alert" *ngIf="errorCont">
+		{{ errorMessage }}
+	</div>
 	<div class="d-flex justify-content-between my-3">
-		<button type="submit" class="btn btn-primary btn-lg px-5 " [disabled]="!f.valid">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="onRegistration"></span>
+		<button type="submit" class="btn btn-primary btn-lg px-5 " >
+			<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
+				*ngIf="onRegistration"></span>
 			<span *ngIf="!onRegistration">Update Profile</span>
 		</button>
 	</div>

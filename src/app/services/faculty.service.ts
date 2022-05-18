@@ -47,7 +47,10 @@ export class FacultyService {
   }
 
   updateInfo(id: string, info: any) {
-    return this.http.patch(this.baseUrl + 'faculty/' + id + '.json', info);
+    return this.http.put(this.baseUrl + 'faculty/' + id + '.json', info);
+  }
+  deleteData(id: string) {
+    return this.http.delete(this.baseUrl + 'faculty/' + id + '.json');
   }
 
 } // end

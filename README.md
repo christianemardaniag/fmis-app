@@ -1,4 +1,7 @@
 # Web-Based Faculty Management Information System
+Faculty: http://fmis-app.web.app/
+Admin: http://fmis-app.web.app/fmis
+Database: https://fmis-app-default-rtdb.firebaseio.com/
 
 Create a system that will allow faculty to register and create their profile (Consent promt needed). Faculty can add necessary information within the system. Faculty can also upload certificates of training, seminars, certification, etc. within the system. Faculty can print their information. Faculty can view a summary of his/her training, seminars, certifications, etc. Summary can be filtered or searched. Faculty can update his/her information.
 

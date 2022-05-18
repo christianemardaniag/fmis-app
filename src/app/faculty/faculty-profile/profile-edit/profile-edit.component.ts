@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Faculty } from 'src/app/model/faculty.model';
+import { CivilService } from 'src/app/model/_civilService';
+import { Education } from 'src/app/model/_education';
+import { Seminar } from 'src/app/model/_seminar';
+import { Work } from 'src/app/model/_work';
 import { FacultyService } from 'src/app/services/faculty.service';
 
 @Component({
@@ -19,17 +23,133 @@ export class ProfileEditComponent implements OnInit {
   onRegistration = false;
   errorCont = false;
   errorMessage = '';
-
+  elemBasicEd = ['Primary Education', 'Not Graduated'];
+  secondaryBasicEd = ['High School', 'Junior High School', 'Senior High School', 'Not Graduated'];
+  civilServiceType = ["Career Service", "RA 1080 (board/bar) Under Special Laws", "CES", "CSEE Barangay Eligibility", "Driver's License"];
+  appointmentStatus = ["Permanent", "Temporary", "Casual", "Contractual"];
+  coverage = ['International', 'National', 'Regional', 'Local'];
+  ldType = ['Managerial', 'Supervisory', 'Technical'];
+  fetchingData = false;
+  vocationalCtr = 0;
+  collegeCtr = 0;
+  graduateStudiesCtr = 0;
+  civilServiceCtr = 0;
+  workCtr = 0;
+  seminarCtr = 0;
+  vocationalEntry: Education[] = [];
+  collegeEntry: Education[] = [];
+  graduateStudiesEntry: Education[] = [];
+  civilServiceEntry: CivilService[] = [];
+  workEntry: Work[] = [];
+  seminarEntry: Seminar[] = [];
 
   constructor(private facultyService: FacultyService, private router: Router) { }
 
   ngOnInit(): void {
+    this.fetchingData = true;
     this.facultyService.getFacultyById(this.id).subscribe(data => {
       this.faculty = data;
-      console.log(data);
+      this.fetchingData = false;
       this.email = this.faculty.email;
+      this.vocationalCtr = this.faculty.vocational?.length || 0;
+      this.collegeCtr = this.faculty.college?.length || 0;
+      this.graduateStudiesCtr = this.faculty.graduateStudies?.length || 0;
+      this.civilServiceCtr = this.faculty.civilService?.length || 0;
+      this.workCtr = this.faculty.workExperience?.length || 0;
+      this.seminarCtr = this.faculty.seminars?.length || 0;
+      this.vocationalEntry = (this.faculty.vocational ? this.faculty.vocational : this.vocationalEntry);
+      this.collegeEntry = (this.faculty.college ? this.faculty.college : this.collegeEntry);
+      this.graduateStudiesEntry = (this.faculty.graduateStudies ? this.faculty.graduateStudies : this.graduateStudiesEntry);
+      this.civilServiceEntry = (this.faculty.civilService ? this.faculty.civilService : this.civilServiceEntry);
+      this.workEntry = (this.faculty.workExperience ? this.faculty.workExperience : this.workEntry);
+      this.seminarEntry = (this.faculty.seminars ? this.faculty.seminars : this.seminarEntry);
     });
-    
+
+  }
+
+  addVocationalEntry() {
+    let x: Education = {
+      school: '',
+      basicEducation: '',
+      startDate: new Date,
+      endDate: new Date,
+      level: '',
+      yearGraduated: '',
+      scholarship: ''
+    }
+    this.vocationalEntry.push(x);
+    this.vocationalCtr++;
+  }
+
+  addCollegeEntry() {
+    let x: Education = {
+      school: '',
+      basicEducation: '',
+      startDate: new Date,
+      endDate: new Date,
+      level: '',
+      yearGraduated: '',
+      scholarship: ''
+    }
+    this.collegeEntry.push(x);
+    this.collegeCtr++;
+  }
+
+  addGraduateStudiesEntry() {
+    let x: Education = {
+      school: '',
+      basicEducation: '',
+      startDate: new Date,
+      endDate: new Date,
+      level: '',
+      yearGraduated: '',
+      scholarship: ''
+    }
+    this.graduateStudiesEntry.push(x);
+    this.graduateStudiesCtr++;
+  }
+
+  addCivilServiceEntry() {
+    let x: CivilService = {
+      type: '',
+      rating: '',
+      examinationDate: new Date,
+      examinationPlace: '',
+      licenseNumber: '',
+      licenseValidity: new Date
+    }
+    this.civilServiceEntry.push(x);
+    this.civilServiceCtr++;
+  }
+
+  addWorkEntry() {
+    let x: Work = {
+      position: '',
+      company: '',
+      startDate: new Date,
+      endDate: new Date,
+      salary: 0,
+      jobGrade: '',
+      appointmentStatus: '',
+      gov: '',
+    }
+    this.workEntry.push(x);
+    this.workCtr++;
+  }
+
+  addSeminarEntry() {
+    let x: Seminar = {
+      title: '',
+      hours: 0,
+      startDate: new Date,
+      endDate: new Date,
+      type: '',
+      sponsored: '',
+      coverage: '',
+      certificate: [],
+    }
+    this.seminarEntry.push(x);
+    this.seminarCtr++;
   }
 
   sameAsResident(mainForm: NgForm) {
@@ -63,10 +183,11 @@ export class ProfileEditComponent implements OnInit {
       if (newPass == conPass) {
         this.onRegistration = true;
         this.setInfo(val);
-        this.facultyService.updateInfo(this.id, this.faculty).subscribe(()=> {
+        this.facultyService.updateInfo(this.id, this.faculty).subscribe(() => {
           this.onRegistration = false;
           this.router.navigate(['/faculty', this.id]);
         });
+
       } else {
         this.errorCont = true;
         this.errorMessage = 'Incorrect Password';
@@ -78,6 +199,7 @@ export class ProfileEditComponent implements OnInit {
   }
 
   setInfo(val: any) {
+
     this.faculty.nameExtension = val.nameExtension;
     this.faculty.birthDate = val.birthDate;
     this.faculty.civilStatus = val.civilStatus;
@@ -111,5 +233,107 @@ export class ProfileEditComponent implements OnInit {
     this.faculty.philhealth = val.philhealth;
     this.faculty.sss = val.sss;
     this.faculty.tin = val.tin;
+    // Elementary
+    this.faculty.elementary.school = val.elementary.elementarySchool;
+    this.faculty.elementary.basicEducation = val.elementary.elemBasicEducation;
+    this.faculty.elementary.startDate = val.elementary.elemAttendanceStart;
+    this.faculty.elementary.endDate = val.elementary.elemAttendanceEnd;
+    this.faculty.elementary.level = val.elementary.elemHighestLevel;
+    this.faculty.elementary.yearGraduated = val.elementary.elemYearGraduate;
+    this.faculty.elementary.scholarship = val.elementary.elemScholarship;
+    // Secondary
+    this.faculty.secondary.school = val.secondary.secondarySchool;
+    this.faculty.secondary.basicEducation = val.secondary.secondaryBasicEducation;
+    this.faculty.secondary.startDate = val.secondary.secondaryAttendanceStart;
+    this.faculty.secondary.endDate = val.secondary.secondaryAttendanceEnd;
+    this.faculty.secondary.level = val.secondary.secondaryHighestLevel;
+    this.faculty.secondary.yearGraduated = val.secondary.secondaryYearGraduate;
+    this.faculty.secondary.scholarship = val.secondary.secondaryScholarship;
+    // Vocational
+    this.faculty.vocational = [];
+    this.faculty.college = [];
+    this.faculty.graduateStudies = [];
+    this.faculty.civilService = [];
+    this.faculty.workExperience = [];
+    this.faculty.seminars = [];
+    this.setupEducationalMultipleEntry(this.faculty.vocational, val.vocational);
+    // College
+    this.setupEducationalMultipleEntry(this.faculty.college, val.college);
+    // Graduate Studies
+    this.setupEducationalMultipleEntry(this.faculty.graduateStudies, val.graduateStudies);
+    // Civil Service
+    this.setupCivilServiceMultipleEntry(this.faculty.civilService, val.civilService);
+    // Work Experience
+    this.setupWorkExperienceMultipleEntry(this.faculty.workExperience, val.workExperience);
+    // Seminars
+    this.setupSeminarsMultipleEntry(this.faculty.seminars, val.seminars);
+    // // Account
+    this.faculty.password = val.newPassword;
+    console.log(this.faculty);
   }
+
+  setupEducationalMultipleEntry(educ: any, val: any) {
+    for (let i = 0; i < val.ctr; i++) {
+      let x = val[i];
+      let v: Education = {
+        school: x.school,
+        basicEducation: x.basicEducation,
+        startDate: x.attendanceStart,
+        endDate: x.attendanceEnd,
+        level: x.highestLevel,
+        yearGraduated: x.yearGraduate,
+        scholarship: x.scholarship
+      };
+      educ.push(v);
+    }
+  }
+
+  setupCivilServiceMultipleEntry(cv: any, val: any) {
+    for (let i = 0; i < val.ctr; i++) {
+      let x = val[i];
+      let v: CivilService = {
+        type: x.civilServiceType,
+        rating: x.rating,
+        examinationDate: x.examinationDate,
+        examinationPlace: x.examinationPlace,
+        licenseNumber: x.licenseNumber,
+        licenseValidity: x.licenseValidity
+      };
+      cv.push(v);
+    }
+  }
+
+  setupWorkExperienceMultipleEntry(cv: any, val: any) {
+    for (let i = 0; i < val.ctr; i++) {
+      let x = val[i];
+      let v: Work = {
+        position: x.position,
+        company: x.company,
+        startDate: x.startDate,
+        endDate: x.endDate,
+        salary: x.salary,
+        jobGrade: x.jobGrade,
+        appointmentStatus: x.appointmentStatus,
+        gov: x.gov
+      };
+      cv.push(v);
+    }
+  }
+  setupSeminarsMultipleEntry(cv: any, val: any) {
+    for (let i = 0; i < val.ctr; i++) {
+      let x = val[i];
+      let v: Seminar = {
+        title: x.title,
+        hours: x.hours,
+        startDate: x.startDate,
+        endDate: x.endDate,
+        type: x.ldType,
+        sponsored: x.sponsored,
+        coverage: x.coverage,
+        certificate: x.certificate
+      };
+      cv.push(v);
+    }
+  }
+
 }

@@ -1,1 +1,68 @@
-<p>form-work-experience works!</p>
+<div ngModelGroup="workExperience">
+    <button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addEntry()"><i
+            class="fal fa-plus-circle"></i> Add another Work Experience</button>
+    <input type="hidden" name="ctr" [ngModel]="ctr">
+    <div [ngModelGroup]="i+''" *ngFor="let x of entry; let i = index">
+        <div class="row row-cols-1 row-cols-md-3 gx-2">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="position" class="form-label">Position Title (write in full/do not abbreviate)</label>
+                    <input type="text" class="form-control" name="position" id="position" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="company" class="form-label">Department / Agency / Office / Company</label>
+                    <input type="text" class="form-control" name="company" id="company" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <label for="collegeAttendance" class="form-label">Inclusive Dates</label>
+                <div class="d-flex justify-content-around">
+                    <input type="date" class="form-control" name="startDate" ngModel>
+                    <label class="mx-3 pt-1">to</label>
+                    <input type="date" class="form-control" name="endDate" ngModel>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-4 gx-2">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="salary" class="form-label">Monthly Salary</label>
+                    <input type="number" min="0" class="form-control" name="salary" id="salary" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="jobGrade" class="form-label">Salary Grade / Job Grade / Pay Grade</label>
+                    <input type="text" class="form-control" name="jobGrade" id="jobGrade" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label">Status of Appointment</label>
+                    <div class="mb-3">
+                        <select class="form-select" name="appointmentStatus" ngModel>
+                            <option [value]="x" *ngFor="let x of appointmentStatus; let i = index">{{ x }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label">Government Service</label>
+                    <div class="mb-3">
+                        <select class="form-select" name="gov" ngModel>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+       
+        <hr>
+    </div>
+</div>

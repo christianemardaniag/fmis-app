@@ -1,42 +1,50 @@
-<div class="row row-cols-1 row-cols-md-3 gx-2">
-    <div class="col">
-        <div class="mb-3">
-            <label class="form-label">Civil Service Type</label>
-            <div class="mb-3">
-                <select class="form-select" name="civilServiceType" ngModel>
-                    <option [value]="i" *ngFor="let x of civilServiceType; let i = index">{{ x }}</option>
-                </select>
+<div ngModelGroup="civilService">
+    <button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addEntry()"><i
+            class="fal fa-plus-circle"></i> Add another Civil Service</button>
+    <input type="hidden" name="ctr" [ngModel]="ctr">
+    <div [ngModelGroup]="i+''" *ngFor="let x of entry; let i = index">
+        <div class="row row-cols-1 row-cols-md-3 gx-2">
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label">Civil Service Type</label>
+                    <div class="mb-3">
+                        <select class="form-select" name="civilServiceType" ngModel>
+                            <option [value]="x" *ngFor="let x of civilServiceType; let i = index">{{ x }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <input type="text" class="form-control" name="rating" id="rating" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="examinationDate" class="form-label">Date of Examination/Conferment</label>
+                    <input type="date" class="form-control" name="examinationDate" id="examinationDate" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="examinationPlace" class="form-label">Place of Examination/Conferment</label>
+                    <input type="text" class="form-control" name="examinationPlace" id="examinationPlace" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="licenseNumber" class="form-label">License Number (if applicable)</label>
+                    <input type="text" class="form-control" name="licenseNumber" id="licenseNumber" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="licenseValidity" class="form-label">License Date of Validity (if applicable)</label>
+                    <input type="date" class="form-control" name="licenseValidity" id="licenseValidity" ngModel>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col">
-        <div class="mb-3">
-            <label for="rating" class="form-label">Rating</label>
-            <input type="text" class="form-control" name="rating" id="rating" ngModel>
-        </div>
-    </div>
-    <div class="col">
-        <div class="mb-3">
-            <label for="examinationData" class="form-label">Date of Examination/Conferment</label>
-            <input type="date" class="form-control" name="examinationData" id="examinationData" ngModel>
-        </div>
-    </div>
-    <div class="col">
-        <div class="mb-3">
-            <label for="examinationPlace" class="form-label">Place of Examination/Conferment</label>
-            <input type="text" class="form-control" name="examinationPlace" id="examinationPlace" ngModel>
-        </div>
-    </div>
-    <div class="col">
-        <div class="mb-3">
-            <label for="licenseNumber" class="form-label">License Number (if applicable)</label>
-            <input type="text" class="form-control" name="licenseNumber" id="licenseNumber" ngModel>
-        </div>
-    </div>
-    <div class="col">
-        <div class="mb-3">
-            <label for="licenseValidity" class="form-label">License Date of Validity (if applicable)</label>
-            <input type="date" class="form-control" name="licenseValidity" id="licenseValidity" ngModel>
-        </div>
+        <hr>
     </div>
 </div>

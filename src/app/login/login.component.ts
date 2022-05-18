@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
             if (email == element.email && password == element.password) {
               this.isLoggedIn = true;
               localStorage.setItem('loggedID', element.employeeNo);
+              localStorage.setItem('position', 'faculty');
               this.router.navigate(['/faculty', element.employeeNo]);
             }
           }

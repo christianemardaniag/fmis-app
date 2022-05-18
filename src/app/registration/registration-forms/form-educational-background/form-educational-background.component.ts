@@ -12,22 +12,11 @@ declare var $ :any;
 export class FormEducationalBackgroundComponent implements OnInit {
   elemBasicEd = ['Primary Education', 'Not Graduated'];
   secondaryBasicEd = ['High School', 'Junior High School', 'Senior High School', 'Not Graduated'];
-  vocationalEntry = [1];
-  collegeEntry = [1];
-  graduateStudiesEntry = [1];
+  
   constructor() { }
 
   ngOnInit(): void {
     $('[data-toggle="tooltip"]').tooltip();
   }
 
-  addVocational() {
-    this.vocationalEntry.push(1);
-  }
-  addCollege() {
-    this.collegeEntry.push(1);
-  }
-  addGraduateStudies() {
-    this.graduateStudiesEntry.push(1);
-  }
 }

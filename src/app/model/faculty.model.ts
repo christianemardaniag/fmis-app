@@ -1,3 +1,8 @@
+import { CivilService } from "./_civilService";
+import { Education } from "./_education";
+import { Seminar } from "./_seminar";
+import { Work } from "./_work";
+
 export class Faculty {
     firstName: string = '';
     middleName?: string = '';
@@ -36,47 +41,31 @@ export class Faculty {
     sss?: string = '';
     tin?: string = '';
     employeeNo?: string = '';
-    elementary = {
+    elementary: Education = {
         school: '',
         basicEducation: '',
-        attandance: {start: 0, end: 0},
+        startDate: new Date,
+        endDate: new Date,
         level: '',
         yearGraduated: '',
         scholarship: ''
     }
-    secondary = {
+    secondary: Education = {
         school: '',
         basicEducation: '',
-        attandance: {start: 0, end: 0},
+        startDate: new Date,
+        endDate: new Date,
         level: '',
         yearGraduated: '',
         scholarship: ''
     };
-    vocational = [{
-        school: '',
-        basicEducation: '',
-        attandance: {start: 0, end: 0},
-        level: '',
-        yearGraduated: '',
-        scholarship: ''
-    }];
-    college = [{
-        school: '',
-        basicEducation: '',
-        attandance: {start: 0, end: 0},
-        level: '',
-        yearGraduated: '',
-        scholarship: ''
-    }];
-    graduateStudies = [{
-        school: '',
-        basicEducation: '',
-        attandance: {start: 0, end: 0},
-        level: '',
-        yearGraduated: '',
-        scholarship: ''
-    }];
-
+    vocational?: Education[] = [];
+    college?: Education[] = [];
+    graduateStudies?: Education[] = [];
+    civilService?: CivilService[] = [];
+    workExperience?: Work[] = [];
+    seminars?: Seminar[] = [];
     password: string = '';
-    status: string = '';    
+    status: string = '';   
+    
 }

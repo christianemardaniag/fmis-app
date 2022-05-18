@@ -13,11 +13,21 @@ export class AdminApplicationComponent implements OnInit {
   constructor(private facultyService: FacultyService) { }
 
   ngOnInit(): void {
+    this.fetchData();
+  }
+
+  fetchData() {
     this.isFetching = true;
     this.facultyService.getAllApplication().subscribe(data => {
       this.faculty = data;
       this.isFetching = false;
     })
+  }
+
+  onActivate(componentReference:any) {
+    componentReference.refreshParent.subscribe(() => {
+      this.fetchData();
+   })
   }
 
 }

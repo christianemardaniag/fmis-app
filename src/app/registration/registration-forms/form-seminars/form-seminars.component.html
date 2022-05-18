@@ -1,1 +1,64 @@
-<p>form-seminars works!</p>
+<div ngModelGroup="seminars">
+    <button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addEntry()"><i
+            class="fal fa-plus-circle"></i> Add another L&D/Training Programs</button>
+    <input type="hidden" name="ctr" [ngModel]="ctr">
+    <div [ngModelGroup]="i+''" *ngFor="let x of entry; let i = index">
+        <div class="row row-cols-1 row-cols-md-3 gx-2">
+            <div class="col">
+                <div class="mb-3">
+                    <label for="ptitleosition" class="form-label">Title</label>
+                    <input type="text" class="form-control" name="title" id="title" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="hours" class="form-label">Number of Hours</label>
+                    <input type="number" min="0" class="form-control" name="hours" id="hours" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <label class="form-label">Inclusive Dates</label>
+                <div class="d-flex justify-content-around">
+                    <input type="date" class="form-control" name="startDate" ngModel>
+                    <label class="mx-3 pt-1">to</label>
+                    <input type="date" class="form-control" name="endDate" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label">Type of Learning and Development</label>
+                    <input class="form-control" list="ldTypeList" id="ldType"
+                        name="ldType" ngModel>
+                    <datalist id="ldTypeList">
+                        <option *ngFor="let x of ldType" [value]="x">
+                    </datalist>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="mb-3">
+                    <label for="sponsored" class="form-label">Conducted / Sponsored by (Write in full)</label>
+                    <input type="text" class="form-control" name="sponsored" id="sponsored" ngModel>
+                </div>
+            </div>            
+            <div class="col">
+                <div class="mb-3">
+                    <label class="form-label">Coverage</label>
+                    <div class="mb-3">
+                        <select class="form-select" name="coverage" ngModel>
+                            <option [value]="x" *ngFor="let x of coverage; let i = index">{{ x }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="mb-3">
+            <label for="certificate" class="form-label">Certificate (Image Format)</label>
+            <input type="file" class="form-control" name="certificate" id="certificate" 
+                accept="image/*" multiple="multiple" ngModel (change)="certOnChange($event)">
+        </div>
+
+
+        <hr>
+    </div>
+</div>

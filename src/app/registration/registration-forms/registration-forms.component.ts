@@ -2,17 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Education } from 'src/app/model/_education';
+import { CivilService } from 'src/app/model/_civilService';
 
 import { Faculty } from '../../model/faculty.model';
+import { Work } from 'src/app/model/_work';
+import { Seminar } from 'src/app/model/_seminar';
 
-declare var jquery:any;
-declare var $ :any;
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-registration-forms',
   templateUrl: './registration-forms.component.html',
   styleUrls: ['./registration-forms.component.css'],
-  
+
 })
 export class RegistrationFormsComponent implements OnInit {
   private baseUrl = "https://fmis-app-default-rtdb.firebaseio.com/";
@@ -126,9 +130,9 @@ export class RegistrationFormsComponent implements OnInit {
   isRegistered = false;
   isEmailExist = false;
   errorMessage = "";
-  
+
   constructor(private http: HttpClient, private router: Router) {
-   }
+  }
 
   ngOnInit(): void {
     $('[data-toggle="tooltip"]').tooltip();
@@ -143,137 +147,210 @@ export class RegistrationFormsComponent implements OnInit {
 
   sameAsResident(mainForm: NgForm) {
     this.sameAsResidentFlag = !this.sameAsResidentFlag;
-    if(this.sameAsResidentFlag) {
-        let residentHouse = mainForm.form.value.residentAddress.residentHouseNo;
-        let residentStreet = mainForm.form.value.residentAddress.residentStreet;
-        let residentSubdivision = mainForm.form.value.residentAddress.residentSubdivision;
-        let residentCity = mainForm.form.value.residentAddress.residentCityProvince;
-        let residentMunicipality = mainForm.form.value.residentAddress.residentMunicipality;
-        let residentZipCode = mainForm.form.value.residentAddress.residentZipCode;
-        mainForm.form.patchValue({
-          permanentAddress: {
-              permanentHouseNo: residentHouse,
-              permanentStreet: residentStreet,
-              permanentSubdivision: residentSubdivision,
-              permanentCityProvince: residentCity,
-              permanentMunicipality: residentMunicipality,
-              permanentZipCode: residentZipCode,
-          }
-        });
+    if (this.sameAsResidentFlag) {
+      let residentHouse = mainForm.form.value.residentAddress.residentHouseNo;
+      let residentStreet = mainForm.form.value.residentAddress.residentStreet;
+      let residentSubdivision = mainForm.form.value.residentAddress.residentSubdivision;
+      let residentCity = mainForm.form.value.residentAddress.residentCityProvince;
+      let residentMunicipality = mainForm.form.value.residentAddress.residentMunicipality;
+      let residentZipCode = mainForm.form.value.residentAddress.residentZipCode;
+      mainForm.form.patchValue({
+        permanentAddress: {
+          permanentHouseNo: residentHouse,
+          permanentStreet: residentStreet,
+          permanentSubdivision: residentSubdivision,
+          permanentCityProvince: residentCity,
+          permanentMunicipality: residentMunicipality,
+          permanentZipCode: residentZipCode,
+        }
+      });
     }
   }
 
   register(regForm: NgForm) {
-    console.log(regForm.form);
-    
     let pass = regForm.form.value.password;
     let conPass = regForm.form.value.confirmPassword; 
     if(pass == conPass) {
       this.onRegistration = true;
-      this.validateInputs(regForm);
+    this.validateInputs(regForm);
     } else {
       this.isValid = false;
       this.errorMessage = "Password and Confirm Password must match";
     }
   }
 
-  validateInputs(registerForm: NgForm){
-    console.log(this.cityProvince[registerForm.form.value.residentAddress.residentCityProvince]);
-    
+  validateInputs(registerForm: NgForm) {
     this.setFacultyInfo(registerForm);
     this.isEmailAlreadyExist(this.faculty.email, registerForm);
   }
 
-  setFacultyInfo(f: NgForm){
-    this.faculty.firstName = f.form.value.firstName;
-    this.faculty.middleName = f.form.value.middleName;
-    this.faculty.lastName = f.form.value.lastName;
-    console.log(f.form.value.nameExtension);
-    
-    this.faculty.nameExtension = f.form.value.nameExtension;
-    this.faculty.birthDate = f.form.value.birthDate;
-    this.faculty.civilStatus = f.form.value.civilStatus;
-    this.faculty.gender = f.form.value.gender;
-    this.faculty.height = f.form.value.height;
-    this.faculty.weight = f.form.value.weight;
-    this.faculty.bloodType = f.form.value.bloodType;
-    this.faculty.citizenship = f.form.value.citizenship;
+  setFacultyInfo(f: NgForm) {
+    let val = f.form.value;
+    this.faculty.firstName = val.firstName;
+    this.faculty.middleName = val.middleName;
+    this.faculty.lastName = val.lastName;
+    this.faculty.nameExtension = val.nameExtension;
+    this.faculty.birthDate = val.birthDate;
+    this.faculty.civilStatus = val.civilStatus;
+    this.faculty.gender = val.gender;
+    this.faculty.height = val.height;
+    this.faculty.weight = val.weight;
+    this.faculty.bloodType = val.bloodType;
+    this.faculty.citizenship = val.citizenship;
     //Contact Info
-    this.faculty.email = f.form.value.email;
-    this.faculty.alternativeEmail = f.form.value.alternativeEmail;
-    this.faculty.mobileNumber = f.form.value.mobileNumber;
-    this.faculty.telephoneNumber = f.form.value.telephoneNumber;
+    this.faculty.email = val.email;
+    this.faculty.alternativeEmail = val.alternativeEmail;
+    this.faculty.mobileNumber = val.mobileNumber;
+    this.faculty.telephoneNumber = val.telephoneNumber;
     // Resident Address
-    this.faculty.residentAddress.houseNo = f.form.value.residentAddress.residentHouseNo;
-    this.faculty.residentAddress.street = f.form.value.residentAddress.residentStreet;
-    this.faculty.residentAddress.subdivision = f.form.value.residentAddress.residentSubdivision;
-    this.faculty.residentAddress.cityProvince = this.cityProvince[f.form.value.residentAddress.residentCityProvince];
-    this.faculty.residentAddress.municipality = f.form.value.residentAddress.residentMunicipality;
-    this.faculty.residentAddress.zipCode = f.form.value.residentAddress.residentZipCode;
+    this.faculty.residentAddress.houseNo = val.residentAddress.residentHouseNo;
+    this.faculty.residentAddress.street = val.residentAddress.residentStreet;
+    this.faculty.residentAddress.subdivision = val.residentAddress.residentSubdivision;
+    this.faculty.residentAddress.cityProvince = this.cityProvince[val.residentAddress.residentCityProvince];
+    this.faculty.residentAddress.municipality = val.residentAddress.residentMunicipality;
+    this.faculty.residentAddress.zipCode = val.residentAddress.residentZipCode;
     // Permanent Address
-    this.faculty.permanentAddress.houseNo = f.form.value.permanentAddress.permanentHouseNo;
-    this.faculty.permanentAddress.street = f.form.value.permanentAddress.permanentStreet;
-    this.faculty.permanentAddress.subdivision = f.form.value.permanentAddress.permanentSubdivision;
-    this.faculty.permanentAddress.cityProvince = this.cityProvince[f.form.value.permanentAddress.permanentCityProvince];
-    this.faculty.permanentAddress.municipality = f.form.value.permanentAddress.permanentMunicipality;
-    this.faculty.permanentAddress.zipCode = f.form.value.permanentAddress.permanentZipCode;
+    this.faculty.permanentAddress.houseNo = val.permanentAddress.permanentHouseNo;
+    this.faculty.permanentAddress.street = val.permanentAddress.permanentStreet;
+    this.faculty.permanentAddress.subdivision = val.permanentAddress.permanentSubdivision;
+    this.faculty.permanentAddress.cityProvince = this.cityProvince[val.permanentAddress.permanentCityProvince];
+    this.faculty.permanentAddress.municipality = val.permanentAddress.permanentMunicipality;
+    this.faculty.permanentAddress.zipCode = val.permanentAddress.permanentZipCode;
     // Employee info
-    this.faculty.gsis = f.form.value.gsis;
-    this.faculty.pagibig = f.form.value.pagibig;
-    this.faculty.philhealth = f.form.value.philhealth;
-    this.faculty.sss = f.form.value.sss;
-    this.faculty.tin = f.form.value.tin;
-    this.faculty.employeeNo = f.form.value.employeeNo;
-    // // Elementary
-    // this.faculty.elementary.school = f.form.value.elementary.elementarySchool;
-    // this.faculty.elementary.basicEducation = f.form.value.elementary.elemBasicEducation;
-    // this.faculty.elementary.attandance.start = f.form.value.elementary.elemAttendanceStart;
-    // this.faculty.elementary.attandance.end = f.form.value.elementary.elemAttendanceEnd;
-    // this.faculty.elementary.level = f.form.value.elementary.elemHighestLevel;
-    // this.faculty.elementary.yearGraduated = f.form.value.elementary.elemYearGraduate;
-    // this.faculty.elementary.scholarship = f.form.value.elementary.elemScholarship;
-    // // Secondary
-    // this.faculty.secondary.school = f.form.value.secondary.secondarySchool;
-    // this.faculty.secondary.basicEducation = f.form.value.secondary.secondaryBasicEducation;
-    // this.faculty.secondary.attandance.start = f.form.value.secondary.secondaryAttendanceStart;
-    // this.faculty.secondary.attandance.end = f.form.value.secondary.secondaryAttendanceEnd;
-    // this.faculty.secondary.level = f.form.value.secondary.secondaryHighestLevel;
-    // this.faculty.secondary.yearGraduated = f.form.value.secondary.secondaryYearGraduate;
-    // this.faculty.secondary.scholarship = f.form.value.secondary.secondaryScholarship;
+    this.faculty.gsis = val.gsis;
+    this.faculty.pagibig = val.pagibig;
+    this.faculty.philhealth = val.philhealth;
+    this.faculty.sss = val.sss;
+    this.faculty.tin = val.tin;
+    this.faculty.employeeNo = val.employeeNo;
+    // Elementary
+    this.faculty.elementary.school = val.elementary.elementarySchool;
+    this.faculty.elementary.basicEducation = val.elementary.elemBasicEducation;
+    this.faculty.elementary.startDate = val.elementary.elemAttendanceStart;
+    this.faculty.elementary.endDate = val.elementary.elemAttendanceEnd;
+    this.faculty.elementary.level = val.elementary.elemHighestLevel;
+    this.faculty.elementary.yearGraduated = val.elementary.elemYearGraduate;
+    this.faculty.elementary.scholarship = val.elementary.elemScholarship;
+    // Secondary
+    this.faculty.secondary.school = val.secondary.secondarySchool;
+    this.faculty.secondary.basicEducation = val.secondary.secondaryBasicEducation;
+    this.faculty.secondary.startDate = val.secondary.secondaryAttendanceStart;
+    this.faculty.secondary.endDate = val.secondary.secondaryAttendanceEnd;
+    this.faculty.secondary.level = val.secondary.secondaryHighestLevel;
+    this.faculty.secondary.yearGraduated = val.secondary.secondaryYearGraduate;
+    this.faculty.secondary.scholarship = val.secondary.secondaryScholarship;
     // Vocational
-
-    // Account
-    this.faculty.password = f.form.value.password;
+    this.setupEducationalMultipleEntry(this.faculty.vocational, val.vocational);
+    // College
+    this.setupEducationalMultipleEntry(this.faculty.college, val.college);
+    // Graduate Studies
+    this.setupEducationalMultipleEntry(this.faculty.graduateStudies, val.graduateStudies);
+    // Civil Service
+    this.setupCivilServiceMultipleEntry(this.faculty.civilService, val.civilService);
+    // Work Experience
+    this.setupWorkExperienceMultipleEntry(this.faculty.workExperience, val.workExperience);
+    // Seminars
+    this.setupSeminarsMultipleEntry(this.faculty.seminars, val.seminars);
+    // // Account
+    this.faculty.password = val.password;
+    console.log(this.faculty);
   }
 
-  isEmailAlreadyExist(email:string, registerForm: NgForm){
+  setupSeminarsMultipleEntry(cv: any, val: any) {
+    for (let i = 0; i <= val.ctr; i++) {
+      let x = val[i];
+      let v: Seminar = {
+        title: x.title,
+        hours: x.hours,
+        startDate: x.startDate,
+        endDate: x.endDate,
+        type: x.ldType,
+        sponsored: x.sponsored,
+        coverage: x.coverage,
+        certificate: x.certificate
+      };
+      cv.push(v);
+    }
+  }
+
+  setupEducationalMultipleEntry(educ: any, val: any) {
+    for (let i = 0; i <= val.ctr; i++) {
+      let x = val[i];
+      let v: Education = {
+        school: x.school,
+        basicEducation: x.basicEducation,
+        startDate: x.attendanceStart,
+        endDate: x.attendanceEnd,
+        level: x.highestLevel,
+        yearGraduated: x.yearGraduate,
+        scholarship: x.scholarship
+      };
+      educ.push(v);
+    }
+  }
+
+  setupCivilServiceMultipleEntry(cv: any, val: any) {
+    for (let i = 0; i <= val.ctr; i++) {
+      let x = val[i];
+      let v: CivilService = {
+        type: x.civilServiceType,
+        rating: x.rating,
+        examinationDate: x.examinationDate,
+        examinationPlace: x.examinationPlace,
+        licenseNumber: x.licenseNumber,
+        licenseValidity: x.licenseValidity
+      };
+      cv.push(v);
+    }
+  }
+
+  setupWorkExperienceMultipleEntry(cv: any, val: any) {
+    for (let i = 0; i <= val.ctr; i++) {
+      let x = val[i];
+      let v: Work = {
+        position: x.position,
+        company: x.company,
+        startDate: x.startDate,
+        endDate: x.endDate,
+        salary: x.salary,
+        jobGrade: x.jobGrade,
+        appointmentStatus: x.appointmentStatus,
+        gov: x.gov
+      };
+      cv.push(v);
+    }
+  }
+
+
+
+  isEmailAlreadyExist(email: string, registerForm: NgForm) {
     this.isEmailExist = false;
     this.http.get<any>(this.baseUrl + 'faculty.json').subscribe(data => {
       console.log("CHECKING DUPLICATE: EMAIL[" + email + "]");
-        for (const key in data) {
-          if (data.hasOwnProperty(key)) {
-            const element = data[key];
-            if (email == element.email) {
-              console.log("DUPLICATE FOUND!");
-              this.isEmailExist = true;
-              break;
-            }
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          const element = data[key];
+          if (email == element.email) {
+            console.log("DUPLICATE FOUND!");
+            this.isEmailExist = true;
+            break;
           }
         }
-        if (!this.isEmailExist) {
-          console.log("PROCESS REGISTRATION");
-          console.log(registerForm);
-          this.processRegistration(registerForm);
-        }else {
-          this.isValid = false;
-          this.onRegistration = false;
-          this.errorMessage = "Email Address already exist!";
-        }
+      }
+      if (!this.isEmailExist) {
+        console.log("PROCESS REGISTRATION");
+        console.log(registerForm);
+        this.processRegistration(registerForm);
+      } else {
+        this.isValid = false;
+        this.onRegistration = false;
+        this.errorMessage = "Email Address already exist!";
+      }
     });
   }
 
-  processRegistration(registerForm: NgForm){
-    this.http.put(this.baseUrl + 'faculty/'+this.faculty.employeeNo+'.json', this.faculty).subscribe(() => {
+  processRegistration(registerForm: NgForm) {
+    this.http.put(this.baseUrl + 'faculty/' + this.faculty.employeeNo + '.json', this.faculty).subscribe(() => {
       this.onRegistration = false;
       this.isRegistered = true;
       this.isValid = true;
