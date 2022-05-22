@@ -27,6 +27,8 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminFacultyComponent } from './admin/admin-faculty/admin-faculty.component';
 import { AdminApplicationComponent } from './admin/admin-application/admin-application.component';
 import { SearchQueryPipe } from './model/search-query.pipe';
+import { AdminReportComponent } from './admin/admin-report/admin-report.component';
+import { SearchSpecificPipe } from './model/search-specific.pipe';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { SearchQueryPipe } from './model/search-query.pipe';
     AdminLoginComponent,
     AdminFacultyComponent,
     AdminApplicationComponent,
-    SearchQueryPipe
+    SearchQueryPipe,
+    AdminReportComponent,
+    SearchSpecificPipe
   ],
   imports: [
     BrowserModule,

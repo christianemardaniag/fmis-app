@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Faculty } from 'src/app/model/faculty.model';
 import { FacultyService } from 'src/app/services/faculty.service';
 
@@ -8,6 +8,7 @@ import { FacultyService } from 'src/app/services/faculty.service';
   styleUrls: ['./admin-application.component.css']
 })
 export class AdminApplicationComponent implements OnInit {
+  @Output() refreshParent: EventEmitter<any> = new EventEmitter();
   faculty: Faculty[] = [];
   isFetching = false;
   searchTerm = '';
@@ -28,8 +29,9 @@ export class AdminApplicationComponent implements OnInit {
   }
 
   onActivate(componentReference: any) {
-    componentReference.refreshParent.subscribe(() => {
+    componentReference.refreshParent.subscribe((data:any) => {
       this.fetchData();
+      this.refreshParent.emit(data);
     })
   }
 

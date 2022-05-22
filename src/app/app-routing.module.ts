@@ -4,6 +4,7 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminApplicationComponent } from './admin/admin-application/admin-application.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdminFacultyComponent } from './admin/admin-faculty/admin-faculty.component';
+import { AdminReportComponent } from './admin/admin-report/admin-report.component';
 import { AdminComponent } from './admin/admin.component';
 import { FacultyProfileComponent } from './faculty/faculty-profile/faculty-profile.component';
 import { ProfileEditComponent } from './faculty/faculty-profile/profile-edit/profile-edit.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {
     path: 'main', component: AdminComponent, children: [
       { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'report', component: AdminReportComponent },
       {
         path: 'faculty', component: AdminFacultyComponent, children: [
           { path: ':id', component: FacultyProfileComponent }

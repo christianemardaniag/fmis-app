@@ -10,9 +10,12 @@ export class SearchQueryPipe implements PipeTransform {
     if(!args)return value;
 
     args = args.toLowerCase();
-
+    console.log(args);
+    
     return value.filter(function(data: any){
-        return JSON.stringify(data).toLowerCase().includes(args);
+        console.log(data);
+        
+        return JSON.stringify(data.firstName).toLowerCase().includes(args);
     });
 }
 

@@ -1,0 +1,690 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 d-print-none mb-3">
+            <h3>Filter</h3>
+            <hr>
+            <form (ngSubmit)="search(f)" #f="ngForm">
+                <div class="accordion mb-3" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <div class="accordion-header" id="flush-headingOne">
+                            <div class="d-flex align-baseline justify-content-between">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#piSection" aria-expanded="false" aria-controls="piSection">
+                                    Personal Information
+                                </button>
+                                <div class="form-check form-switch mt-3 ms-2">
+                                    <input class="form-check-input" type="checkbox" role="switch" #piSection
+                                        name="piSection" [ngModel]="true">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="piSection" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">First Name</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="firstName"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Middle Name</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="middleName"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Last Name</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="lastName" ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Email</label>
+                                    <div class="col">
+                                        <input type="email" class="form-control form-control-sm" name="email" ngModel
+                                            email>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Mobile Number</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="mobileNumber"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Telephone Number</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="telephoneNumber"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Birth Date</label>
+                                    <div class="col">
+                                        <input type="date" class="form-control form-control-sm" name="birthDate"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Civil Status</label>
+                                    <div class="col">
+                                        <select class="form-select form-select-sm" name="civilStatus" ngModel>
+                                            <option value="single">Single</option>
+                                            <option value="married">Married</option>
+                                            <option value="widowed">Widowed</option>
+                                            <option value="separated">Separated</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Gender</label>
+                                    <div class="col">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio1"
+                                                value="male" ngModel>
+                                            <label class="form-check-label" for="inlineRadio1">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="inlineRadio2"
+                                                value="female" ngModel>
+                                            <label class="form-check-label" for="inlineRadio2">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Height</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="height" ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Weight</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="weight" ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Blood Type</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="bloodType"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Citizenship</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="citizenship"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-sm-4 col-form-label col-form-label-sm">Alternative Email</label>
+                                    <div class="col">
+                                        <input type="email" class="form-control form-control-sm" name="alternativeEmail"
+                                            ngModel email>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="d-flex align-baseline justify-content-between">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#eployeeSection" aria-expanded="false" aria-controls="eployeeSection">
+                                Employee Information
+                            </button>
+                            <div class="form-check form-switch mt-3 ms-2">
+                                <!-- <input class="form-check-input visually-hidden" type="checkbox" role="switch"
+                                    #eployeeSection name="eployeeSection" [ngModel]="true"> -->
+                            </div>
+                        </div>
+                        <div id="eployeeSection" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
+                            <div class="accordion-body">
+                                <div class="row mb-3">
+                                    <label for="employeeNo" class="col-sm-4 col-form-label col-form-label-sm">Employee
+                                        No.</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="employeeNo"
+                                            id="employeeNo" ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="gsis" class="col-sm-4 col-form-label col-form-label-sm">GSIS No</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="gsis" id="gsis"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="pagibig" class="col-sm-4 col-form-label col-form-label-sm">PAG-IBIG ID
+                                        No.</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="pagibig"
+                                            id="pagibig" ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="philhealth" class="col-sm-4 col-form-label col-form-label-sm">PHILHEALTH
+                                        No.</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="philhealth"
+                                            id="philhealth" ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="sss" class="col-sm-4 col-form-label col-form-label-sm">SSS No.</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="sss" id="sss"
+                                            ngModel>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="tin" class="col-sm-4 col-form-label col-form-label-sm">TIN No.</label>
+                                    <div class="col">
+                                        <input type="text" class="form-control form-control-sm" name="tin" id="tin"
+                                            ngModel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="d-flex align-baseline justify-content-between">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#addressSection" aria-expanded="false" aria-controls="addressSection">
+                                Address
+                            </button>
+                            <div class="form-check form-switch mt-3 ms-2">
+                                <!-- <input class="form-check-input visually-hidden" type="checkbox" role="switch"
+                                    #addressSection name="addressSection" [ngModel]="true"> -->
+                            </div>
+                        </div>
+                        <div id="addressSection" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
+                            <div class="accordion-body">
+                                <div ngModelGroup="residentAddress">
+                                    <p class="fw-bold">Resident Address</p>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">House No.</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="houseNo"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">Street</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="street"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">Subdivision</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="subdivision"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">City/Province</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="cityProvince"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">Municipality</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="municipality"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngModelGroup="permanentAddress">
+                                    <p class="fw-bold">Permanent Address</p>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">House No.</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="houseNo"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">Street</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="street"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">Subdivision</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="subdivision"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">City/Province</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="cityProvince"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">Municipality</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm" name="municipality"
+                                                ngModel>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="d-flex align-baseline justify-content-between">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#ebSection" aria-expanded="false" aria-controls="ebSection">
+                                Educational Background
+                            </button>
+                            <div class="form-check form-switch mt-3 ms-2">
+                                <input class="form-check-input" type="checkbox" role="switch" #ebSection
+                                    name="ebSection" [ngModel]="true">
+                            </div>
+                        </div>
+                        <div id="ebSection" class="accordion-collapse collapse show" aria-labelledby="flush-headingTwo">
+                            <div class="accordion-body">
+                                <div ngModelGroup="elementary">
+                                    <p class="fw-bold">Elementary</p>
+                                    <div class="row mb-3">
+                                        <label for="elementarySchool"
+                                            class="col-sm-4 col-form-label col-form-label-sm">School Name</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="elementarySchool" id="elementarySchool" ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="elemBasicEducation"
+                                            class="col-sm-4 col-form-label col-form-label-sm">Basic Education</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="elemBasicEducation" id="elemBasicEducation" ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label
+                                            class="col-sm-4 col-form-label col-form-label-sm">Attendance Period</label>
+                                        <div class="col-sm-8">
+                                            <div class="d-flex justify-content-around">
+                                                <input type="date" class="form-control form-control-sm"
+                                                    placeholder="Start Year" name="elemAttendanceStart" ngModel>
+                                                <label class="mx-3 pt-1">to</label>
+                                                <input type="date" class="form-control form-control-sm"
+                                                    placeholder="End Year" name="elemAttendanceEnd" ngModel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="elemHighestLevel"
+                                            class="col-sm-4 col-form-label col-form-label-sm">Highest Level/Units
+                                            Earned</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="elemHighestLevel" id="elemHighestLevel" ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="elemYearGraduate"
+                                            class="col-sm-4 col-form-label col-form-label-sm">Year Graduated</label>
+                                        <div class="col">
+                                            <input type="number" class="form-control form-control-sm" name="elemYearGraduate"
+                                                id="elemYearGraduate" min="1901" max="2022" placeholder="Year" ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="elemScholarship"
+                                            class="col-sm-4 col-form-label col-form-label-sm">Scholarship/Academic
+                                            Honors</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="elemScholarship" id="elemScholarship" ngModel>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ngModelGroup="elementary">
+                                    <p class="fw-bold">Secondary</p>
+                                    <div class="row mb-3">
+                                        <label for="secondarySchool"
+                                            class="col-sm-4 col-form-label col-form-label-sm">School Name</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="secondarySchool" id="secondarySchool" ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="secondaryBasicEducation"
+                                            class="col-sm-4 col-form-label col-form-label-sm">Basic Education</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="secondaryBasicEducation" id="secondaryBasicEducation" ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label
+                                            class="col-sm-4 col-form-label col-form-label-sm">Attendance Period</label>
+                                        <div class="col-sm-8">
+                                            <div class="d-flex justify-content-around">
+                                                <input type="date" class="form-control form-control-sm"
+                                                    placeholder="Start Year" name="secondaryAttendanceStart" ngModel>
+                                                <label class="mx-3 pt-1">to</label>
+                                                <input type="date" class="form-control form-control-sm"
+                                                    placeholder="End Year" name="secondaryAttendanceEnd" ngModel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="secondaryHighestLevel"
+                                            class="col-sm-4 col-form-label col-form-label-sm">Highest Level/Units
+                                            Earned</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="secondaryHighestLevel" id="secondaryHighestLevel" ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="secondaryYearGraduate"
+                                            class="col-sm-4 col-form-label col-form-label-sm">Year Graduated</label>
+                                        <div class="col">
+                                            <input type="number" class="form-control form-control-sm" name="secondaryYearGraduate"
+                                                id="secondaryYearGraduate" min="1901" max="2022" placeholder="Year" ngModel>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="secondaryScholarship"
+                                            class="col-sm-4 col-form-label col-form-label-sm">Scholarship/Academic
+                                            Honors</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="secondaryScholarship" id="secondaryScholarship" ngModel>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="d-flex align-baseline justify-content-between">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#csSection" aria-expanded="false" aria-controls="csSection">
+                                Civil Service
+                            </button>
+                            <div class="form-check form-switch mt-3 ms-2">
+                                <!-- <input class="form-check-input" type="checkbox" role="switch" #csSection
+                                    name="csSection" [ngModel]="true"> -->
+                            </div>
+                        </div>
+                        <div id="csSection" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
+                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                demonstrate
+                                the <code>.accordion-flush</code> class. This is the third item's accordion body.
+                                Nothing
+                                more
+                                exciting happening here in terms of content, but just filling up the space to make it
+                                look,
+                                at
+                                least at first glance, a bit more representative of how this would look in a real-world
+                                application.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div class="text-center h3 text-secondary" *ngIf="(faculties | searchSpecific: filter).length === 0">
+                -- No matches --
+            </div>
+            <div *ngFor="let faculty of faculties | searchSpecific: filter">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-start mb-3">
+                            <div class="text-center" style="max-width: 150px; max-height: 100px;">
+                                <img [src]="faculty.profilePicture" class="h-100 border rounded-circle">
+                            </div>
+                            <div class="ms-4">
+                                <h5>{{faculty.lastName +', '+ faculty.firstName + ' ' + faculty.middleName + ' ' +
+                                    faculty.nameExtension}}</h5>
+                                <p class="fs-6 mb-0"><i class="fas fa-hashtag me-2"></i><strong>{{
+                                        faculty.employeeNo}}</strong>
+                                </p>
+                                <p class="fs-6 mb-0 "><i class="fas fa-envelope me-2"></i><a [href]="faculty.email">{{
+                                        faculty.email
+                                        }}</a></p>
+                                <p class="fs-6 mb-0"><i class="fas fa-phone me-2"></i>{{ faculty.mobileNumber }}</p>
+                            </div>
+                        </div>
+                        <div class="card mb-2" *ngIf="piSection.checked">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">Personal Information</h5>
+                                <div class="row row-cols-md-2">
+                                    <div class="col">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Date of Birth:</td>
+                                                    <td>{{ faculty.birthDate | date:'longDate' }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Age:</td>
+                                                    <td>{{ faculty.birthDate | age}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Civil Status:</td>
+                                                    <td>{{ faculty.civilStatus | titlecase}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Gender:</td>
+                                                    <td>{{ faculty.gender | titlecase}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Height:</td>
+                                                    <td>{{ faculty.height }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Weight:</td>
+                                                    <td>{{ faculty.weight }} kls</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Blood Type:</td>
+                                                    <td>{{ faculty.bloodType }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>GSIS ID No.:</td>
+                                                    <td>{{ faculty.gsis }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PAG-IBIG ID No.:</td>
+                                                    <td>{{ faculty.pagibig }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PHILHEALTH No.:</td>
+                                                    <td>{{ faculty.philhealth }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SSS No.:</td>
+                                                    <td>{{ faculty.sss }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>TIN No.:</td>
+                                                    <td>{{ faculty.tin }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Citizenship:</td>
+                                                    <td>{{ faculty.citizenship | titlecase}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Telephone No.:</td>
+                                                    <td>{{ faculty.telephoneNumber }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Alternate Email:</td>
+                                                    <td>{{ faculty.alternativeEmail }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col">
+                                        <table>
+                                            <tbody>
+                                                <tr>
+                                                    <th>Resident Address</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>House/Block/Lot No.</td>
+                                                    <td>{{ faculty.residentAddress.houseNo }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Street</td>
+                                                    <td>{{ faculty.residentAddress.street }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Subdivision/Barangay</td>
+                                                    <td>{{ faculty.residentAddress.subdivision }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Municipality</td>
+                                                    <td>{{ faculty.residentAddress.municipality }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>City/Province</td>
+                                                    <td>{{ faculty.residentAddress.cityProvince }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Zip Code</td>
+                                                    <td>{{ faculty.residentAddress.zipCode }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Permanent Address</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>House/Block/Lot No.</td>
+                                                    <td>{{ faculty.permanentAddress.houseNo }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Street</td>
+                                                    <td>{{ faculty.permanentAddress.street }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Subdivision/Barangay</td>
+                                                    <td>{{ faculty.permanentAddress.subdivision }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Municipality</td>
+                                                    <td>{{ faculty.permanentAddress.municipality }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>City/Province</td>
+                                                    <td>{{ faculty.permanentAddress.cityProvince }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Zip Code</td>
+                                                    <td>{{ faculty.permanentAddress.zipCode }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card mb-2" *ngIf="ebSection.checked">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">Educational Background</h5>
+
+                                <div class="row row-cols-2 g-3">
+                                    <div class="col">
+                                        <div>
+                                            <div class="fw-bold fs-6">Elementary</div>
+                                            <div>{{ faculty.elementary.school | titlecase }}</div>
+                                            <div>Basic Education: {{ faculty.elementary.basicEducation }}</div>
+                                            <div>Attendance: {{ (faculty.elementary.startDate | date:'MMM d, YYYY') +
+                                                '-' +
+                                                (faculty.elementary.endDate | date:'MMM d, YYYY') }}
+                                            </div>
+                                            <div>Year Graduated: {{ faculty.elementary.yearGraduated }}</div>
+                                            <div>Highest Level/Units Earned: {{ faculty.elementary.level }}</div>
+                                            <div>Scholarship: {{ faculty.elementary.scholarship}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div>
+                                            <div class="fw-bold fs-6">Secondary</div>
+                                            <div>{{ faculty.secondary.school | titlecase }}</div>
+                                            <div>Basic Education: {{ faculty.secondary.basicEducation }}</div>
+                                            <div>Attendance: {{ (faculty.secondary.startDate | date:'MMM d, YYYY') + '-'
+                                                +
+                                                (faculty.secondary.endDate | date:'MMM d, YYYY') }}
+                                            </div>
+                                            <div>Year Graduated: {{ faculty.secondary.yearGraduated }}</div>
+                                            <div>Highest Level/Units Earned: {{ faculty.secondary.level }}</div>
+                                            <div>Scholarship: {{ faculty.secondary.scholarship}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col" *ngFor="let v of faculty.vocational; let i = index">
+                                        <div>
+                                            <div class="fw-bold fs-6">Vocational/Trade Course {{i+1}}</div>
+                                            <div>{{ v.school | titlecase }}</div>
+                                            <div>Basic Education: {{ v.basicEducation }}</div>
+                                            <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                                (v.endDate | date:'MMM d, YYYY') }}
+                                            </div>
+                                            <div>Year Graduated: {{ v.yearGraduated }}</div>
+                                            <div>Highest Level/Units Earned: {{ v.level }}</div>
+                                            <div>Scholarship: {{ v.scholarship}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col" *ngFor="let v of faculty.college; let i = index">
+                                        <div>
+                                            <div class="fw-bold fs-6">College {{i+1}}</div>
+                                            <div>{{ v.school | titlecase }}</div>
+                                            <div>Basic Education: {{ v.basicEducation }}</div>
+                                            <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                                (v.endDate | date:'MMM d, YYYY')}}
+                                            </div>
+                                            <div>Year Graduated: {{ v.yearGraduated }}</div>
+                                            <div>Highest Level/Units Earned: {{ v.level }}</div>
+                                            <div>Scholarship: {{ v.scholarship}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col" *ngFor="let v of faculty.graduateStudies; let i = index">
+                                        <div>
+                                            <div class="fw-bold fs-6">Graduate Studies {{i+1}}</div>
+                                            <div>{{ v.school | titlecase }}</div>
+                                            <div>Basic Education: {{ v.basicEducation }}</div>
+                                            <div>Attendance: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                                (v.endDate | date:'MMM d, YYYY') }}
+                                            </div>
+                                            <div>Year Graduated: {{ v.yearGraduated }}</div>
+                                            <div>Highest Level/Units Earned: {{ v.level }}</div>
+                                            <div>Scholarship: {{ v.scholarship}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+            </div>
+        </div>
+    </div>
+</div>
