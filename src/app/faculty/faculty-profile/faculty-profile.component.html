@@ -300,7 +300,7 @@
                             <div>Examination Date: {{ v.examinationDate | date:'MMM d, YYYY'}}</div>
                             <div>Examination Place: {{ v.examinationPlace }}</div>
                             <div>License Number: {{ v.licenseNumber }}</div>
-                            <div>License Validity: {{ v.licenseValidity }}</div>
+                            <div>License Validity: {{ v.licenseValidity | date:'MMM d, YYYY' }}</div>
                         </div>
                     </div>
                 </div>
@@ -322,7 +322,7 @@
                             <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
                                 (v.endDate | date:'MMM d, YYYY') }}
                             </div>
-                            <div>Salary: {{ v.salary }}</div>
+                            <div>Salary: {{ v.salary | number }}</div>
                             <div>Salary / Job / Pay Grade: {{ v.jobGrade }}</div>
                             <div>Status of Appointment: {{ v.appointmentStatus }}</div>
                             <div>Government Service: {{ v.gov }}</div>

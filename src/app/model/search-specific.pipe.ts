@@ -11,6 +11,9 @@ export class SearchSpecificPipe implements PipeTransform {
   private vocationalMatchField: any;
   private collegeMatchField: any;
   private graduateMatchField: any;
+  private civilServiceMatchField: any;
+  private workMatchField: any;
+  private seminarMatchField: any;
 
   transform(items: Array<any>, filter: { [key: string]: any }): Array<any> {
     console.log(items);
@@ -24,6 +27,8 @@ export class SearchSpecificPipe implements PipeTransform {
         if (key === 'vocational') this.vocationalMatchField = this.checkGrandChildObject(item, filter, 'vocational');
         if (key === 'college') this.collegeMatchField = this.checkGrandChildObject(item, filter, 'college');
         if (key === 'graduateStudies') this.graduateMatchField = this.checkGrandChildObject(item, filter, 'graduateStudies');
+        if (key === 'workExperience') this.workMatchField = this.checkGrandChildObject(item, filter, 'workExperience');
+        if (key === 'seminars') this.seminarMatchField = this.checkGrandChildObject(item, filter, 'seminars');
 
 
         if (filter[key] !== '' && typeof filter[key] === 'string') {
@@ -40,17 +45,13 @@ export class SearchSpecificPipe implements PipeTransform {
         && !this.secondaryMatchField
         && !this.vocationalMatchField
         && !this.collegeMatchField
-        && !this.graduateMatchField;
+        && !this.civilServiceMatchField
+        && !this.graduateMatchField
+        && !this.workMatchField
+        && !this.seminarMatchField
+        ;
 
     });
-
-  }
-
-  isMatch(element: any, index: number, array: any) {
-    console.log(element);
-    console.log(index);
-
-    return false;
 
   }
 

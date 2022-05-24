@@ -16,11 +16,18 @@ export class AdminReportComponent implements OnInit {
   collegeCtr = 0;
   graduateCtr = 0;
   civilServiceCtr = 0;
+  workCtr = 0;
+  seminarCtr = 0;
   vocationalEntry = [1];
   collegeEntry = [1];
   graduateEntry = [1];
   civilServiceEntry = [1];
-
+  workEntry = [1];
+  seminarEntry = [1];
+  civilServiceType = ["Career Service", "RA 1080 (board/bar) Under Special Laws", "CES", "CSEE Barangay Eligibility", "Driver's License"]
+  appointmentStatus = ["Permanent", "Temporary", "Casual", "Contractual"];
+  coverage = ['International', 'National', 'Regional', 'Local'];
+  ldType = ['Managerial', 'Supervisory', 'Technical'];
   constructor(private facultyService: FacultyService) { }
 
   ngOnInit(): void {
@@ -56,5 +63,15 @@ export class AdminReportComponent implements OnInit {
   addCivilServiceEntry() {
     this.civilServiceEntry.push(1);
     this.civilServiceCtr++;
+  }
+
+  addWorkEntry() {
+    this.workEntry.push(1);
+    this.workCtr++;
+  }
+
+  addSeminarEntry() {
+    this.seminarEntry.push(1);
+    this.seminarCtr++;
   }
 }
