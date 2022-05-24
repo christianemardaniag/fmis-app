@@ -66,6 +66,7 @@ export class Faculty {
     workExperience?: Work[] = [];
     seminars?: Seminar[] = [];
     password: string = '';
-    status: string = '';   
+    status: string = ''; 
+    certificates?: string[] = [];  
     profilePicture: string = 'https://firebasestorage.googleapis.com/v0/b/fmis-app.appspot.com/o/profile%2Fdefault.jpg?alt=media&token=97fccd6e-0b7c-4565-989b-f4642c52aa30';
 }

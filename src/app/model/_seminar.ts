@@ -6,5 +6,4 @@ export interface Seminar {
     type: string;
     sponsored: string;
     coverage: string;
-    certificate: string[];
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { initializeApp } from 'firebase/app';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { Faculty } from 'src/app/model/faculty.model';
 import { CivilService } from 'src/app/model/_civilService';
 import { Education } from 'src/app/model/_education';
@@ -42,6 +44,19 @@ export class ProfileEditComponent implements OnInit {
   civilServiceEntry: CivilService[] = [];
   workEntry: Work[] = [];
   seminarEntry: Seminar[] = [];
+  certificates: string[] = [];
+  firebaseConfig = {
+    apiKey: 'AIzaSyB9N-suydf9myRmwYPIoBUuxP6CI4CjnTo',
+    authDomain: 'fmis-app.firebaseapp.com',
+    databaseURL: 'https://fmis-app-default-rtdb.firebaseio.com',
+    storageBucket: 'fmis-app.appspot.com'
+  };
+  firebaseApp = initializeApp(this.firebaseConfig);
+  metadata = { contentType: 'image/jpeg' };
+  storage = getStorage();
+  certList: FileList | null = null;
+  cert: string[] = [];
+  certOnDb: string[] = [];
 
   constructor(private facultyService: FacultyService, private router: Router) { }
 
@@ -63,8 +78,76 @@ export class ProfileEditComponent implements OnInit {
       this.civilServiceEntry = (this.faculty.civilService ? this.faculty.civilService : this.civilServiceEntry);
       this.workEntry = (this.faculty.workExperience ? this.faculty.workExperience : this.workEntry);
       this.seminarEntry = (this.faculty.seminars ? this.faculty.seminars : this.seminarEntry);
+      this.getCertificates();
     });
 
+  }
+
+  async getCertificates() {
+    if (this.faculty.certificates) { 
+      this.certOnDb = this.faculty.certificates;
+      this.cert = this.certOnDb;
+      for (let i = 0; i < this.certOnDb.length; i++) {
+        const name = this.certOnDb[i];        
+        this.certificates.push(await this.getUrl(name));
+      }      
+    }
+  }
+
+  async getUrl(name: string) {
+    const url = await getDownloadURL(ref(this.storage, 'certificates/' + name));
+    return url;
+  }
+
+  certOnChange(e: Event) {
+    this.cert = this.certOnDb;
+    this.certList = (<HTMLInputElement>e.target).files;
+    for (let i = 0; i < this.certList!.length; i++) {
+      const element = this.certList?.item(i);
+      this.cert.push(element?.name!);
+    }
+  }
+
+  async removeCert(name:string, event: any) {
+    const index = this.certOnDb.indexOf(name);
+    this.certOnDb.splice(index, 1);    
+    event.path[1].className = "d-none";
+  }
+
+  uploadFile(files: FileList) {
+    if (files.length == 0) {
+      return false;
+    }
+    for (let i = 0; i < files.length; i++) {
+      const file = files.item(i)!;
+      const storageRef = ref(this.storage, 'certificates/' + file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file, this.metadata);
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+        },
+        (error) => {
+          switch (error.code) {
+            case 'storage/unauthorized':
+              console.log("storage/unauthorized");
+              break;
+            case 'storage/canceled':
+              console.log('storage/canceled');
+              break;
+            case 'storage/unknown':
+              console.log('storage/unknown');
+              break;
+          }
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+          });
+        }
+      );
+    }
+    return true;
   }
 
   addVocationalEntry() {
@@ -145,8 +228,7 @@ export class ProfileEditComponent implements OnInit {
       endDate: new Date,
       type: '',
       sponsored: '',
-      coverage: '',
-      certificate: [],
+      coverage: ''
     }
     this.seminarEntry.push(x);
     this.seminarCtr++;
@@ -176,6 +258,8 @@ export class ProfileEditComponent implements OnInit {
 
   submitForm(f: NgForm) {
     let val = f.form.value;
+    console.log(val);
+    
     let currentPass = val.currentPassword;
     let newPass = val.newPassword;
     let conPass = val.confirmPassword;
@@ -187,7 +271,6 @@ export class ProfileEditComponent implements OnInit {
           this.onRegistration = false;
           this.router.navigate(['/faculty', this.id]);
         });
-
       } else {
         this.errorCont = true;
         this.errorMessage = 'Incorrect Password';
@@ -267,9 +350,13 @@ export class ProfileEditComponent implements OnInit {
     this.setupWorkExperienceMultipleEntry(this.faculty.workExperience, val.workExperience);
     // Seminars
     this.setupSeminarsMultipleEntry(this.faculty.seminars, val.seminars);
+    // Certificates
+    this.faculty.certificates = this.cert;
+    if(this.certList) {
+      this.uploadFile(this.certList!);
+    }
     // // Account
     this.faculty.password = val.newPassword;
-    console.log(this.faculty);
   }
 
   setupEducationalMultipleEntry(educ: any, val: any) {
@@ -329,8 +416,7 @@ export class ProfileEditComponent implements OnInit {
         endDate: x.endDate,
         type: x.ldType,
         sponsored: x.sponsored,
-        coverage: x.coverage,
-        certificate: x.certificate
+        coverage: x.coverage
       };
       cv.push(v);
     }

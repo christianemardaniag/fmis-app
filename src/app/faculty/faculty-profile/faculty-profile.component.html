@@ -8,13 +8,13 @@
     <div class="mb-3 d-print-none" *ngIf="pos == 'admin'">
         <ng-container *ngIf="isAdminApplication">
             <button class="btn btn-success px-5 me-3" (click)="changeStatus(id, 'approved')"
-            *ngIf="faculty.status!='archived'">Approve</button>
+                *ngIf="faculty.status!='archived'">Approve</button>
             <button class="btn btn-warning px-5 me-3" (click)="changeStatus(id, 'declined')"
-            *ngIf="faculty.status!='declined' && faculty.status!='archived'">Decline</button>
+                *ngIf="faculty.status!='declined' && faculty.status!='archived'">Decline</button>
             <button class="btn btn-danger px-5 me-3" (click)="changeStatus(id, 'archived')"
-            *ngIf="faculty.status!='archived'">Archive</button>
+                *ngIf="faculty.status!='archived'">Archive</button>
             <button class="btn btn-primary px-5 me-3" (click)="changeStatus(id, 'for approval')"
-             *ngIf="faculty.status==='archived'">Retrive</button>
+                *ngIf="faculty.status==='archived'">Retrive</button>
         </ng-container>
         <button class="btn btn-secondary px-5 me-5" onclick="window.print();" *ngIf="!isAdminApplication">Print</button>
     </div>
@@ -342,41 +342,30 @@
                         data-toggle="tooltip" data-placement="auto" title="Include to print" #LD checked
                         (click)="a(LD)">
                 </div>
-                <!-- <div class="mb-3">
-                    <div class="input-group" style="width: 300px;">
-                        <div class="input-group-text">Arranged By:</div>
-                        <select class="form-select" ngModel="yearly" #arrange (change)="arrangeSeminars(arrange.value)">
-                            <option selected value="yearly">Yearly</option>
-                            <option value="quarterly">Quarterly</option>
-                            <option value="monthly">Monthly</option>
-                        </select>
+                <div class="row row-cols-auto g-3">
+
+                    <div class="col" *ngFor="let v of faculty.seminars">
+                        <div class="fw-bold fs-6">{{ v.title }}</div>
+                        <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                            (v.endDate | date:'MMM d, YYYY') }}
+                        </div>
+                        <div>Number of Hours: {{ v.hours }}</div>
+                        <div>Type of LD: {{ v.type }}</div>
+                        <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
+                        <div>Coverage: {{ v.coverage }}</div>
                     </div>
 
-                </div> -->
-                <div class="row row-cols-auto g-3">
-                    <!-- <div class="col" *ngFor="let a of arrangedSeminars; let i = index"> -->
-                        <!-- <div class="card"> -->
-                            <!-- <div class="card-body"> -->
-                                <!-- <h5 class="card-title">{{ a.title }}</h5> -->
-                                <!-- <div class="row row-cols-auto g-2"> -->
-                                    <div class="col" *ngFor="let v of faculty.seminars">
-                                        <div class="fw-bold fs-6">{{ v.title }}</div>
-                                        <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                                            (v.endDate | date:'MMM d, YYYY') }}
-                                        </div>
-                                        <div>Number of Hours: {{ v.hours }}</div>
-                                        <div>Type of LD: {{ v.type }}</div>
-                                        <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
-                                        <div>Coverage: {{ v.coverage }}</div>
-                                        <!-- <div class="d-print-none">Certificate: {{ v.certificate }}</div> -->
-                                    </div>
-                                <!-- </div> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
                 </div>
+                <div class="fw-bold fs-6 mt-3">Certificates</div>
+                <div class="text-secondary" *ngIf="certificates.length === 0">
+                    -- No Available Certificate --
+                </div>
+                <div class="row row-cols-5 g-2">
+                    <div class="col" *ngFor="let url of certificates">
+                        <a [href]="url" target="_blank"><img [src]="url" class="img-fluid img-thumbnail"></a>
+                    </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>

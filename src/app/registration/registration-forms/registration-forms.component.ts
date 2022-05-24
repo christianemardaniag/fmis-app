@@ -8,6 +8,8 @@ import { CivilService } from 'src/app/model/_civilService';
 import { Faculty } from '../../model/faculty.model';
 import { Work } from 'src/app/model/_work';
 import { Seminar } from 'src/app/model/_seminar';
+import { initializeApp } from 'firebase/app';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 declare var jquery: any;
 declare var $: any;
@@ -129,8 +131,22 @@ export class RegistrationFormsComponent implements OnInit {
   onRegistration = false;
   isRegistered = false;
   isEmailExist = false;
+  isUploading = false;
   errorMessage = "";
+  certList: FileList | null = null;
+  cert: string[] = [];
 
+  firebaseConfig = {
+    apiKey: 'AIzaSyB9N-suydf9myRmwYPIoBUuxP6CI4CjnTo',
+    authDomain: 'fmis-app.firebaseapp.com',
+    databaseURL: 'https://fmis-app-default-rtdb.firebaseio.com',
+    storageBucket: 'fmis-app.appspot.com'
+  };
+  firebaseApp = initializeApp(this.firebaseConfig);
+  metadata = { contentType: 'image/jpeg' };
+  storage = getStorage();
+
+  
   constructor(private http: HttpClient, private router: Router) {
   }
 
@@ -251,6 +267,9 @@ export class RegistrationFormsComponent implements OnInit {
     this.setupWorkExperienceMultipleEntry(this.faculty.workExperience, val.workExperience);
     // Seminars
     this.setupSeminarsMultipleEntry(this.faculty.seminars, val.seminars);
+    // Certificates
+    this.faculty.certificates = this.cert;
+    this.uploadFile(this.certList?this.certList:new FileList);
     // // Account
     this.faculty.password = val.password;
     this.faculty.status = 'for approval';
@@ -267,8 +286,7 @@ export class RegistrationFormsComponent implements OnInit {
         endDate: x.endDate,
         type: x.ldType,
         sponsored: x.sponsored,
-        coverage: x.coverage,
-        certificate: x.certificate
+        coverage: x.coverage
       };
       cv.push(v);
     }
@@ -358,5 +376,55 @@ export class RegistrationFormsComponent implements OnInit {
       registerForm.resetForm();
       this.router.navigate(['/']);
     });
+  }
+
+  certOnChange(e: Event) {
+    this.cert = [];
+    this.certList = (<HTMLInputElement>e.target).files;
+    for (let i = 0; i < this.certList!.length; i++) {
+      const element = this.certList?.item(i);
+      this.cert.push(element?.name!);
+
+    }
+    console.log(this.cert);
+    
+  }
+
+  uploadFile(files: FileList) {
+    if (files.length == 0) {
+      return false;
+    }
+    for (let i = 0; i < files.length; i++) {
+      const file = files.item(i)!;
+      const storageRef = ref(this.storage, 'certificates/' + file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file, this.metadata);
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          this.isUploading = true;
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+        },
+        (error) => {
+          switch (error.code) {
+            case 'storage/unauthorized':
+              console.log("storage/unauthorized");
+              break;
+            case 'storage/canceled':
+              console.log('storage/canceled');
+              break;
+            case 'storage/unknown':
+              console.log('storage/unknown');
+              break;
+          }
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            this.isUploading = false;
+          });
+        }
+      );
+    }
+    return true;
   }
 }

@@ -346,6 +346,11 @@
 				aria-labelledby="seminars-heading">
 				<div class="accordion-body">
 					<app-form-seminars></app-form-seminars>
+					<div class="mb-3">
+						<label for="certificate" class="form-label">Upload All Certificate (Image Format)</label>
+						<input type="file" class="form-control" name="certificate" id="certificate" 
+							accept="image/*" multiple="multiple" ngModel (change)="certOnChange($event)">
+					</div>
 				</div>
 			</div>
 		</div>

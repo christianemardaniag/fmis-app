@@ -14,7 +14,7 @@
                                 </button>
                                 <div class="form-check form-switch mt-3 ms-2">
                                     <input class="form-check-input" type="checkbox" role="switch" #piSection
-                                        name="piSection" [ngModel]="true">
+                                        name="piSection" ngModel>
                                 </div>
                             </div>
 
@@ -139,7 +139,7 @@
                             </button>
                             <div class="form-check form-switch mt-3 ms-2">
                                 <!-- <input class="form-check-input visually-hidden" type="checkbox" role="switch"
-                                    #eployeeSection name="eployeeSection" [ngModel]="true"> -->
+                                    #eployeeSection name="eployeeSection" ngModel> -->
                             </div>
                         </div>
                         <div id="eployeeSection" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
@@ -200,7 +200,7 @@
                             </button>
                             <div class="form-check form-switch mt-3 ms-2">
                                 <!-- <input class="form-check-input visually-hidden" type="checkbox" role="switch"
-                                    #addressSection name="addressSection" [ngModel]="true"> -->
+                                    #addressSection name="addressSection" ngModel> -->
                             </div>
                         </div>
                         <div id="addressSection" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
@@ -293,7 +293,7 @@
                             </button>
                             <div class="form-check form-switch mt-3 ms-2">
                                 <input class="form-check-input" type="checkbox" role="switch" #ebSection
-                                    name="ebSection" [ngModel]="true">
+                                    name="ebSection" ngModel>
                             </div>
                         </div>
                         <div id="ebSection" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo">
@@ -648,7 +648,7 @@
                         </button>
                         <div class="form-check form-switch mt-3 ms-2">
                             <input class="form-check-input" type="checkbox" role="switch" #csSection name="csSection"
-                                [ngModel]="true">
+                                ngModel>
                         </div>
                     </div>
                     <div id="csSection" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
@@ -735,7 +735,7 @@
                         </button>
                         <div class="form-check form-switch mt-3 ms-2">
                             <input class="form-check-input" type="checkbox" role="switch" #wiSection name="wiSection"
-                                [ngModel]="true">
+                                ngModel>
                         </div>
                     </div>
                     <div id="wiSection" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
@@ -824,7 +824,7 @@
                         </button>
                         <div class="form-check form-switch mt-3 ms-2">
                             <input class="form-check-input" type="checkbox" role="switch" #ldSection name="ldSection"
-                                [ngModel]="true">
+                                ngModel>
                         </div>
                     </div>
                     <div id="ldSection" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
@@ -1180,9 +1180,39 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card mb-2" *ngIf="ldSection.checked">
+                            <div class="card-body">
+                                <h5 class="card-title fw-bold">Learning and Development (L&D) Interventions/Training
+                                    Programs</h5>
+                                <div class="row row-cols-2 g-3">
+                                    <div class="col" *ngFor="let v of faculty.seminars">
+                                        <div class="fw-bold fs-6">{{ v.title }}</div>
+                                        <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                            (v.endDate | date:'MMM d, YYYY') }}
+                                        </div>
+                                        <div>Number of Hours: {{ v.hours }}</div>
+                                        <div>Type of LD: {{ v.type }}</div>
+                                        <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
+                                        <div>Coverage: {{ v.coverage }}</div>
+                                    </div>
+                                </div>
+                                <div class="fw-bold fs-6 mt-3">Certificates</div>
+                                <div class="text-secondary" *ngIf="faculty.certificates.length === 0">
+                                    -- No Available Certificate --
+                                    </div>
+                                <div class="row row-cols-5 g-2">
+                                    <div class="col" *ngFor="let cert of faculty.certificates">
+                                        <a [href]="cert" target="_blank"><img [src]="cert"
+                                                class="img-fluid img-thumbnail"></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="divider"></div>
+                <hr>
+                <!-- <div class="divider"></div> -->
             </div>
         </div>
     </div>

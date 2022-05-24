@@ -89,7 +89,7 @@ export class FacultyProfileComponent implements OnInit {
   firebaseApp = initializeApp(this.firebaseConfig);
   metadata = { contentType: 'image/jpeg' };
   storage = getStorage();
-
+  certificates: string[] = [];
 
   constructor(private route: ActivatedRoute,
     private facultyService: FacultyService,
@@ -114,9 +114,26 @@ export class FacultyProfileComponent implements OnInit {
     this.facultyService.getFacultyById(this.id).subscribe(data => {
       this.faculty = data;
       this.isFetching = false;
-      console.log(data);
+      this.getCertificates();
     })
   }
+
+  async getCertificates() {
+    if (this.faculty.certificates) { 
+      const cert = this.faculty.certificates;
+      for (let i = 0; i < cert.length; i++) {
+        const name = cert[i];        
+        this.certificates.push(await this.getUrl(name));
+      }
+    }
+  }
+
+  async getUrl(name: string) {
+    const url = await getDownloadURL(ref(this.storage, 'certificates/' + name));
+    return url;
+  }
+
+
 
   changeStatus(id: string, status: string) {
     this.facultyService.updateInfo(id, { status: status }).subscribe(data => {

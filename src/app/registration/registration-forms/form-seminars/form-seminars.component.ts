@@ -13,8 +13,7 @@ export class FormSeminarsComponent implements OnInit {
   ldType = ['Managerial', 'Supervisory', 'Technical'];
   ctr = 0;
   entry = [1];
-  certList: FileList | null = null;
-  cert: string[] = [];
+  
 
   constructor() { }
 
@@ -25,13 +24,6 @@ export class FormSeminarsComponent implements OnInit {
     this.ctr++;
   }
 
-  certOnChange(e: Event) {
-    this.certList = (<HTMLInputElement>e.target).files;
-    for (let i = 0; i < this.certList!.length; i++) {
-      const element = this.certList?.item(i);
-      this.cert.push(element?.name!);
-
-    }
-  }
+  
 
 }

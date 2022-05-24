@@ -20,22 +20,22 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="firstName" class="form-label">*First Name</label>
-								<input type="text" class="form-control" name="firstName" id="firstName" required
-									[ngModel]="faculty.firstName" [disabled]="faculty.status=='approved'">
+								<input type="text" class="form-control" name="firstName" required
+									[ngModel]="faculty.firstName" [readonly]="faculty.status=='approved'">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="middleName" class="form-label">Middle Name</label>
-								<input type="text" class="form-control" name="middleName" id="middleName"
-									[ngModel]="faculty.middleName" [disabled]="faculty.status=='approved'">
+								<input type="text" class="form-control" name="middleName" [ngModel]="faculty.middleName"
+									[readonly]="faculty.status=='approved'">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="lastName" class="form-label">*Last Name</label>
-								<input type="text" class="form-control" name="lastName" id="lastName" required
-									[ngModel]="faculty.lastName" [disabled]="faculty.status=='approved'">
+								<input type="text" class="form-control" name="lastName" required
+									[ngModel]="faculty.lastName" [readonly]="faculty.status=='approved'">
 							</div>
 						</div>
 						<div class="col">
@@ -45,8 +45,8 @@
 										data-placement="auto"
 										title="(e.g. 'Sr.' and 'Jr.' and 'I', 'II', 'III', etc.)"></i>
 								</label>
-								<input type="text" class="form-control" name="nameExtension" id="nameExtension"
-									[ngModel]="faculty.nameExtension" [disabled]="faculty.status=='approved'">
+								<input type="text" class="form-control" name="nameExtension"
+									[ngModel]="faculty.nameExtension" [readonly]="faculty.status=='approved'">
 							</div>
 						</div>
 					</div>
@@ -54,8 +54,8 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="birthDate" class="form-label">*Date of Birth</label>
-								<input type="date" class="form-control" name="birthDate" id="birthDate" required
-									[ngModel]="faculty.birthDate" [disabled]="faculty.status=='approved'">
+								<input type="date" class="form-control" name="birthDate" required
+									[ngModel]="faculty.birthDate" [readonly]="faculty.status=='approved'">
 							</div>
 						</div>
 						<div class="col">
@@ -76,7 +76,7 @@
 								<div>
 									<div class="form-check form-check-inline" *ngFor="let g of gender">
 										<input class="form-check-input" type="radio" name="gender" [id]="g" [value]="g"
-											required [ngModel]="faculty.gender" [disabled]="faculty.status=='approved'">
+											required [ngModel]="faculty.gender">
 										<label class="form-check-label text-capitalize">{{ g }}</label>
 									</div>
 								</div>
@@ -88,29 +88,26 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="height" class="form-label">Height (m)</label>
-								<input type="text" class="form-control" name="height" id="height"
-									[ngModel]="faculty.height">
+								<input type="text" class="form-control" name="height" [ngModel]="faculty.height">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="weight" class="form-label">Weight (kg)</label>
-								<input type="number" class="form-control" name="weight" id="weight"
-									[ngModel]="faculty.weight">
+								<input type="number" class="form-control" name="weight" [ngModel]="faculty.weight">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="bloodType" class="form-label">Blood Type</label>
-								<input type="text" class="form-control" name="bloodType" id="bloodType"
-									[ngModel]="faculty.bloodType">
+								<input type="text" class="form-control" name="bloodType" [ngModel]="faculty.bloodType">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="citizenship" class="form-label">*Citizenship</label>
-								<input type="text" class="form-control" name="citizenship" id="citizenship"
-									[ngModel]="faculty.citizenship" required [disabled]="faculty.status=='approved'">
+								<input type="text" class="form-control" name="citizenship"
+									[ngModel]="faculty.citizenship" required [readonly]="faculty.status=='approved'">
 							</div>
 						</div>
 					</div>
@@ -119,28 +116,28 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="email" class="form-label">*Email Address</label>
-								<input type="email" class="form-control" name="email" id="email" [(ngModel)]="email"
-									required email>
+								<input type="email" class="form-control" name="email" [(ngModel)]="email" required
+									email>
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="alternativeEmail" class="form-label">Alternative Email Address</label>
-								<input type="email" class="form-control" name="alternativeEmail" id="alternativeEmail"
+								<input type="email" class="form-control" name="alternativeEmail"
 									[ngModel]="faculty.alternativeEmail" email>
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="mobileNumber" class="form-label">*Mobile Number</label>
-								<input type="text" class="form-control" name="mobileNumber" id="mobileNumber"
+								<input type="text" class="form-control" name="mobileNumber"
 									[ngModel]="faculty.mobileNumber">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="telephoneNumber" class="form-label">Telephone Number</label>
-								<input type="text" class="form-control" name="telephoneNumber" id="telephoneNumber"
+								<input type="text" class="form-control" name="telephoneNumber"
 									[ngModel]="faculty.telephoneNumber">
 							</div>
 						</div>
@@ -151,41 +148,39 @@
 						<div class="row row-cols-1 row-cols-md-3 row gx-2">
 							<div class="col">
 								<div class="mb-3">
-									<input type="text" class="form-control" name="residentHouseNo" id="residentHouseNo"
+									<input type="text" class="form-control" name="residentHouseNo"
 										placeholder="House/Block/Lot No." [ngModel]="faculty.residentAddress.houseNo">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
-									<input type="text" class="form-control" name="residentStreet" id="residentStreet"
-										placeholder="Street" [ngModel]="faculty.residentAddress.street">
+									<input type="text" class="form-control" name="residentStreet" placeholder="Street"
+										[ngModel]="faculty.residentAddress.street">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentSubdivision"
-										id="residentSubdivision" placeholder="Subdivision/Barangay"
+										placeholder="Subdivision/Barangay"
 										[ngModel]="faculty.residentAddress.subdivision">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentMunicipality"
-										id="residentMunicipality" placeholder="Municipality"
-										[ngModel]="faculty.residentAddress.municipality">
+										placeholder="Municipality" [ngModel]="faculty.residentAddress.municipality">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="residentCityProvince"
-										id="residentCityProvince" placeholder="City/Province"
-										[ngModel]="faculty.residentAddress.cityProvince">
+										placeholder="City/Province" [ngModel]="faculty.residentAddress.cityProvince">
 								</div>
 							</div>
 
 							<div class="col">
 								<div class="mb-3">
-									<input type="text" class="form-control" name="residentZipCode" id="residentZipCode"
+									<input type="text" class="form-control" name="residentZipCode"
 										placeholder="Zip Code" [ngModel]="faculty.residentAddress.zipCode">
 								</div>
 							</div>
@@ -194,8 +189,8 @@
 					<div ngModelGroup="permanentAddress">
 						<label class="form-label">Permanent Address</label>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="sameAsResident" name="sameAsResident"
-								ngModel (change)="sameAsResident(f)">
+							<input class="form-check-input" type="checkbox" name="sameAsResident" ngModel
+								(change)="sameAsResident(f)">
 							<label class="form-check-label" for="sameAsResident"><i>Same as Resident
 									Address</i></label>
 						</div>
@@ -203,42 +198,38 @@
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentHouseNo"
-										id="permanentHouseNo" placeholder="House/Block/Lot No."
-										[ngModel]="faculty.permanentAddress.houseNo">
+										placeholder="House/Block/Lot No." [ngModel]="faculty.permanentAddress.houseNo">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
-									<input type="text" class="form-control" name="permanentStreet" id="permanentStreet"
-										placeholder="Street" [ngModel]="faculty.permanentAddress.street">
+									<input type="text" class="form-control" name="permanentStreet" placeholder="Street"
+										[ngModel]="faculty.permanentAddress.street">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentSubdivision"
-										id="permanentSubdivision" placeholder="Subdivision/Barangay"
+										placeholder="Subdivision/Barangay"
 										[ngModel]="faculty.permanentAddress.subdivision">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentMunicipality"
-										id="permanentMunicipality" placeholder="Municipality"
-										[ngModel]="faculty.permanentAddress.municipality">
+										placeholder="Municipality" [ngModel]="faculty.permanentAddress.municipality">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentCityProvince"
-										id="permanentCityProvince" placeholder="City/Province"
-										[ngModel]="faculty.permanentAddress.cityProvince">
+										placeholder="City/Province" [ngModel]="faculty.permanentAddress.cityProvince">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="number" class="form-control" name="permanentZipCode"
-										id="permanentZipCode" placeholder="Zip Code"
-										[ngModel]="faculty.permanentAddress.zipCode">
+										placeholder="Zip Code" [ngModel]="faculty.permanentAddress.zipCode">
 								</div>
 							</div>
 						</div>
@@ -248,33 +239,32 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="gsis" class="form-label">GSIS No.</label>
-								<input type="text" class="form-control" name="gsis" id="gsis" [ngModel]="faculty.gsis">
+								<input type="text" class="form-control" name="gsis" [ngModel]="faculty.gsis">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="pagibig" class="form-label">PAG-IBIG ID No.</label>
-								<input type="text" class="form-control" name="pagibig" id="pagibig"
-									[ngModel]="faculty.pagibig">
+								<input type="text" class="form-control" name="pagibig" [ngModel]="faculty.pagibig">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="philhealth" class="form-label">PHILHEALTH No.</label>
-								<input type="text" class="form-control" name="philhealth" id="philhealth"
+								<input type="text" class="form-control" name="philhealth"
 									[ngModel]="faculty.philhealth">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="sss" class="form-label">SSS No.</label>
-								<input type="text" class="form-control" name="sss" id="sss" [ngModel]="faculty.sss">
+								<input type="text" class="form-control" name="sss" [ngModel]="faculty.sss">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="tin" class="form-label">TIN No.</label>
-								<input type="text" class="form-control" name="tin" id="tin" [ngModel]="faculty.tin">
+								<input type="text" class="form-control" name="tin" [ngModel]="faculty.tin">
 							</div>
 						</div>
 					</div>
@@ -313,8 +303,8 @@
 											data-bs-html="true"
 											title="Indicate <b>PRIMARY EDUCATION</b> if graduated"></i>
 									</label>
-									<input class="form-control" list="elemBasicEducationList" id="elemBasicEducation"
-										name="elemBasicEducation" [ngModel]="faculty.elementary.basicEducation">
+									<input class="form-control" list="elemBasicEducationList" name="elemBasicEducation"
+										[ngModel]="faculty.elementary.basicEducation">
 									<datalist id="elemBasicEducationList">
 										<option *ngFor="let x of elemBasicEd" [value]="x">
 									</datalist>
@@ -323,13 +313,11 @@
 							<div class="col">
 								<label for="elemAttendance" class="form-label">Period of Attendance</label>
 								<div class="d-flex justify-content-around">
-									<input type="date" class="form-control"
-										placeholder="Start Year" name="elemAttendanceStart"
-										[ngModel]="faculty.elementary.startDate">
+									<input type="date" class="form-control" placeholder="Start Year"
+										name="elemAttendanceStart" [ngModel]="faculty.elementary.startDate">
 									<label class="mx-3 pt-1">to</label>
-									<input type="date" class="form-control" min="1901"
-										placeholder="End Year" name="elemAttendanceEnd"
-										[ngModel]="faculty.elementary.endDate">
+									<input type="date" class="form-control" min="1901" placeholder="End Year"
+										name="elemAttendanceEnd" [ngModel]="faculty.elementary.endDate">
 								</div>
 							</div>
 						</div>
@@ -339,22 +327,21 @@
 									<label for="elemHighestLevel" class="form-label">Highest Level/Units Earned (if not
 										graduated)</label>
 									<input type="text" class="form-control" name="elemHighestLevel"
-										id="elemHighestLevel" [ngModel]="faculty.elementary.level">
+										[ngModel]="faculty.elementary.level">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<label for="elemYearGraduate" class="form-label">Year Graduated</label>
-									<input type="number" class="form-control" name="elemYearGraduate"
-										id="elemYearGraduate" min="1901" placeholder="Year"
-										[ngModel]="faculty.elementary.yearGraduated">
+									<input type="number" class="form-control" name="elemYearGraduate" min="1901"
+										placeholder="Year" [ngModel]="faculty.elementary.yearGraduated">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<label for="elemScholarship" class="form-label">Scholarship/Academic Honors
 										Received</label>
-									<input type="text" class="form-control" name="elemScholarship" id="elemScholarship"
+									<input type="text" class="form-control" name="elemScholarship"
 										[ngModel]="faculty.elementary.scholarship">
 								</div>
 							</div>
@@ -383,8 +370,7 @@
 											title="Indicate <b>HIGH SCHOOL</b> if graduated under the old curriculum; or <b>JUNIOR HIGH SCHOOL</b> or <b>SENIOR HIGH SCHOOL</b> if graduated under the K-12 curriculum."></i>
 									</label>
 									<input class="form-control" list="secondaryBasicEducationList"
-										id="secondaryBasicEducation" name="secondaryBasicEducation"
-										[ngModel]="faculty.secondary.basicEducation">
+										name="secondaryBasicEducation" [ngModel]="faculty.secondary.basicEducation">
 									<datalist id="secondaryBasicEducationList">
 										<option *ngFor="let x of secondaryBasicEd" [value]="x">
 									</datalist>
@@ -393,13 +379,11 @@
 							<div class="col">
 								<label for="secondaryAttendance" class="form-label">Period of Attendance</label>
 								<div class="d-flex justify-content-around">
-									<input type="date" class="form-control"
-										name="secondaryAttendanceStart" placeholder="Start Year"
-										[ngModel]="faculty.secondary.startDate">
+									<input type="date" class="form-control" name="secondaryAttendanceStart"
+										placeholder="Start Year" [ngModel]="faculty.secondary.startDate">
 									<label class="mx-3 pt-1">to</label>
-									<input type="date" class="form-control"
-										name="secondaryAttendanceEnd" placeholder="End Year"
-										[ngModel]="faculty.secondary.endDate">
+									<input type="date" class="form-control" name="secondaryAttendanceEnd"
+										placeholder="End Year" [ngModel]="faculty.secondary.endDate">
 								</div>
 							</div>
 						</div>
@@ -410,15 +394,14 @@
 										not
 										graduated)</label>
 									<input type="text" class="form-control" name="secondaryHighestLevel"
-										id="secondaryHighestLevel" [ngModel]="faculty.secondary.level">
+										[ngModel]="faculty.secondary.level">
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<label for="secondaryYearGraduate" class="form-label">Year Graduated</label>
-									<input type="number" class="form-control" name="secondaryYearGraduate"
-										id="secondaryYearGraduate" min="1901" placeholder="Year"
-										[ngModel]="faculty.secondary.yearGraduated">
+									<input type="number" class="form-control" name="secondaryYearGraduate" min="1901"
+										placeholder="Year" [ngModel]="faculty.secondary.yearGraduated">
 								</div>
 							</div>
 							<div class="col">
@@ -426,7 +409,7 @@
 									<label for="secondaryScholarship" class="form-label">Scholarship/Academic Honors
 										Received</label>
 									<input type="text" class="form-control" name="secondaryScholarship"
-										id="secondaryScholarship" [ngModel]="faculty.secondary.scholarship">
+										[ngModel]="faculty.secondary.scholarship">
 								</div>
 							</div>
 						</div>
@@ -457,19 +440,18 @@
 												data-placement="right" data-bs-html="true"
 												title="Indicate in FULL all courses taken"></i>
 										</label>
-										<input class="form-control" id="vocationalBasicEducation" name="basicEducation"
-											[ngModel]="x.basicEducation">
+										<input class="form-control" name="basicEducation" [ngModel]="x.basicEducation">
 
 									</div>
 								</div>
 								<div class="col">
 									<label for="vocationalAttendance" class="form-label">Period of Attendance</label>
 									<div class="d-flex justify-content-around">
-										<input type="date" class="form-control"
-											name="attendanceStart" placeholder="Start Year" [ngModel]="x.startDate">
+										<input type="date" class="form-control" name="attendanceStart"
+											placeholder="Start Year" [ngModel]="x.startDate">
 										<label class="mx-3 pt-1">to</label>
-										<input type="date" class="form-control"
-											name="attendanceEnd" placeholder="End Year" [ngModel]="x.endDate">
+										<input type="date" class="form-control" name="attendanceEnd"
+											placeholder="End Year" [ngModel]="x.endDate">
 									</div>
 								</div>
 							</div>
@@ -479,16 +461,14 @@
 										<label for="vocationalHighestLevel" class="form-label">Highest Level/Units
 											Earned (if not
 											graduated)</label>
-										<input type="text" class="form-control" name="highestLevel"
-											id="vocationalHighestLevel" [ngModel]="x.level">
+										<input type="text" class="form-control" name="highestLevel" [ngModel]="x.level">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
 										<label for="vocationalYearGraduate" class="form-label">Year Graduated</label>
-										<input type="number" class="form-control" name="yearGraduate"
-											id="vocationalYearGraduate" min="1901" placeholder="Year"
-											[ngModel]="x.yearGraduated">
+										<input type="number" class="form-control" name="yearGraduate" min="1901"
+											placeholder="Year" [ngModel]="x.yearGraduated">
 									</div>
 								</div>
 								<div class="col">
@@ -496,7 +476,7 @@
 										<label for="vocationalScholarship" class="form-label">Scholarship/Academic
 											Honors Received</label>
 										<input type="text" class="form-control" name="scholarship"
-											id="vocationalScholarship" [ngModel]="x.scholarship">
+											[ngModel]="x.scholarship">
 									</div>
 								</div>
 							</div>
@@ -528,19 +508,18 @@
 												data-placement="right" data-bs-html="true"
 												title="Indicate in FULL all courses taken in college (e.g. ASSOCIATE IN ARTS, AB ECONOMICS, BS PSYCHOLOGY, MA IN HISTORY)."></i>
 										</label>
-										<input class="form-control" id="collegeBasicEducation" name="basicEducation"
-											[ngModel]="x.basicEducation">
+										<input class="form-control" name="basicEducation" [ngModel]="x.basicEducation">
 
 									</div>
 								</div>
 								<div class="col">
 									<label for="collegeAttendance" class="form-label">Period of Attendance</label>
 									<div class="d-flex justify-content-around">
-										<input type="date" class="form-control" 
-											name="attendanceStart" placeholder="Start Year" [ngModel]="x.startDate">
+										<input type="date" class="form-control" name="attendanceStart"
+											placeholder="Start Year" [ngModel]="x.startDate">
 										<label class="mx-3 pt-1">to</label>
-										<input type="date" class="form-control"
-											name="attendanceEnd" placeholder="End Year" [ngModel]="x.endDate">
+										<input type="date" class="form-control" name="attendanceEnd"
+											placeholder="End Year" [ngModel]="x.endDate">
 									</div>
 								</div>
 							</div>
@@ -550,16 +529,14 @@
 										<label for="collegeHighestLevel" class="form-label">Highest Level/Units Earned
 											(if not
 											graduated)</label>
-										<input type="text" class="form-control" name="highestLevel"
-											id="collegeHighestLevel" [ngModel]="x.level">
+										<input type="text" class="form-control" name="highestLevel" [ngModel]="x.level">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
 										<label for="collegeYearGraduate" class="form-label">Year Graduated</label>
-										<input type="number" class="form-control" name="yearGraduate"
-											id="collegeYearGraduate" min="1901" placeholder="Year"
-											[ngModel]="x.yearGraduated">
+										<input type="number" class="form-control" name="yearGraduate" min="1901"
+											placeholder="Year" [ngModel]="x.yearGraduated">
 									</div>
 								</div>
 								<div class="col">
@@ -567,7 +544,7 @@
 										<label for="collegeScholarship" class="form-label">Scholarship/Academic Honors
 											Received</label>
 										<input type="text" class="form-control" name="scholarship"
-											id="collegeScholarship" [ngModel]="x.scholarship">
+											[ngModel]="x.scholarship">
 									</div>
 								</div>
 							</div>
@@ -576,8 +553,9 @@
 					</div>
 					<h5>Graduate Studies</h5>
 					<div ngModelGroup="graduateStudies">
-						<button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addGraduateStudiesEntry()"><i
-								class="fal fa-plus-circle"></i> Add another Graduate Studies</button>
+						<button type="button" class="btn btn-outline-secondary btn-group-sm"
+							(click)="addGraduateStudiesEntry()"><i class="fal fa-plus-circle"></i> Add another Graduate
+							Studies</button>
 						<input type="hidden" name="ctr" [ngModel]="graduateStudiesCtr">
 						<div [ngModelGroup]="i+''" *ngFor="let x of graduateStudiesEntry; let i = index">
 							<div class="row row-cols-1 row-cols-md-3 g-2">
@@ -599,8 +577,7 @@
 												data-placement="right" data-bs-html="true"
 												title="Indicate in FULL all courses taken in graduateStudies (e.g. ASSOCIATE IN ARTS, AB ECONOMICS, BS PSYCHOLOGY, MA IN HISTORY)."></i>
 										</label>
-										<input class="form-control" id="graduateStudiesBasicEducation"
-											name="basicEducation" [ngModel]="x.basicEducation">
+										<input class="form-control" name="basicEducation" [ngModel]="x.basicEducation">
 
 									</div>
 								</div>
@@ -608,11 +585,11 @@
 									<label for="graduateStudiesAttendance" class="form-label">Period of
 										Attendance</label>
 									<div class="d-flex justify-content-around">
-										<input type="date" class="form-control"
-											name="attendanceStart" placeholder="Start Year" [ngModel]="x.startDate">
+										<input type="date" class="form-control" name="attendanceStart"
+											placeholder="Start Year" [ngModel]="x.startDate">
 										<label class="mx-3 pt-1">to</label>
-										<input type="date" class="form-control"
-											name="attendanceEnd" placeholder="End Year" [ngModel]="x.endDate">
+										<input type="date" class="form-control" name="attendanceEnd"
+											placeholder="End Year" [ngModel]="x.endDate">
 									</div>
 								</div>
 							</div>
@@ -622,17 +599,15 @@
 										<label for="graduateStudiesHighestLevel" class="form-label">Highest Level/Units
 											Earned (if not
 											graduated)</label>
-										<input type="text" class="form-control" name="highestLevel"
-											id="graduateStudiesHighestLevel" [ngModel]="x.level">
+										<input type="text" class="form-control" name="highestLevel" [ngModel]="x.level">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
 										<label for="graduateStudiesYearGraduate" class="form-label">Year
 											Graduated</label>
-										<input type="number" class="form-control" name="yearGraduate"
-											id="graduateStudiesYearGraduate" min="1901" placeholder="Year"
-											[ngModel]="x.yearGraduated">
+										<input type="number" class="form-control" name="yearGraduate" min="1901"
+											placeholder="Year" [ngModel]="x.yearGraduated">
 									</div>
 								</div>
 								<div class="col">
@@ -640,7 +615,7 @@
 										<label for="graduateStudiesScholarship" class="form-label">Scholarship/Academic
 											Honors Received</label>
 										<input type="text" class="form-control" name="scholarship"
-											id="graduateStudiesScholarship" [ngModel]="x.scholarship">
+											[ngModel]="x.scholarship">
 									</div>
 								</div>
 							</div>
@@ -653,8 +628,8 @@
 
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="civil-service-heading">
-				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#civil-service-collapse" aria-expanded="false"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#civil-service-collapse" aria-expanded="false"
 					aria-controls="civil-service-collapse">
 					Civil Service
 				</button>
@@ -663,8 +638,9 @@
 				aria-labelledby="civil-service-heading">
 				<div class="accordion-body">
 					<div ngModelGroup="civilService">
-						<button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addCivilServiceEntry()"><i
-								class="fal fa-plus-circle"></i> Add another Civil Service</button>
+						<button type="button" class="btn btn-outline-secondary btn-group-sm"
+							(click)="addCivilServiceEntry()"><i class="fal fa-plus-circle"></i> Add another Civil
+							Service</button>
 						<input type="hidden" name="ctr" [ngModel]="civilServiceCtr">
 						<div [ngModelGroup]="i+''" *ngFor="let x of civilServiceEntry; let i = index">
 							<div class="row row-cols-1 row-cols-md-3 gx-2">
@@ -673,7 +649,8 @@
 										<label class="form-label">Civil Service Type</label>
 										<div class="mb-3">
 											<select class="form-select" name="civilServiceType" [ngModel]="x.type">
-												<option [value]="x" *ngFor="let x of civilServiceType; let i = index">{{ x }}</option>
+												<option [value]="x" *ngFor="let x of civilServiceType; let i = index">{{
+													x }}</option>
 											</select>
 										</div>
 									</div>
@@ -681,31 +658,39 @@
 								<div class="col">
 									<div class="mb-3">
 										<label for="rating" class="form-label">Rating</label>
-										<input type="text" class="form-control" name="rating" id="rating" [ngModel]="x.rating">
+										<input type="text" class="form-control" name="rating" [ngModel]="x.rating">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="examinationDate" class="form-label">Date of Examination/Conferment</label>
-										<input type="date" class="form-control" name="examinationDate" id="examinationDate" [ngModel]="x.examinationDate">
+										<label for="examinationDate" class="form-label">Date of
+											Examination/Conferment</label>
+										<input type="date" class="form-control" name="examinationDate"
+											[ngModel]="x.examinationDate">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="examinationPlace" class="form-label">Place of Examination/Conferment</label>
-										<input type="text" class="form-control" name="examinationPlace" id="examinationPlace" [ngModel]="x.examinationPlace">
+										<label for="examinationPlace" class="form-label">Place of
+											Examination/Conferment</label>
+										<input type="text" class="form-control" name="examinationPlace"
+											[ngModel]="x.examinationPlace">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="licenseNumber" class="form-label">License Number (if applicable)</label>
-										<input type="text" class="form-control" name="licenseNumber" id="licenseNumber" [ngModel]="x.licenseNumber">
+										<label for="licenseNumber" class="form-label">License Number (if
+											applicable)</label>
+										<input type="text" class="form-control" name="licenseNumber"
+											[ngModel]="x.licenseNumber">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="licenseValidity" class="form-label">License Date of Validity (if applicable)</label>
-										<input type="date" class="form-control" name="licenseValidity" id="licenseValidity" [ngModel]="x.licenseValidity">
+										<label for="licenseValidity" class="form-label">License Date of Validity (if
+											applicable)</label>
+										<input type="date" class="form-control" name="licenseValidity"
+											[ngModel]="x.licenseValidity">
 									</div>
 								</div>
 							</div>
@@ -717,8 +702,8 @@
 		</div>
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="work-experience-heading">
-				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#work-experience-collapse" aria-expanded="false"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#work-experience-collapse" aria-expanded="false"
 					aria-controls="work-experience-collapse">
 					Work Experience
 				</button>
@@ -734,20 +719,23 @@
 							<div class="row row-cols-1 row-cols-md-3 gx-2">
 								<div class="col">
 									<div class="mb-3">
-										<label for="position" class="form-label">Position Title (write in full/do not abbreviate)</label>
-										<input type="text" class="form-control" name="position" id="position" [ngModel]="x.position">
+										<label for="position" class="form-label">Position Title (write in full/do not
+											abbreviate)</label>
+										<input type="text" class="form-control" name="position" [ngModel]="x.position">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="company" class="form-label">Department / Agency / Office / Company</label>
-										<input type="text" class="form-control" name="company" id="company" [ngModel]="x.company">
+										<label for="company" class="form-label">Department / Agency / Office /
+											Company</label>
+										<input type="text" class="form-control" name="company" [ngModel]="x.company">
 									</div>
 								</div>
 								<div class="col">
 									<label for="collegeAttendance" class="form-label">Inclusive Dates</label>
 									<div class="d-flex justify-content-around">
-										<input type="date" class="form-control" name="startDate" [ngModel]="x.startDate">
+										<input type="date" class="form-control" name="startDate"
+											[ngModel]="x.startDate">
 										<label class="mx-3 pt-1">to</label>
 										<input type="date" class="form-control" name="endDate" [ngModel]="x.endDate">
 									</div>
@@ -757,26 +745,30 @@
 								<div class="col">
 									<div class="mb-3">
 										<label for="salary" class="form-label">Monthly Salary</label>
-										<input type="number" min="0" class="form-control" name="salary" id="salary" [ngModel]="x.salary">
+										<input type="number" min="0" class="form-control" name="salary"
+											[ngModel]="x.salary">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
-										<label for="jobGrade" class="form-label">Salary Grade / Job Grade / Pay Grade</label>
-										<input type="text" class="form-control" name="jobGrade" id="jobGrade" [ngModel]="x.jobGrade">
+										<label for="jobGrade" class="form-label">Salary Grade / Job Grade / Pay
+											Grade</label>
+										<input type="text" class="form-control" name="jobGrade" [ngModel]="x.jobGrade">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
 										<label class="form-label">Status of Appointment</label>
 										<div class="mb-3">
-											<select class="form-select" name="appointmentStatus" [ngModel]="x.appointmentStatus">
-												<option [value]="x" *ngFor="let x of appointmentStatus; let i = index">{{ x }}</option>
+											<select class="form-select" name="appointmentStatus"
+												[ngModel]="x.appointmentStatus">
+												<option [value]="x" *ngFor="let x of appointmentStatus; let i = index">
+													{{ x }}</option>
 											</select>
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="col">
 									<div class="mb-3">
 										<label class="form-label">Government Service</label>
@@ -798,37 +790,39 @@
 
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="seminars-heading">
-				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#seminars-collapse" aria-expanded="false"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#seminars-collapse" aria-expanded="false"
 					aria-controls="seminars-collapse">
 					Learning and Development (L&D) Interventions/Training Programs Attended
 				</button>
 			</h2>
-			<div id="seminars-collapse" class="accordion-collapse collapse"
-				aria-labelledby="seminars-heading">
+			<div id="seminars-collapse" class="accordion-collapse collapse" aria-labelledby="seminars-heading">
 				<div class="accordion-body">
 					<div ngModelGroup="seminars">
-						<button type="button" class="btn btn-outline-secondary btn-group-sm" (click)="addSeminarEntry()"><i
-								class="fal fa-plus-circle"></i> Add another L&D/Training Programs</button>
+						<button type="button" class="btn btn-outline-secondary btn-group-sm"
+							(click)="addSeminarEntry()"><i class="fal fa-plus-circle"></i> Add another L&D/Training
+							Programs</button>
 						<input type="hidden" name="ctr" [ngModel]="seminarCtr">
 						<div [ngModelGroup]="i+''" *ngFor="let x of seminarEntry; let i = index">
 							<div class="row row-cols-1 row-cols-md-3 gx-2">
 								<div class="col">
 									<div class="mb-3">
 										<label for="ptitleosition" class="form-label">Title</label>
-										<input type="text" class="form-control" name="title" id="title" [ngModel]="x.title">
+										<input type="text" class="form-control" name="title" [ngModel]="x.title">
 									</div>
 								</div>
 								<div class="col">
 									<div class="mb-3">
 										<label for="hours" class="form-label">Number of Hours</label>
-										<input type="number" min="0" class="form-control" name="hours" id="hours" [ngModel]="x.hours">
+										<input type="number" min="0" class="form-control" name="hours"
+											[ngModel]="x.hours">
 									</div>
 								</div>
 								<div class="col">
 									<label class="form-label">Inclusive Dates</label>
 									<div class="d-flex justify-content-around">
-										<input type="date" class="form-control" name="startDate" [ngModel]="x.startDate">
+										<input type="date" class="form-control" name="startDate"
+											[ngModel]="x.startDate">
 										<label class="mx-3 pt-1">to</label>
 										<input type="date" class="form-control" name="endDate" [ngModel]="x.endDate">
 									</div>
@@ -836,39 +830,54 @@
 								<div class="col">
 									<div class="mb-3">
 										<label class="form-label">Type of Learning and Development</label>
-										<input class="form-control" list="ldTypeList" id="ldType"
-											name="ldType" [ngModel]="x.type">
+										<input class="form-control" list="ldTypeList" name="ldType" [ngModel]="x.type">
 										<datalist id="ldTypeList">
 											<option *ngFor="let x of ldType" [value]="x">
 										</datalist>
 									</div>
 								</div>
-								
+
 								<div class="col">
 									<div class="mb-3">
-										<label for="sponsored" class="form-label">Conducted / Sponsored by (Write in full)</label>
-										<input type="text" class="form-control" name="sponsored" id="sponsored" [ngModel]="x.sponsored">
+										<label for="sponsored" class="form-label">Conducted / Sponsored by (Write in
+											full)</label>
+										<input type="text" class="form-control" name="sponsored"
+											[ngModel]="x.sponsored">
 									</div>
-								</div>            
+								</div>
 								<div class="col">
 									<div class="mb-3">
 										<label class="form-label">Coverage</label>
 										<div class="mb-3">
 											<select class="form-select" name="coverage" [ngModel]="x.coverage">
-												<option [value]="x" *ngFor="let x of coverage; let i = index">{{ x }}</option>
+												<option [value]="x" *ngFor="let x of coverage; let i = index">{{ x }}
+												</option>
 											</select>
 										</div>
 									</div>
-								</div>            
+								</div>
 							</div>
-							<!-- <div class="mb-3">
-								<label for="certificate" class="form-label">Certificate (Image Format)</label>
-								<input type="file" class="form-control" name="certificate" id="certificate" 
-									accept="image/*" multiple="multiple" ngModel (change)="certOnChange($event)">
-							</div> -->
-					
-					
 							<hr>
+						</div>
+						<div class="fw-bold fs-6 mt-3">Certificates</div>
+						<div class="text-secondary" *ngIf="certificates.length === 0">
+							-- No Available Certificate --
+						</div>
+						<div class="row row-cols-5 g-2">
+							<div class="col position-relative" *ngFor="let cert of certificates; let i = index">
+								<a [href]="cert" target="_blank" class="">
+									<img [src]="cert" class="img-fluid img-thumbnail">
+								</a>
+								<button type="button"
+									class="btn btn-danger btn-sm position-absolute translate-middle fw-bold"
+									style="top: 15px; right: -5px;"
+									(click)="removeCert(certOnDb[i], $event)">X</button>
+							</div>
+						</div>
+						<div class="my-3">
+							<label for="certificate" class="form-label">Upload Certificate (Image Format)</label>
+							<input type="file" class="form-control" name="certificate" accept="image/*"
+								multiple="multiple" ngModel (change)="certOnChange($event)">
 						</div>
 					</div>
 				</div>
@@ -889,29 +898,25 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="accountEmail" class="form-label">Email Address</label>
-								<input type="email" class="form-control" name="accountEmail" id="accountEmail" disabled
-									[ngModel]="email">
+								<input type="email" class="form-control" name="accountEmail" disabled [ngModel]="email">
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="currentPassword" class="form-label">Current Password</label>
-								<input type="password" class="form-control" name="currentPassword" id="currentPassword"
-									required ngModel>
+								<input type="password" class="form-control" name="currentPassword" required ngModel>
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="newPassword" class="form-label">New Password</label>
-								<input type="password" class="form-control" name="newPassword" id="newPassword" required
-									ngModel>
+								<input type="password" class="form-control" name="newPassword" required ngModel>
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="confirmPassword" class="form-label">Confirm Password</label>
-								<input type="password" class="form-control" name="confirmPassword" id="confirmPassword"
-									required ngModel>
+								<input type="password" class="form-control" name="confirmPassword" required ngModel>
 							</div>
 						</div>
 					</div>
@@ -926,7 +931,7 @@
 		{{ errorMessage }}
 	</div>
 	<div class="d-flex justify-content-between my-3">
-		<button type="submit" class="btn btn-primary btn-lg px-5 " >
+		<button type="submit" class="btn btn-primary btn-lg px-5 ">
 			<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
 				*ngIf="onRegistration"></span>
 			<span *ngIf="!onRegistration">Update Profile</span>
