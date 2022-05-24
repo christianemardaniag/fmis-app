@@ -12,6 +12,14 @@ export class AdminReportComponent implements OnInit {
 
   faculties: Faculty[] = [];
   filter: any = {};
+  vocationalCtr = 0;
+  collegeCtr = 0;
+  graduateCtr = 0;
+  civilServiceCtr = 0;
+  vocationalEntry = [1];
+  collegeEntry = [1];
+  graduateEntry = [1];
+  civilServiceEntry = [1];
 
   constructor(private facultyService: FacultyService) { }
 
@@ -27,6 +35,26 @@ export class AdminReportComponent implements OnInit {
 
   search(searchForm: NgForm) {
     this.filter = searchForm.form.value;
+    console.log(this.filter);
   }
 
+  addVocationalEntry() {
+    this.vocationalEntry.push(1);
+    this.vocationalCtr++;
+  }
+
+  addCollegeEntry() {
+    this.collegeEntry.push(1);
+    this.collegeCtr++;
+  }
+
+  addGraduateEntry() {
+    this.graduateEntry.push(1);
+    this.graduateCtr++;
+  }
+
+  addCivilServiceEntry() {
+    this.civilServiceEntry.push(1);
+    this.civilServiceCtr++;
+  }
 }

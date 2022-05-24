@@ -112,9 +112,21 @@
             "firebaseProject": "fmis-app",
             "firebaseHostingSite": "fmis-app"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "fmis-app"
+  "defaultProject": "fmis-app",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

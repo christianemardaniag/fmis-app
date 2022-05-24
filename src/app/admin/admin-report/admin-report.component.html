@@ -304,8 +304,8 @@
                                         <label for="elementarySchool"
                                             class="col-sm-4 col-form-label col-form-label-sm">School Name</label>
                                         <div class="col">
-                                            <input type="text" class="form-control form-control-sm"
-                                                name="elementarySchool" id="elementarySchool" ngModel>
+                                            <input type="text" class="form-control form-control-sm" name="school"
+                                                id="elementarySchool" ngModel>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -313,19 +313,19 @@
                                             class="col-sm-4 col-form-label col-form-label-sm">Basic Education</label>
                                         <div class="col">
                                             <input type="text" class="form-control form-control-sm"
-                                                name="elemBasicEducation" id="elemBasicEducation" ngModel>
+                                                name="basicEducation" id="elemBasicEducation" ngModel>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label
-                                            class="col-sm-4 col-form-label col-form-label-sm">Attendance Period</label>
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">Attendance
+                                            Period</label>
                                         <div class="col-sm-8">
                                             <div class="d-flex justify-content-around">
                                                 <input type="date" class="form-control form-control-sm"
-                                                    placeholder="Start Year" name="elemAttendanceStart" ngModel>
+                                                    placeholder="Start Year" name="startDate" ngModel>
                                                 <label class="mx-3 pt-1">to</label>
                                                 <input type="date" class="form-control form-control-sm"
-                                                    placeholder="End Year" name="elemAttendanceEnd" ngModel>
+                                                    placeholder="End Year" name="endDate" ngModel>
                                             </div>
                                         </div>
                                     </div>
@@ -334,16 +334,17 @@
                                             class="col-sm-4 col-form-label col-form-label-sm">Highest Level/Units
                                             Earned</label>
                                         <div class="col">
-                                            <input type="text" class="form-control form-control-sm"
-                                                name="elemHighestLevel" id="elemHighestLevel" ngModel>
+                                            <input type="text" class="form-control form-control-sm" name="level"
+                                                id="elemHighestLevel" ngModel>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="elemYearGraduate"
                                             class="col-sm-4 col-form-label col-form-label-sm">Year Graduated</label>
                                         <div class="col">
-                                            <input type="number" class="form-control form-control-sm" name="elemYearGraduate"
-                                                id="elemYearGraduate" min="1901" max="2022" placeholder="Year" ngModel>
+                                            <input type="number" class="form-control form-control-sm"
+                                                name="yearGraduate" id="elemYearGraduate" min="1901" placeholder="Year"
+                                                ngModel>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -351,19 +352,19 @@
                                             class="col-sm-4 col-form-label col-form-label-sm">Scholarship/Academic
                                             Honors</label>
                                         <div class="col">
-                                            <input type="text" class="form-control form-control-sm"
-                                                name="elemScholarship" id="elemScholarship" ngModel>
+                                            <input type="text" class="form-control form-control-sm" name="scholarship"
+                                                id="elemScholarship" ngModel>
                                         </div>
                                     </div>
                                 </div>
-                                <div ngModelGroup="elementary">
+                                <div ngModelGroup="secondary">
                                     <p class="fw-bold">Secondary</p>
                                     <div class="row mb-3">
                                         <label for="secondarySchool"
                                             class="col-sm-4 col-form-label col-form-label-sm">School Name</label>
                                         <div class="col">
-                                            <input type="text" class="form-control form-control-sm"
-                                                name="secondarySchool" id="secondarySchool" ngModel>
+                                            <input type="text" class="form-control form-control-sm" name="school"
+                                                id="secondarySchool" ngModel>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -371,19 +372,19 @@
                                             class="col-sm-4 col-form-label col-form-label-sm">Basic Education</label>
                                         <div class="col">
                                             <input type="text" class="form-control form-control-sm"
-                                                name="secondaryBasicEducation" id="secondaryBasicEducation" ngModel>
+                                                name="basicEducation" id="secondaryBasicEducation" ngModel>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label
-                                            class="col-sm-4 col-form-label col-form-label-sm">Attendance Period</label>
+                                        <label class="col-sm-4 col-form-label col-form-label-sm">Attendance
+                                            Period</label>
                                         <div class="col-sm-8">
                                             <div class="d-flex justify-content-around">
                                                 <input type="date" class="form-control form-control-sm"
-                                                    placeholder="Start Year" name="secondaryAttendanceStart" ngModel>
+                                                    placeholder="Start Year" name="startDate" ngModel>
                                                 <label class="mx-3 pt-1">to</label>
                                                 <input type="date" class="form-control form-control-sm"
-                                                    placeholder="End Year" name="secondaryAttendanceEnd" ngModel>
+                                                    placeholder="End Year" name="endDate" ngModel>
                                             </div>
                                         </div>
                                     </div>
@@ -392,16 +393,17 @@
                                             class="col-sm-4 col-form-label col-form-label-sm">Highest Level/Units
                                             Earned</label>
                                         <div class="col">
-                                            <input type="text" class="form-control form-control-sm"
-                                                name="secondaryHighestLevel" id="secondaryHighestLevel" ngModel>
+                                            <input type="text" class="form-control form-control-sm" name="level"
+                                                id="secondaryHighestLevel" ngModel>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="secondaryYearGraduate"
                                             class="col-sm-4 col-form-label col-form-label-sm">Year Graduated</label>
                                         <div class="col">
-                                            <input type="number" class="form-control form-control-sm" name="secondaryYearGraduate"
-                                                id="secondaryYearGraduate" min="1901" max="2022" placeholder="Year" ngModel>
+                                            <input type="number" class="form-control form-control-sm"
+                                                name="yearGraduate" id="secondaryYearGraduate" min="1901"
+                                                placeholder="Year" ngModel>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -409,43 +411,261 @@
                                             class="col-sm-4 col-form-label col-form-label-sm">Scholarship/Academic
                                             Honors</label>
                                         <div class="col">
-                                            <input type="text" class="form-control form-control-sm"
-                                                name="secondaryScholarship" id="secondaryScholarship" ngModel>
+                                            <input type="text" class="form-control form-control-sm" name="scholarship"
+                                                id="secondaryScholarship" ngModel>
                                         </div>
                                     </div>
                                 </div>
-
-
+                                <div ngModelGroup="vocational">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="fw-bold">Vocational/Trade Course</p>
+                                        <button type="button" class="btn pb-3" (click)="addVocationalEntry()">
+                                            <i class="fal fa-plus-circle" ></i>
+                                        </button>
+                                    </div>
+                                    <input type="hidden" name="ctr" [ngModel]="vocationalCtr">
+                                    <div [ngModelGroup]="i+''" *ngFor="let x of vocationalEntry; let i = index">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">School Name</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm" name="school"
+                                                    ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Basic Education / Degree / Course</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="basicEducation" ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Period of
+                                                    Attendance</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="d-flex justify-content-around">
+                                                    <input type="date" class="form-control form-control-sm"
+                                                        name="startDate" placeholder="Start Year" ngModel>
+                                                    <label class="mx-3 pt-1">to</label>
+                                                    <input type="date" class="form-control form-control-sm"
+                                                        name="endDate" placeholder="End Year" ngModel>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Highest Level/Units Earned</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm" name="level"
+                                                    ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Year
+                                                    Graduated</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="number" class="form-control form-control-sm"
+                                                    name="yearGraduate" min="1901" ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Scholarship / Academic Honors</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="scholarship" ngModel>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div ngModelGroup="college">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="fw-bold">College</p>
+                                        <button type="button" class="btn pb-3" (click)="addCollegeEntry()">
+                                            <i class="fal fa-plus-circle" ></i>
+                                        </button>
+                                    </div>
+                                    <input type="hidden" name="ctr" [ngModel]="collegeCtr">
+                                    <div [ngModelGroup]="i+''" *ngFor="let x of collegeEntry; let i = index">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">School Name</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm" name="school"
+                                                    ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Basic Education / Degree / Course</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="basicEducation" ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Period of
+                                                    Attendance</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="d-flex justify-content-around">
+                                                    <input type="date" class="form-control form-control-sm"
+                                                        name="startDate" placeholder="Start Year" ngModel>
+                                                    <label class="mx-3 pt-1">to</label>
+                                                    <input type="date" class="form-control form-control-sm"
+                                                        name="endDate" placeholder="End Year" ngModel>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Highest Level/Units Earned</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm" name="level"
+                                                    ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Year
+                                                    Graduated</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="number" class="form-control form-control-sm"
+                                                    name="yearGraduate" min="1901" ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Scholarship / Academic Honors</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="scholarship" Model>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div ngModelGroup="graduateStudies">
+                                    <div class="d-flex justify-content-between">
+                                        <p class="fw-bold">Graduate Studies</p>
+                                        <button type="button" class="btn pb-3" (click)="addGraduateEntry()">
+                                            <i class="fal fa-plus-circle" ></i>
+                                        </button>
+                                    </div>
+                                    <input type="hidden" name="ctr" [ngModel]="graduateCtr">
+                                    <div [ngModelGroup]="i+''" *ngFor="let x of graduateEntry; let i = index">
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">School Name</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm" name="school"
+                                                    ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Basic Education / Degree / Course</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="basicEducation" ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Period of
+                                                    Attendance</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="d-flex justify-content-around">
+                                                    <input type="date" class="form-control form-control-sm"
+                                                        name="startDate" placeholder="Start Year" ngModel>
+                                                    <label class="mx-3 pt-1">to</label>
+                                                    <input type="date" class="form-control form-control-sm"
+                                                        name="endDate" placeholder="End Year" ngModel>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Highest Level/Units Earned</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm" name="level"
+                                                    ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Year
+                                                    Graduated</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="number" class="form-control form-control-sm"
+                                                    name="yearGraduate" min="1901" ngModel>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-4 col-form-label col-form-label-sm">
+                                                <label class="form-label">Scholarship / Academic Honors</label>
+                                            </div>
+                                            <div class="col">
+                                                <input type="text" class="form-control form-control-sm"
+                                                    name="scholarship" Model>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="d-flex align-baseline justify-content-between">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#csSection" aria-expanded="false" aria-controls="csSection">
-                                Civil Service
-                            </button>
-                            <div class="form-check form-switch mt-3 ms-2">
-                                <!-- <input class="form-check-input" type="checkbox" role="switch" #csSection
-                                    name="csSection" [ngModel]="true"> -->
-                            </div>
-                        </div>
-                        <div id="csSection" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                                demonstrate
-                                the <code>.accordion-flush</code> class. This is the third item's accordion body.
-                                Nothing
-                                more
-                                exciting happening here in terms of content, but just filling up the space to make it
-                                look,
-                                at
-                                least at first glance, a bit more representative of how this would look in a real-world
-                                application.</div>
+
                         </div>
                     </div>
                 </div>
+                <div class="accordion-item">
+                    <div class="d-flex align-baseline justify-content-between">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#csSection" aria-expanded="false" aria-controls="csSection">
+                            Civil Service
+                        </button>
+                        <div class="form-check form-switch mt-3 ms-2">
+                            <!-- <input class="form-check-input" type="checkbox" role="switch" #csSection
+                                    name="csSection" [ngModel]="true"> -->
+                        </div>
+                    </div>
+                    <div id="csSection" class="accordion-collapse collapse" aria-labelledby="flush-headingThree">
+                        <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                            demonstrate
+                            the <code>.accordion-flush</code> class. This is the third item's accordion body.
+                            Nothing
+                            more
+                            exciting happening here in terms of content, but just filling up the space to make it
+                            look,
+                            at
+                            least at first glance, a bit more representative of how this would look in a real-world
+                            application.</div>
+                    </div>
+                </div>
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary mt-3">Search</button>
                 </div>
             </form>
         </div>
