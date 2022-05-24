@@ -4,7 +4,8 @@ import { Faculty } from 'src/app/model/faculty.model';
 import { FacultyService } from 'src/app/services/faculty.service';
 import { initializeApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
-import { Seminar } from '../../model/_seminar';
+import { environment } from 'src/environments/environment';
+
 declare var jquery: any;
 declare var $: any;
 
@@ -80,13 +81,7 @@ export class FacultyProfileComponent implements OnInit {
   
   ]
 
-  firebaseConfig = {
-    apiKey: 'AIzaSyB9N-suydf9myRmwYPIoBUuxP6CI4CjnTo',
-    authDomain: 'fmis-app.firebaseapp.com',
-    databaseURL: 'https://fmis-app-default-rtdb.firebaseio.com',
-    storageBucket: 'fmis-app.appspot.com'
-  };
-  firebaseApp = initializeApp(this.firebaseConfig);
+  firebaseApp = initializeApp(environment.firebase);
   metadata = { contentType: 'image/jpeg' };
   storage = getStorage();
   certificates: string[] = [];

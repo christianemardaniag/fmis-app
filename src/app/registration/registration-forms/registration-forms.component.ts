@@ -10,6 +10,7 @@ import { Work } from 'src/app/model/_work';
 import { Seminar } from 'src/app/model/_seminar';
 import { initializeApp } from 'firebase/app';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { environment } from 'src/environments/environment';
 
 declare var jquery: any;
 declare var $: any;
@@ -136,13 +137,7 @@ export class RegistrationFormsComponent implements OnInit {
   certList: FileList | null = null;
   cert: string[] = [];
 
-  firebaseConfig = {
-    apiKey: 'AIzaSyB9N-suydf9myRmwYPIoBUuxP6CI4CjnTo',
-    authDomain: 'fmis-app.firebaseapp.com',
-    databaseURL: 'https://fmis-app-default-rtdb.firebaseio.com',
-    storageBucket: 'fmis-app.appspot.com'
-  };
-  firebaseApp = initializeApp(this.firebaseConfig);
+  firebaseApp = initializeApp(environment.firebase);
   metadata = { contentType: 'image/jpeg' };
   storage = getStorage();
 

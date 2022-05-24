@@ -9,6 +9,7 @@ import { Education } from 'src/app/model/_education';
 import { Seminar } from 'src/app/model/_seminar';
 import { Work } from 'src/app/model/_work';
 import { FacultyService } from 'src/app/services/faculty.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile-edit',
@@ -45,13 +46,7 @@ export class ProfileEditComponent implements OnInit {
   workEntry: Work[] = [];
   seminarEntry: Seminar[] = [];
   certificates: string[] = [];
-  firebaseConfig = {
-    apiKey: 'AIzaSyB9N-suydf9myRmwYPIoBUuxP6CI4CjnTo',
-    authDomain: 'fmis-app.firebaseapp.com',
-    databaseURL: 'https://fmis-app-default-rtdb.firebaseio.com',
-    storageBucket: 'fmis-app.appspot.com'
-  };
-  firebaseApp = initializeApp(this.firebaseConfig);
+  firebaseApp = initializeApp(environment.firebase);
   metadata = { contentType: 'image/jpeg' };
   storage = getStorage();
   certList: FileList | null = null;

@@ -4,6 +4,8 @@ import { initializeApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 import { Faculty } from 'src/app/model/faculty.model';
 import { FacultyService } from 'src/app/services/faculty.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-admin-report',
@@ -31,13 +33,7 @@ export class AdminReportComponent implements OnInit {
   coverage = ['International', 'National', 'Regional', 'Local'];
   ldType = ['Managerial', 'Supervisory', 'Technical'];
 
-  firebaseConfig = {
-    apiKey: 'AIzaSyB9N-suydf9myRmwYPIoBUuxP6CI4CjnTo',
-    authDomain: 'fmis-app.firebaseapp.com',
-    databaseURL: 'https://fmis-app-default-rtdb.firebaseio.com',
-    storageBucket: 'fmis-app.appspot.com'
-  };
-  firebaseApp = initializeApp(this.firebaseConfig);
+  firebaseApp = initializeApp(environment.firebase);
   metadata = { contentType: 'image/jpeg' };
   storage = getStorage();
   certificates: string[] = [];
@@ -52,6 +48,7 @@ export class AdminReportComponent implements OnInit {
     this.facultyService.getAllActiveFaculty().subscribe(async data => {
       this.faculties = data;
       for (const f of this.faculties) {
+        this.certificates = [];
         if(f.certificates) {
           for (let c of f.certificates) {
             this.certificates.push(await getDownloadURL(ref(this.storage, 'certificates/' + c)));
