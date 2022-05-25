@@ -5,9 +5,17 @@ import { FacultyService } from 'src/app/services/faculty.service';
 import { initializeApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { environment } from 'src/environments/environment';
+import { ArrangedSeminars } from 'src/app/model/_arrangedSeminar';
+import * as moment from 'moment';
+import { ArrangeSeminarDetails } from 'src/app/model/_arrangedSeminarDetails';
 
 declare var jquery: any;
 declare var $: any;
+
+interface month {
+  month: string,
+  year: string
+}
 
 @Component({
   selector: 'app-faculty-profile',
@@ -23,63 +31,7 @@ export class FacultyProfileComponent implements OnInit {
   isUploading = false;
   pos = localStorage.getItem('position')!;
   uploadProgress = 0;
-  arrangedSeminars = [{
-    title: '',
-    details: [{
-      title: '',
-      hours: 0,
-      startDate: '',
-      endDate: '',
-      type: '',
-      sponsored: '',
-      coverage: '',
-      certificate: []
-    }]
-  }];
-
-  test = [
-    {
-      title: 'ABC',
-      hours: 2,
-      startDate: '2021-02-20',
-      endDate: '2021-02-20',
-      type: 'Managerial',
-      sponsored: 'XYZ',
-      coverage: 'Local',
-      certificate: []
-    },
-    {
-      title: 'ABCD',
-      hours: 5,
-      startDate: '2022-01-20',
-      endDate: '2022-01-20',
-      type: 'Managerial',
-      sponsored: 'WXYZ',
-      coverage: 'Regional',
-      certificate: []
-    },
-    {
-      title: 'C',
-      hours: 3,
-      startDate: '2020-04-20',
-      endDate: '2020-04-20',
-      type: 'Managerial',
-      sponsored: 'XYZ',
-      coverage: 'Local',
-      certificate: []
-    },
-    {
-      title: 'ABC',
-      hours: 2,
-      startDate: '2019-11-20',
-      endDate: '2019-11-20',
-      type: 'Managerial',
-      sponsored: 'XYZ',
-      coverage: 'Local',
-      certificate: []
-    },
-  
-  ]
+  arrangedSeminars: ArrangedSeminars[] = [];
 
   firebaseApp = initializeApp(environment.firebase);
   metadata = { contentType: 'image/jpeg' };
@@ -101,7 +53,6 @@ export class FacultyProfileComponent implements OnInit {
       });
     this.fetchData();
     this.isAdminApplication = this.router.url.includes('application');
-    this.arrangeSeminars('yearly');
   }
 
   fetchData() {
@@ -110,14 +61,15 @@ export class FacultyProfileComponent implements OnInit {
       this.faculty = data;
       this.isFetching = false;
       this.getCertificates();
+      this.arrangeSeminars('yearly');
     })
   }
 
   async getCertificates() {
-    if (this.faculty.certificates) { 
+    if (this.faculty.certificates) {
       const cert = this.faculty.certificates;
       for (let i = 0; i < cert.length; i++) {
-        const name = cert[i];        
+        const name = cert[i];
         this.certificates.push(await this.getUrl(name));
       }
     }
@@ -180,8 +132,164 @@ export class FacultyProfileComponent implements OnInit {
   }
 
   arrangeSeminars(val: string) {
-    
+    const seminars = this.faculty.seminars;
+    let year: string[] = [];
+    let month: month[] = [];
+    for (const sem of seminars ? seminars : []) {
+      let startDate = moment(sem.startDate);
+      const y = startDate.format("YYYY");
+      const m = startDate.format("MMMM");
+      if (!year.includes(y)) {
+        year.push(y);
+      }
+      if (!month.includes({ month: m, year: y })) {
+        month.push({ month: m, year: y })
+      }
+    }
+    this.arrangedSeminars = [];
+    switch (val) {
+      case 'yearly':
+        this.arrangeSeminarsByYear(year, seminars);
+        break;
+      case 'monthly':
+        this.arrangeSeminarsByMonth(month, seminars);
+        break;
+      case 'quarterly':
+        this.arrangeSeminarsByQuarter(year, seminars);
+        break;
+    }
+    console.log(this.arrangedSeminars);
+  }
 
+  arrangeSeminarsByDateRange(s: string, e?: string) {
+    this.arrangedSeminars = [];
+    const seminars = this.faculty.seminars;
+    let start = moment();
+    if(s) start = moment(s); 
+    let end = moment();
+    if(e) end = moment(e);
+    let details: ArrangeSeminarDetails[] = [];
+    for (const sem of seminars ? seminars : []) {
+      let date = moment(sem.startDate);
+      if (date.isBetween(start, end)) {
+        details.push({
+          title: sem.title,
+          hours: sem.hours,
+          startDate: sem.startDate,
+          endDate: sem.endDate,
+          type: sem.type,
+          sponsored: sem.sponsored,
+          coverage: sem.coverage
+        });
+      }
+    }
+    this.arrangedSeminars.push({title: start.format('LL') + ' to ' + end.format('LL'), details: details});
+  }
+
+  arrangeSeminarsByQuarter(year: string[], seminars: any) {
+    for (const yy of year) {
+      let q1: ArrangeSeminarDetails[] = [];
+      let q2: ArrangeSeminarDetails[] = [];
+      let q3: ArrangeSeminarDetails[] = [];
+      let q4: ArrangeSeminarDetails[] = [];
+      for (const sem of seminars ? seminars : []) {
+        let startDate = moment(sem.startDate);
+        const y = startDate.format("YYYY");
+        if (yy === y) {
+          switch (startDate.quarter()) {
+            case 1:
+              q1.push({
+                title: sem.title, hours: sem.hours, startDate: sem.startDate,
+                endDate: sem.endDate, type: sem.type, sponsored: sem.sponsored,
+                coverage: sem.coverage
+              });
+              break;
+            case 2:
+              q2.push({
+                title: sem.title, hours: sem.hours, startDate: sem.startDate,
+                endDate: sem.endDate, type: sem.type, sponsored: sem.sponsored,
+                coverage: sem.coverage
+              });
+              break;
+            case 3:
+              q3.push({
+                title: sem.title, hours: sem.hours, startDate: sem.startDate,
+                endDate: sem.endDate, type: sem.type, sponsored: sem.sponsored,
+                coverage: sem.coverage
+              });
+              break;
+            case 4:
+              q4.push({
+                title: sem.title, hours: sem.hours, startDate: sem.startDate,
+                endDate: sem.endDate, type: sem.type, sponsored: sem.sponsored,
+                coverage: sem.coverage
+              });
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+      if (q1.length) {
+        this.arrangedSeminars.push({ title: yy + ' - 1st Quarter', details: q1 })
+      }
+      if (q2.length) {
+        this.arrangedSeminars.push({ title: yy + ' - 2nd Quarter', details: q2 })
+      }
+      if (q3.length) {
+        this.arrangedSeminars.push({ title: yy + ' - 3rd Quarter', details: q3 })
+      }
+      if (q4.length) {
+        this.arrangedSeminars.push({ title: yy + ' - 4th Quarter', details: q4 })
+      }
+    }
+
+
+  }
+
+  arrangeSeminarsByMonth(month: month[], seminars: any) {
+    for (const mon of month) {
+      let details: ArrangeSeminarDetails[] = [];
+      for (const sem of seminars ? seminars : []) {
+        let startDate = moment(sem.startDate);
+        const y = startDate.format("YYYY");
+        const m = startDate.format("MMMM");
+        if (mon.month === m && mon.year === y) {
+          details.push({
+            title: sem.title,
+            hours: sem.hours,
+            startDate: sem.startDate,
+            endDate: sem.endDate,
+            type: sem.type,
+            sponsored: sem.sponsored,
+            coverage: sem.coverage
+          });
+        }
+      }
+      this.arrangedSeminars.push({ title: mon.month + ' ' + mon.year, details: details });
+    }
+  }
+
+  arrangeSeminarsByYear(year: string[], seminars: any) {
+    for (const y of year) {
+      let details: ArrangeSeminarDetails[] = [];
+      for (const sem of seminars ? seminars : []) {
+        let startDate = moment(sem.startDate);
+        if (y == startDate.format('YYYY')) {
+          details.push({
+            title: sem.title,
+            hours: sem.hours,
+            startDate: sem.startDate,
+            endDate: sem.endDate,
+            type: sem.type,
+            sponsored: sem.sponsored,
+            coverage: sem.coverage
+          });
+        }
+      }
+      this.arrangedSeminars.push({ title: y, details: details });
+    }
   }
 
   a(a: any) {

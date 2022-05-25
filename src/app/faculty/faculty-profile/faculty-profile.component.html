@@ -341,18 +341,49 @@
                     <input type="checkbox" name="print" id="" class="form-check-input d-print-none"
                         data-toggle="tooltip" data-placement="auto" title="Include to print" #LD checked
                         (click)="a(LD)">
-                </div>
-                <div class="row row-cols-auto g-3">
-
-                    <div class="col" *ngFor="let v of faculty.seminars">
-                        <div class="fw-bold fs-6">{{ v.title }}</div>
-                        <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
-                            (v.endDate | date:'MMM d, YYYY') }}
+                </div>.
+                <div class="row mb-3">
+                    <div class="col">
+                        <label class="form-label">Arranged by:</label>
+                        <select class="form-select" name="arrange" #arrange ngModel="yearly"
+                            (change)="arrangeSeminars(arrange.value)">
+                            <option value="yearly">Yearly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Arrange by Date Range</label>
+                        <div class="d-flex justify-content-around">
+                            <input type="date" class="form-control" placeholder="Start Year" name="startDate" ngModel
+                                #start (change)="arrangeSeminarsByDateRange(start.value, end.value)">
+                            <label class="mx-3 pt-1">to</label>
+                            <input type="date" class="form-control" min="1901" placeholder="End Year" name="endDate"
+                                #end (change)="arrangeSeminarsByDateRange(start.value, end.value)" ngModel>
                         </div>
-                        <div>Number of Hours: {{ v.hours }}</div>
-                        <div>Type of LD: {{ v.type }}</div>
-                        <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
-                        <div>Coverage: {{ v.coverage }}</div>
+                    </div>
+                </div>
+                <div class="row row-cols-2 g-3">
+                    <div class="col" *ngFor="let eachSeminar of arrangedSeminars">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{eachSeminar.title}}</h5>
+                                <div class="card" *ngFor="let v of eachSeminar.details">
+                                    <div class="card-body">
+                                        <div class="fw-bold fs-6">{{ v.title }}</div>
+                                        <div>Inclusive Date: {{ (v.startDate | date:'MMM d, YYYY') + '-' +
+                                            (v.endDate | date:'MMM d, YYYY') }}
+                                        </div>
+                                        <div>Number of Hours: {{ v.hours }}</div>
+                                        <div>Type of LD: {{ v.type }}</div>
+                                        <div>Conducted / Sponsored by: {{ v.sponsored }}</div>
+                                        <div>Coverage: {{ v.coverage }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
                 </div>

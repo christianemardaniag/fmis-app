@@ -55,23 +55,8 @@ export class AdminReportComponent implements OnInit {
           }
           f.certificates = this.certificates;
         }
-      }
-      // console.log(this.certificates);
-      
+      }      
     });
-  }
-  
-  // getCertificates(name: string) {
-  //   const cert = this.faculty.certificates;
-  //     for (let i = 0; i < cert.length; i++) {
-  //       const name = cert[i];        
-  //       this.certificates.push(await this.getUrl(name));
-  //     }
-    
-  // }
-
-  getUrl(name: string) {
-
   }
 
   search(searchForm: NgForm) {
