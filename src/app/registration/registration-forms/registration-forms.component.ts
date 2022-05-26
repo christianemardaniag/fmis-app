@@ -264,7 +264,9 @@ export class RegistrationFormsComponent implements OnInit {
     this.setupSeminarsMultipleEntry(this.faculty.seminars, val.seminars);
     // Certificates
     this.faculty.certificates = this.cert;
-    this.uploadFile(this.certList?this.certList:new FileList);
+    if(this.certList) {
+      this.uploadFile(this.certList!);
+    }
     // // Account
     this.faculty.password = val.password;
     this.faculty.status = 'for approval';
