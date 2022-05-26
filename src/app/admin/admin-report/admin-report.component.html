@@ -916,9 +916,9 @@
             </form>
         </div>
         <div class="col">
-            <div class="text-center h3 text-secondary" *ngIf="(faculties | searchSpecific: filter).length === 0">
-                -- No matches --
-            </div>
+            <span class="badge bg-dark text-light fs-5">
+                {{(faculties | searchSpecific: filter).length}} record/s found
+            </span>
             <div *ngFor="let faculty of faculties | searchSpecific: filter">
                 <div class="card my-2">
                     <div class="card-body">
@@ -1202,7 +1202,7 @@
                                 <div class="fw-bold fs-6 mt-3">Certificates</div>
                                 <div class="text-secondary" *ngIf="faculty.certificates.length === 0">
                                     -- No Available Certificate --
-                                    </div>
+                                </div>
                                 <div class="row row-cols-5 g-2">
                                     <div class="col" *ngFor="let cert of faculty.certificates">
                                         <a [href]="cert" target="_blank"><img [src]="cert"
