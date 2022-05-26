@@ -43,13 +43,10 @@ export class FacultyProfileComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    $(function () {
-      $('[data-toggle="popover"]').popover('show')
-    })
-
     this.route.paramMap.subscribe(
       params => {
         this.id = params.get('id')!;
+        this.fetchData();
       });
     this.fetchData();
     this.isAdminApplication = this.router.url.includes('application');
@@ -66,6 +63,7 @@ export class FacultyProfileComponent implements OnInit {
   }
 
   async getCertificates() {
+    this.certificates = [];
     if (this.faculty.certificates) {
       const cert = this.faculty.certificates;
       for (let i = 0; i < cert.length; i++) {
@@ -165,9 +163,9 @@ export class FacultyProfileComponent implements OnInit {
     this.arrangedSeminars = [];
     const seminars = this.faculty.seminars;
     let start = moment();
-    if(s) start = moment(s); 
+    if (s) start = moment(s);
     let end = moment();
-    if(e) end = moment(e);
+    if (e) end = moment(e);
     let details: ArrangeSeminarDetails[] = [];
     for (const sem of seminars ? seminars : []) {
       let date = moment(sem.startDate);
@@ -183,7 +181,7 @@ export class FacultyProfileComponent implements OnInit {
         });
       }
     }
-    this.arrangedSeminars.push({title: start.format('LL') + ' to ' + end.format('LL'), details: details});
+    this.arrangedSeminars.push({ title: start.format('LL') + ' to ' + end.format('LL'), details: details });
   }
 
   arrangeSeminarsByQuarter(year: string[], seminars: any) {

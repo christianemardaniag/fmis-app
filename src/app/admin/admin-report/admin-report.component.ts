@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { initializeApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./admin-report.component.css']
 })
 export class AdminReportComponent implements OnInit {
-
+  @Output() refreshParent: EventEmitter<any> = new EventEmitter();
   faculties: Faculty[] = [];
   filter: any = {};
   vocationalCtr = 0;
@@ -93,5 +93,9 @@ export class AdminReportComponent implements OnInit {
     this.seminarEntry.push(1);
     this.seminarCtr++;
   }
-
+  onActivate(componentReference: any) {
+    componentReference.refreshParent.subscribe((data:any) => {
+      this.refreshParent.emit(data);
+    })
+  }
 }
