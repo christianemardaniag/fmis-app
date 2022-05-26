@@ -48,11 +48,11 @@ export class FacultyProfileComponent implements OnInit {
         this.id = params.get('id')!;
         this.fetchData();
       });
-    this.fetchData();
     this.isAdminApplication = this.router.url.includes('application');
   }
 
   fetchData() {
+    this.certificates = [];    
     this.isFetching = true;
     this.facultyService.getFacultyById(this.id).subscribe(data => {
       this.faculty = data;
@@ -66,10 +66,9 @@ export class FacultyProfileComponent implements OnInit {
     this.certificates = [];
     if (this.faculty.certificates) {
       const cert = this.faculty.certificates;
-      for (let i = 0; i < cert.length; i++) {
-        const name = cert[i];
-        this.certificates.push(await this.getUrl(name));
-      }
+      for (const c of cert) {
+        this.certificates.push(await this.getUrl(c));
+      } 
     }
   }
 
@@ -156,7 +155,6 @@ export class FacultyProfileComponent implements OnInit {
         this.arrangeSeminarsByQuarter(year, seminars);
         break;
     }
-    console.log(this.arrangedSeminars);
   }
 
   arrangeSeminarsByDateRange(s: string, e?: string) {

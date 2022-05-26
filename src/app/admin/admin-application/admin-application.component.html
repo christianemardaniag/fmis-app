@@ -4,13 +4,13 @@
         <input type="text" class="form-control mb-2" name="search" id="search" placeholder="Search..." [(ngModel)]="searchTerm">
         <div class="btn-group w-100 mb-3" role="group" aria-label="Basic checkbox toggle button group">
             <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" #forApproval [ngModel]="true" (change)="setAppList(forApproval.checked, 'for approval')">
-            <label class="btn btn-outline-secondary" for="btncheck1">For Approval</label>
+            <label class="btn btn-outline-primary" for="btncheck1">For Approval</label>
           
             <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" #declined ngModel (change)="setAppList(declined.checked, 'declined')">
-            <label class="btn btn-outline-secondary" for="btncheck2">Declined</label>
+            <label class="btn btn-outline-warning" for="btncheck2">Declined</label>
           
             <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" #archived ngModel (change)="setAppList(archived.checked, 'archived')">
-            <label class="btn btn-outline-secondary" for="btncheck3">Archived</label>
+            <label class="btn btn-outline-danger" for="btncheck3">Archived</label>
           </div>
         <div class="list-group">
             <a class="list-group-item list-group-item-action d-block d-lg-flex justify-content-lg-between"

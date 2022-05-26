@@ -22,15 +22,13 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="middleName" class="form-label">Middle Name</label>
-								<input type="text" class="form-control" name="middleName" id="middleName"
-									ngModel>
+								<input type="text" class="form-control" name="middleName" id="middleName" ngModel>
 							</div>
 						</div>
 						<div class="col">
 							<div class="mb-3">
 								<label for="lastName" class="form-label">*Last Name</label>
-								<input type="text" class="form-control" name="lastName" id="lastName" required
-									ngModel>
+								<input type="text" class="form-control" name="lastName" id="lastName" required ngModel>
 							</div>
 						</div>
 						<div class="col">
@@ -100,8 +98,8 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="citizenship" class="form-label">*Citizenship</label>
-								<input type="text" class="form-control" name="citizenship" id="citizenship"
-									ngModel required>
+								<input type="text" class="form-control" name="citizenship" id="citizenship" ngModel
+									required>
 							</div>
 						</div>
 					</div>
@@ -124,8 +122,8 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="mobileNumber" class="form-label">*Mobile Number</label>
-								<input type="text" class="form-control" name="mobileNumber" id="mobileNumber"
-									ngModel required>
+								<input type="text" class="form-control" name="mobileNumber" id="mobileNumber" ngModel
+									required>
 							</div>
 						</div>
 						<div class="col">
@@ -197,27 +195,25 @@
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentHouseNo"
-										id="permanentHouseNo" placeholder="House/Block/Lot No." ngModel
-										>
+										id="permanentHouseNo" placeholder="House/Block/Lot No." ngModel>
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentStreet" id="permanentStreet"
-										placeholder="Street" ngModel >
+										placeholder="Street" ngModel>
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<input type="text" class="form-control" name="permanentSubdivision"
-										id="permanentSubdivision" placeholder="Subdivision/Barangay" ngModel
-										>
+										id="permanentSubdivision" placeholder="Subdivision/Barangay" ngModel>
 								</div>
 							</div>
 							<div class="col">
 								<div class="mb-3">
 									<select class="form-select" name="permanentCityProvince" #pcp="ngModel" ngModel
-										required >
+										required>
 										<option hidden disabled selected value="">*Select City/Province</option>
 										<option [value]="i" *ngFor="let x of cityProvince; let i = index">{{ x |
 											titlecase }}</option>
@@ -226,8 +222,7 @@
 							</div>
 							<div class="col">
 								<div class="mb-3">
-									<select class="form-select" name="permanentMunicipality" ngModel required
-										>
+									<select class="form-select" name="permanentMunicipality" ngModel required>
 										<option hidden disabled selected value="">*Select Municipality</option>
 										<option [value]="x" *ngFor="let x of municipality[pcp.value]">{{ x |
 											titlecase}}</option>
@@ -237,8 +232,7 @@
 							<div class="col">
 								<div class="mb-3">
 									<input type="number" class="form-control" name="permanentZipCode"
-										id="permanentZipCode" placeholder="Zip Code" ngModel
-										>
+										id="permanentZipCode" placeholder="Zip Code" ngModel>
 								</div>
 							</div>
 						</div>
@@ -278,8 +272,8 @@
 						<div class="col">
 							<div class="mb-3">
 								<label for="employeeNo" class="form-label">*Agency Employee No.</label>
-								<input type="text" class="form-control" name="employeeNo" id="employeeNo"
-									ngModel required>
+								<input type="text" class="form-control" name="employeeNo" id="employeeNo" ngModel
+									required>
 							</div>
 						</div>
 					</div>
@@ -289,24 +283,23 @@
 
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="education-heading">
-				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#education-collapse" aria-expanded="false"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#education-collapse" aria-expanded="false"
 					aria-controls="education-collapse">
 					Educational Background
 				</button>
 			</h2>
-			<div id="education-collapse" class="accordion-collapse collapse"
-				aria-labelledby="education-heading">
-				<div class="accordion-body" >
+			<div id="education-collapse" class="accordion-collapse collapse" aria-labelledby="education-heading">
+				<div class="accordion-body">
 					<app-form-educational-background></app-form-educational-background>
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="civil-service-heading">
-				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#civil-service-collapse" aria-expanded="false"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#civil-service-collapse" aria-expanded="false"
 					aria-controls="civil-service-collapse">
 					Civil Service
 				</button>
@@ -320,8 +313,8 @@
 		</div>
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="work-experience-heading">
-				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#work-experience-collapse" aria-expanded="false"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#work-experience-collapse" aria-expanded="false"
 					aria-controls="work-experience-collapse">
 					Work Experience
 				</button>
@@ -336,20 +329,19 @@
 
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="seminars-heading">
-				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button" data-bs-toggle="collapse"
-					data-bs-target="#seminars-collapse" aria-expanded="false"
+				<button class="accordion-button bg-light fs-5 text-dark fw-bold collapsed" type="button"
+					data-bs-toggle="collapse" data-bs-target="#seminars-collapse" aria-expanded="false"
 					aria-controls="seminars-collapse">
 					Learning and Development (L&D) Interventions/Training Programs Attended
 				</button>
 			</h2>
-			<div id="seminars-collapse" class="accordion-collapse collapse"
-				aria-labelledby="seminars-heading">
+			<div id="seminars-collapse" class="accordion-collapse collapse" aria-labelledby="seminars-heading">
 				<div class="accordion-body">
 					<app-form-seminars></app-form-seminars>
 					<div class="mb-3">
 						<label for="certificate" class="form-label">Upload All Certificate (Image Format)</label>
-						<input type="file" class="form-control" name="certificate" id="certificate" 
-							accept="image/*" multiple="multiple" ngModel (change)="certOnChange($event)">
+						<input type="file" class="form-control" name="certificate" id="certificate" accept="image/*"
+							multiple="multiple" ngModel (change)="certOnChange($event)">
 					</div>
 				</div>
 			</div>
@@ -375,7 +367,8 @@
 							<div class="mb-3">
 								<label for="password" class="form-label">Password</label>
 								<input type="password" class="form-control" name="password" id="password" required
-									ngModel>
+									ngModel minlength="8">
+								<small class="text-secondary">Password must be at least 8 characters </small>
 							</div>
 						</div>
 						<div class="col">
@@ -402,6 +395,6 @@
 				<span class="visually-hidden">Loading...</span>
 			</div>
 		</button>
-		
+
 	</div>
 </form>

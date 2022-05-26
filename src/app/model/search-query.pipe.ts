@@ -15,7 +15,7 @@ export class SearchQueryPipe implements PipeTransform {
     return value.filter(function(data: any){
         console.log(data);
         
-        return JSON.stringify(data.firstName).toLowerCase().includes(args);
+        return JSON.stringify(data).toLowerCase().includes(args);
     });
 }
 
