@@ -32,6 +32,9 @@ export class SearchSpecificPipe implements PipeTransform {
 
 
         if (filter[key] !== '' && typeof filter[key] === 'string') {
+          if (filter[key] === 'male') {
+            return item[key].toLowerCase() !== filter[key].toLowerCase();
+          }
           return !item[key].toLowerCase().includes(filter[key].toLowerCase());
         } else {
           return false;
