@@ -22,7 +22,7 @@ declare var $: any;
 
 })
 export class RegistrationFormsComponent implements OnInit {
-  private baseUrl = "https://fmis-app-default-rtdb.firebaseio.com/";
+  private baseUrl = "https://fmis-app-240e4-default-rtdb.firebaseio.com/";
   faculty: Faculty = new Faculty;
   gender = ['male', 'female'];
   civilStatus = ['single', 'married', 'widowed', 'separated'];

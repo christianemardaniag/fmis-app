@@ -6,7 +6,7 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class FacultyService {
-  private baseUrl = "https://fmis-app-default-rtdb.firebaseio.com/";
+  private baseUrl = "https://fmis-app-240e4-default-rtdb.firebaseio.com/";
   constructor(private http: HttpClient) {
     console.log("DATABASE: " + this.baseUrl);
 

@@ -109,8 +109,8 @@
             "prerender": false,
             "ssr": false,
             "browserTarget": "fmis-app:build:production",
-            "firebaseProject": "fmis-app",
-            "firebaseHostingSite": "fmis-app"
+            "firebaseProject": "fmis-app-240e4",
+            "firebaseHostingSite": "fmis-app-240e4"
           }
         },
         "lint": {

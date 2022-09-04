@@ -29,6 +29,10 @@ import { AdminApplicationComponent } from './admin/admin-application/admin-appli
 import { SearchQueryPipe } from './model/search-query.pipe';
 import { AdminReportComponent } from './admin/admin-report/admin-report.component';
 import { SearchSpecificPipe } from './model/search-specific.pipe';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -63,7 +67,10 @@ import { SearchSpecificPipe } from './model/search-specific.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideDatabase(() => getDatabase()),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]

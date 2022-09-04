@@ -6,9 +6,16 @@
           "fmis-app"
         ]
       }
+    },
+    "fmis-app-240e4": {
+      "hosting": {
+        "fmis-app": [
+          "fmis-app-240e4"
+        ]
+      }
     }
   },
   "projects": {
-    "default": "fmis-app"
+    "default": "fmis-app-240e4"
   }
 }

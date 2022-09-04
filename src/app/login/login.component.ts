@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private baseUrl = "https://fmis-app-default-rtdb.firebaseio.com/";
+  private baseUrl = "https://fmis-app-240e4-default-rtdb.firebaseio.com/";
   onSigninSpinner = false;
   isIncorrect = false;
   isLoggedIn = false;

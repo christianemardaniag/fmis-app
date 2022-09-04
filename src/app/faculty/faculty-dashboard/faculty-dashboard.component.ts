@@ -13,7 +13,7 @@ declare var $: any;
   styleUrls: ['./faculty-dashboard.component.css']
 })
 export class FacultyDashboardComponent implements OnInit {
-  private baseUrl = "https://fmis-app-default-rtdb.firebaseio.com/";
+  private baseUrl = "https://fmis-app-240e4-default-rtdb.firebaseio.com/";
   faculty: Faculty = new Faculty;
   id: string = '';
 
